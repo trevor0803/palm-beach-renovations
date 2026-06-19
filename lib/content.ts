@@ -21,7 +21,7 @@ export const serviceContent: ServiceContent[] = [
     shortTitle: "Kitchens",
     blurb:
       "Custom cabinetry, countertops, tile, and layouts that turn your kitchen into the heart of the home.",
-    heroImage: "/img/gallery/kitchen-remodel-1.jpg",
+    heroImage: "/img/gallery/kitchen-navy-white-island.jpg",
     metaDescription:
       "Expert kitchen remodeling in Palm Beach & Martin County, FL. Custom cabinets, countertops, islands, and lighting. Licensed, insured, free estimates. Call (561) 816-2496.",
     intro:
@@ -51,7 +51,7 @@ export const serviceContent: ServiceContent[] = [
     shortTitle: "Bathrooms",
     blurb:
       "From small powder rooms to spa-like master baths, finished on schedule with no shortcuts.",
-    heroImage: "/img/gallery/bathroom-remodel-1.jpg",
+    heroImage: "/img/gallery/bathroom-marble-walk-in-shower.jpg",
     metaDescription:
       "Bathroom remodeling in Palm Beach & Martin County, FL. Walk-in showers, tile, vanities, and full master baths. Licensed, insured, free estimates. Call (561) 816-2496.",
     intro:
@@ -81,7 +81,7 @@ export const serviceContent: ServiceContent[] = [
     shortTitle: "Cabinetry",
     blurb:
       "Built-to-fit cabinetry and storage solutions crafted for the way you live.",
-    heroImage: "/img/gallery/kitchen-remodel-2.jpg",
+    heroImage: "/img/gallery/kitchen-gray-woodgrain-cabinets.jpg",
     metaDescription:
       "Custom cabinetry in Palm Beach & Martin County, FL. Built-to-fit kitchen, bath, and built-in storage. Licensed, insured, free estimates. Call (561) 816-2496.",
     intro:
@@ -111,7 +111,7 @@ export const serviceContent: ServiceContent[] = [
     shortTitle: "Tile & Flooring",
     blurb:
       "Durable, beautiful tile and flooring installation that stands the test of time.",
-    heroImage: "/img/gallery/bathroom-remodel-2.jpg",
+    heroImage: "/img/gallery/tile-flooring-installation.jpg",
     metaDescription:
       "Tile and flooring installation in Palm Beach & Martin County, FL. Porcelain, ceramic, luxury vinyl, and more. Licensed, insured, free estimates. Call (561) 816-2496.",
     intro:

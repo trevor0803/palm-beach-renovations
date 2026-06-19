@@ -12,9 +12,24 @@ export const site = {
   description:
     "Expert home renovation and remodeling in Palm Beach and Martin County, FL. Kitchens, bathrooms, custom cabinetry, and tile flooring. Licensed, insured, 25+ years experience. Free estimates.",
   owners: [
-    { name: "Michael Ullman", role: "Owner", photo: "/img/team-michael.webp" },
-    { name: "Adam Mayer", role: "Owner", photo: "/img/team-adam.webp" },
-    { name: "Thomas Callahan", role: "Owner", photo: "/img/team-thomas.webp" },
+    {
+      name: "Michael Ullman",
+      role: "Owner",
+      photo: "/img/team-michael.webp",
+      bio: "Guided by faith, family, and integrity, Michael is a proud husband and father of three who is dedicated to serving homeowners across Palm Beach and Martin Counties. His commitment to trust, reliability, and strong values helps shape the culture and vision of Palm Beach Renovations.",
+    },
+    {
+      name: "Adam Mayer",
+      role: "Owner",
+      photo: "/img/team-adam.webp",
+      bio: "As a Marine Corps veteran and devoted husband, Adam is committed to excellence in everything he does. His strong work ethic, reliability, and dedication to quality craftsmanship make him a valued member of the Palm Beach Renovations team.",
+    },
+    {
+      name: "Thomas Callahan",
+      role: "Owner",
+      photo: "/img/team-thomas.webp",
+      bio: "Tom's a silly goose",
+    },
   ],
   social: {
     google:

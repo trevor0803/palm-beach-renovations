@@ -9,9 +9,6 @@ export const metadata: Metadata = {
   alternates: { canonical: `${site.domain}/our-team` },
 };
 
-const bio =
-  "A hands-on owner with a commitment to quality craftsmanship, clear communication, and finishing every project the right way.";
-
 export default function TeamPage() {
   return (
     <main className="container">
@@ -30,7 +27,7 @@ export default function TeamPage() {
             <figcaption>
               <strong>{o.name}</strong>
               <span>{o.role}</span>
-              <p>{bio}</p>
+              <p>{o.bio}</p>
             </figcaption>
           </figure>
         ))}
