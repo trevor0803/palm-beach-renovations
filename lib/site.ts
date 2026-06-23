@@ -28,7 +28,7 @@ export const site = {
       name: "Thomas Callahan",
       role: "Owner",
       photo: "/img/team-thomas.webp",
-      bio: "Tom's a silly goose",
+      bio: "A U.S. Army veteran and loving father of two boys, Tom brings discipline and dedication to every job. A tireless worker skilled across multiple trades, he takes pride in delivering quality craftsmanship for homeowners throughout Palm Beach and Martin Counties.",
     },
   ],
   social: {
