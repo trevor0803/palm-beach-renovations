@@ -141,7 +141,7 @@ export const serviceContent: ServiceContent[] = [
     shortTitle: "Additions",
     blurb:
       "Bedrooms, living spaces, and full-home remodels that add value and function.",
-    heroImage: "/img/gallery/home-renovation-1.jpg",
+    heroImage: "/img/gallery/home-renovation-4.jpg",
     metaDescription:
       "Home additions and full remodels in Palm Beach & Martin County, FL. Room additions, open-concept conversions, and whole-home renovation. Free estimates. Call (561) 816-2496.",
     intro:
