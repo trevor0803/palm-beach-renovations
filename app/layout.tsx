@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { site } from "@/lib/site";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import MetaPixel from "@/components/MetaPixel";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -88,6 +89,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <MetaPixel />
         <a href="#main" className="skip-link">Skip to content</a>
         <Header />
         <div id="main">{children}</div>
