@@ -50,7 +50,7 @@ export async function POST(req: Request) {
     // Project details → a clean, readable note on the contact
     const noteLines = [
       projectType ? `Project type: ${projectType}` : "",
-      city ? `City: ${city}${zip ? ` ${zip}` : ""}` : "",
+      city ? `City: ${city}${zip ? ` ${zip}` : ""}` : zip ? `Zip: ${zip}` : "",
       message ? `Details: ${message}` : "",
     ].filter(Boolean);
     if (noteLines.length && contact.id) {

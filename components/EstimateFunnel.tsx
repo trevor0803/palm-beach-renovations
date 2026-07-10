@@ -37,7 +37,7 @@ export default function EstimateFunnel() {
   const [step, setStep] = useState(0); // 0: project, 1: timeline, 2: contact form
   const [projectType, setProjectType] = useState("");
   const [timeline, setTimeline] = useState("");
-  const [form, setForm] = useState({ firstName: "", lastName: "", phone: "", email: "", city: "", zip: "" });
+  const [form, setForm] = useState({ firstName: "", lastName: "", phone: "", email: "", zip: "" });
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [err, setErr] = useState("");
 
@@ -153,7 +153,7 @@ export default function EstimateFunnel() {
 
       {step === 2 && (
         <form onSubmit={submit}>
-          <h2>Where should we send your free estimate?</h2>
+          <h2>Last step — lock in your free estimate</h2>
           <div className="lp-row">
             <input placeholder="First name *" required value={form.firstName} onChange={set("firstName")} />
             <input placeholder="Last name" value={form.lastName} onChange={set("lastName")} />
@@ -162,10 +162,14 @@ export default function EstimateFunnel() {
             <input placeholder="Phone *" type="tel" required value={form.phone} onChange={set("phone")} />
             <input placeholder="Email *" type="email" required value={form.email} onChange={set("email")} />
           </div>
-          <div className="lp-row">
-            <input placeholder="City *" required value={form.city} onChange={set("city")} />
-            <input placeholder="Zip" value={form.zip} onChange={set("zip")} />
-          </div>
+          <input
+            className="lp-zip"
+            placeholder="Zip code *"
+            required
+            inputMode="numeric"
+            value={form.zip}
+            onChange={set("zip")}
+          />
           {/* Honeypot — hidden from real users */}
           <input name="company" tabIndex={-1} autoComplete="off" className="lp-hp" aria-hidden="true" />
           <p className="lp-consent">
@@ -174,7 +178,7 @@ export default function EstimateFunnel() {
           </p>
           {err && <p className="lp-error">{err}</p>}
           <button className="lp-btn lp-full" type="submit" disabled={state === "sending"}>
-            {state === "sending" ? "Sending…" : "Get My Free Estimate →"}
+            {state === "sending" ? "Sending…" : "Submit Info"}
           </button>
           <button type="button" className="lp-back" onClick={() => setStep(1)}>
             ← Back

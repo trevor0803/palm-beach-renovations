@@ -23,23 +23,30 @@ export default function GoPage() {
       </div>
 
       <section className="lp-hero">
-        <div className="lp-hero-copy">
-          <p className="lp-eyebrow">Palm Beach &amp; Martin County, FL</p>
-          <h1>
-            Get Your <span>Free Renovation Estimate</span> — Fast
-          </h1>
-          <p className="lp-sub">
-            Kitchens, bathrooms, custom cabinetry &amp; flooring. Licensed &amp; insured, veteran-owned,
-            25+ years of experience. Answer two quick questions and we&apos;ll get you a free,
-            no-obligation estimate.
-          </p>
-          <ul className="lp-points">
-            <li>✓ Free in-home estimate — no pressure, no obligation</li>
-            <li>✓ Licensed &amp; insured local contractors</li>
-            <li>✓ Owner-led crews on every job</li>
-          </ul>
-        </div>
+        <p className="lp-eyebrow">Palm Beach &amp; Martin County, FL</p>
+        <h1>
+          Get Your <span>Free Renovation Estimate</span>
+        </h1>
+        <p className="lp-sub">Licensed &amp; insured · Veteran-owned · 25+ years of experience</p>
+
         <EstimateFunnel />
+
+        <div className="lp-owners">
+          <p className="lp-owners-title">Meet the owners</p>
+          <div className="lp-owners-row">
+            {site.owners.map((o) => (
+              <div key={o.name} className="lp-owner">
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={o.photo} alt={o.name} />
+                <strong>{o.name}</strong>
+                <span>{o.role}</span>
+              </div>
+            ))}
+          </div>
+          <p className="lp-owners-note">
+            Real local owners on every job — no call centers, no subcontractor roulette.
+          </p>
+        </div>
       </section>
 
       <footer className="lp-footer">

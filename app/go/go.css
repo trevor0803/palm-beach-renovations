@@ -7,7 +7,7 @@ body:has(.lp-root) .skip-link {
 
 .lp-root {
   min-height: 100vh;
-  background: linear-gradient(180deg, #f6f7f9 0%, #fff 40%);
+  background: radial-gradient(ellipse at top, #eef2fb 0%, #f6f7f9 45%, #fff 100%);
 }
 
 .lp-topbar {
@@ -21,17 +21,12 @@ body:has(.lp-root) .skip-link {
 .lp-brand { font-weight: 800; letter-spacing: 0.2px; }
 .lp-phone { color: #fff; font-weight: 700; text-decoration: none; }
 
+/* Centered single-column hero — all eyes on the survey card */
 .lp-hero {
-  max-width: var(--max);
+  max-width: 760px;
   margin: 0 auto;
-  padding: 48px 22px 60px;
-  display: grid;
-  grid-template-columns: 1.1fr 0.9fr;
-  gap: 44px;
-  align-items: start;
-}
-@media (max-width: 860px) {
-  .lp-hero { grid-template-columns: 1fr; padding-top: 28px; }
+  padding: 36px 22px 60px;
+  text-align: center;
 }
 
 .lp-eyebrow {
@@ -42,20 +37,23 @@ body:has(.lp-root) .skip-link {
   letter-spacing: 1px;
   margin: 0 0 10px;
 }
-.lp-hero-copy h1 { font-size: clamp(30px, 4.4vw, 46px); line-height: 1.12; margin: 0 0 16px; }
-.lp-hero-copy h1 span { color: var(--navy); }
-.lp-sub { font-size: 17px; color: var(--muted); margin: 0 0 18px; }
-.lp-points { list-style: none; padding: 0; margin: 0; }
-.lp-points li { padding: 5px 0; font-weight: 600; }
+.lp-hero h1 { font-size: clamp(28px, 4.2vw, 42px); line-height: 1.12; margin: 0 0 10px; }
+.lp-hero h1 span { color: var(--navy); }
+.lp-sub { font-size: 16px; color: var(--muted); margin: 0 0 26px; font-weight: 600; }
 
+/* The survey card — front and center, big shadow, accent bar */
 .lp-card {
   background: #fff;
   border: 1px solid var(--line);
+  border-top: 5px solid var(--navy);
   border-radius: var(--radius);
-  box-shadow: 0 14px 40px rgba(30, 58, 138, 0.12);
-  padding: 26px;
+  box-shadow: 0 24px 70px rgba(30, 58, 138, 0.22), 0 4px 18px rgba(30, 58, 138, 0.1);
+  padding: 30px 28px;
+  max-width: 560px;
+  margin: 0 auto;
+  text-align: left;
 }
-.lp-card h2 { margin: 8px 0 16px; font-size: 22px; }
+.lp-card h2 { margin: 10px 0 16px; font-size: 22px; }
 
 .lp-progress {
   height: 8px;
@@ -89,6 +87,7 @@ body:has(.lp-root) .skip-link {
   box-sizing: border-box;
 }
 .lp-card input:focus { outline: none; border-color: var(--navy); }
+.lp-zip { margin-bottom: 10px; }
 
 .lp-hp { position: absolute; left: -9999px; height: 0; width: 0; opacity: 0; }
 
@@ -130,6 +129,36 @@ body:has(.lp-root) .skip-link {
   margin: 6px auto 12px;
 }
 .lp-muted { color: var(--muted); }
+
+/* Owners strip under the survey — trust signal */
+.lp-owners { margin-top: 34px; }
+.lp-owners-title {
+  font-weight: 800;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.8px;
+  color: var(--navy);
+  margin: 0 0 14px;
+}
+.lp-owners-row {
+  display: flex;
+  justify-content: center;
+  gap: 34px;
+  flex-wrap: wrap;
+}
+.lp-owner { display: flex; flex-direction: column; align-items: center; width: 120px; }
+.lp-owner img {
+  width: 88px;
+  height: 88px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid #fff;
+  box-shadow: 0 6px 18px rgba(30, 58, 138, 0.22);
+  margin-bottom: 8px;
+}
+.lp-owner strong { font-size: 14px; line-height: 1.2; }
+.lp-owner span { font-size: 12px; color: var(--muted); }
+.lp-owners-note { color: var(--muted); font-size: 14px; margin-top: 14px; }
 
 .lp-footer { text-align: center; padding: 24px; color: var(--muted); font-size: 14px; }
 .lp-footer a { color: var(--navy); }
