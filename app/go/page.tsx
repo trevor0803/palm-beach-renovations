@@ -57,13 +57,6 @@ export default function GoPage() {
         </div>
       </section>
 
-      <section className="lp-proof" aria-label="Company highlights">
-        <div><strong>25+</strong><span>Years of experience</span></div>
-        <div><strong>Local</strong><span>Palm Beach &amp; Martin County</span></div>
-        <div><strong>Free</strong><span>No-obligation estimates</span></div>
-        <div><strong>Direct</strong><span>Communication with our team</span></div>
-      </section>
-
       <section className="lp-section lp-reviews">
         <p className="lp-kicker">HOMEOWNER REVIEWS</p>
         <h2>Craftsmanship is important. So is how you&apos;re treated.</h2>
