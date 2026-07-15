@@ -51,11 +51,6 @@ export default function GoPage() {
               Get a thoughtful renovation plan, quality craftsmanship, and clear communication
               from a local team that treats your home like it matters.
             </p>
-            <ul className="lp-trust-list" aria-label="Why choose Palm Beach Renovations">
-              <li><span>✓</span> Free, no-obligation estimate</li>
-              <li><span>✓</span> Licensed &amp; insured</li>
-              <li><span>✓</span> 25+ years of experience</li>
-            </ul>
           </div>
 
           <EstimateFunnel />
