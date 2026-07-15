@@ -6,7 +6,7 @@ import EstimateFunnel from "@/components/EstimateFunnel";
 import "./go.css";
 
 export const metadata: Metadata = {
-  title: "Free Home Renovation Estimate | Palm Beach Renovations",
+  title: "Free Home Renovation Estimate",
   description:
     "Tell us about your renovation and request a free, no-obligation estimate from a local, licensed and insured Palm Beach remodeling team.",
   robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
