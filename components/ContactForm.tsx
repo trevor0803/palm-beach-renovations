@@ -3,24 +3,41 @@ import { useState } from "react";
 import { site } from "@/lib/site";
 
 export default function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
-  const [sent, setSent] = useState(false);
+  const [state, setState] = useState<"idle" | "sending" | "done">("idle");
+  const [err, setErr] = useState("");
+  const note = err || (state === "done" ? "Thanks! We have your request and will reach out shortly." : "");
 
-  function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
+  async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
+    setState("sending");
+    setErr("");
     const f = new FormData(e.currentTarget);
-    // No backend yet: open the user's mail client with a prefilled message.
-    // Swap this for a real form endpoint (Formspree, Resend, or an API route) later.
-    const body = [
-      `Name: ${f.get("firstName")} ${f.get("lastName")}`,
-      `Phone: ${f.get("phone")}`,
-      `Email: ${f.get("email")}`,
-      `City: ${f.get("city")} ${f.get("zip")}`,
-      `Interested in: ${f.get("interest")}`,
-    ].join("\n");
-    window.location.href = `mailto:${site.email}?subject=${encodeURIComponent(
-      "Website Estimate Request"
-    )}&body=${encodeURIComponent(body)}`;
-    setSent(true);
+    try {
+      const response = await fetch("/api/lead", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          firstName: f.get("firstName"),
+          lastName: f.get("lastName"),
+          phone: f.get("phone"),
+          email: f.get("email"),
+          city: f.get("city"),
+          zip: f.get("zip"),
+          projectType: f.get("interest"),
+          message: "Submitted from the website contact form.",
+          source: "website-contact",
+          tag: "contact-form",
+          company: f.get("company") || "",
+          eventId: crypto.randomUUID?.() || String(Date.now()),
+        }),
+      });
+      const data = await response.json();
+      if (!response.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+      setState("done");
+    } catch (error) {
+      setErr((error as Error).message);
+      setState("idle");
+    }
   }
 
   return (
@@ -44,12 +61,13 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: string
           <option value="Other">Other</option>
         </select>
       </label>
+      <input name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
       <p className="consent">
         By providing my phone number and email, I agree to receive messages from {site.name} in
         response to my inquiry.
       </p>
-      <button className="btn" type="submit">Submit</button>
-      {sent && <p className="form-note">Opening your email app to send the request…</p>}
+      <button className="btn" type="submit" disabled={state === "sending"}>Submit</button>
+      {note && <p className="form-note">{note}</p>}
     </form>
   );
 }
