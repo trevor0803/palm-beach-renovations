@@ -3,6 +3,7 @@ export const site = {
   name: "Palm Beach Renovations",
   shortName: "Palm Beach Renovations",
   domain: "https://palmbeachreno.com",
+  gaMeasurementId: "G-281FKH7VRM",
   phone: "+15618162496",
   phoneDisplay: "(561) 816-2496",
   email: "info@palmbeachreno.com", // update if different
