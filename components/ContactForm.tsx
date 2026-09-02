@@ -63,8 +63,7 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: string
       </label>
       <input name="hp_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
       <p className="consent">
-        By providing my phone number and email, I agree to receive messages from {site.name} in
-        response to my inquiry.
+                By submitting, you agree to receive calls and texts from {site.name} about your request. Message frequency varies. Reply STOP to opt out.
       </p>
       <button className="btn" type="submit" disabled={state === "sending"}>Submit</button>
       {note && <p className="form-note">{note}</p>}
