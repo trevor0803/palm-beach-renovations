@@ -30,7 +30,7 @@ export async function POST(req: Request) {
     } = await req.json();
 
     // Silently accept-and-drop bots so they don't retry.
-    if (company) return NextResponse.json({ ok: true });
+    if (company) { console.log("[lead] DROPPED by honeypot", { company, source }); return NextResponse.json({ ok: true }); }
 
     if (!phone && !email) {
       return NextResponse.json({ error: "Phone or email required" }, { status: 400 });
@@ -46,6 +46,7 @@ export async function POST(req: Request) {
       tags: ["website-lead", source, ...(tag ? [tag] : [])],
       source,
     });
+    console.log("[lead] UPSERT ok", { contactId: contact.id, source, tag, loc: (process.env.GHL_LOCATION_ID || "").slice(-6) });
 
     // Project details → a clean, readable note on the contact
     const noteLines = [
