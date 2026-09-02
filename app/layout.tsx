@@ -23,6 +23,7 @@ export const metadata: Metadata = {
   authors: [{ name: site.name }],
   creator: site.name,
   alternates: { canonical: site.domain },
+  verification: { google: "yYoVh81A0Xb6Fac8wMCiRTJmi8ftcWXADCxSLk8KRVE" },
   openGraph: {
     type: "website",
     locale: "en_US",
