@@ -27,7 +27,7 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: string
           message: "Submitted from the website contact form.",
           source: "website-contact",
           tag: "contact-form",
-          company: f.get("company") || "",
+          company: f.get("hp_check") || "",
           eventId: crypto.randomUUID?.() || String(Date.now()),
         }),
       });
@@ -61,7 +61,7 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: string
           <option value="Other">Other</option>
         </select>
       </label>
-      <input name="company" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
+      <input name="hp_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
       <p className="consent">
         By providing my phone number and email, I agree to receive messages from {site.name} in
         response to my inquiry.
