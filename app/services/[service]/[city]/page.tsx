@@ -42,7 +42,7 @@ export default async function ServiceCityPage({
   const { service, city } = await params;
   const s = serviceContent.find((x) => x.slug === service);
   const c = cities.find((x) => x.slug === city);
-  if (!s || !c) notFound();
+  if (!s || !c || !(CITY_SERVICES as readonly string[]).includes(s.slug)) notFound();
 
   const schema = {
     "@context": "https://schema.org",
