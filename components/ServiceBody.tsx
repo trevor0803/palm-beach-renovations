@@ -69,6 +69,15 @@ export default function ServiceBody({
         </section>
       )}
 
+      {cityDetail && cityDetail.length > 0 && (
+        <section className="container section city-detail">
+          <h2>{service.shortTitle} in {cityName}: what to expect</h2>
+          {cityDetail.map((para) => (
+            <p key={para.slice(0, 40)}>{para}</p>
+          ))}
+        </section>
+      )}
+
       <section className="band">
         <div className="container section">
           <h2 className="center">Why Homeowners{where} Choose Us</h2>
