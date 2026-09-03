@@ -376,3 +376,81 @@ img { max-width: 100%; height: auto; }
   .contact-form input { min-height: 46px; }
 }
 .service-back-link { display: inline-block; padding: .75rem .25rem; min-height: 44px; }
+
+/* ============================================================
+   Guides + local city detail  (Sept 2026)
+   ============================================================ */
+
+.guide-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.75rem;
+}
+.guide-card {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+.guide-card-img { display: block; line-height: 0; }
+.guide-card-img img { width: 100%; height: auto; aspect-ratio: 3 / 2; object-fit: cover; }
+.guide-card-body { padding: 1.25rem 1.35rem 1.5rem; display: flex; flex-direction: column; gap: .6rem; }
+.guide-card-body h2, .guide-card-body h3 { font-size: 1.15rem; margin: 0; line-height: 1.3; }
+.guide-card-body h2 a, .guide-card-body h3 a { color: var(--ink); }
+.guide-card-body h2 a:hover, .guide-card-body h3 a:hover { color: var(--navy); }
+.guide-card-body p { margin: 0; color: var(--muted); font-size: .97rem; }
+.guide-meta {
+  font-size: .8rem; text-transform: uppercase; letter-spacing: .06em;
+  color: var(--muted); font-weight: 700;
+}
+.guide-more {
+  font-weight: 700;
+  margin-top: auto;
+  display: inline-block;
+  padding: .7rem 0 .3rem;
+  min-height: 44px;
+  line-height: 1.9;
+}
+
+.guide-head { max-width: 62ch; }
+.guide-standfirst { font-size: 1.18rem; color: var(--muted); line-height: 1.55; }
+.guide-hero { border-radius: 12px; overflow: hidden; line-height: 0; margin-bottom: 2.5rem; }
+.guide-hero img { width: 100%; height: auto; aspect-ratio: 2 / 1; object-fit: cover; }
+
+.guide-body { max-width: 68ch; padding-bottom: 1rem; }
+.guide-body h2 { margin: 2.4rem 0 .85rem; font-size: 1.5rem; line-height: 1.25; }
+.guide-body h3 { margin: 1.9rem 0 .5rem; font-size: 1.15rem; color: var(--navy); }
+.guide-body p { margin: 0 0 1.15rem; font-size: 1.06rem; line-height: 1.72; }
+.guide-body ul, .guide-body ol { margin: 0 0 1.35rem; padding-left: 1.35rem; }
+.guide-body li { margin-bottom: .6rem; font-size: 1.04rem; line-height: 1.65; }
+.guide-callout {
+  background: #f4f7fc;
+  border-left: 4px solid var(--navy);
+  border-radius: 0 10px 10px 0;
+  padding: 1.15rem 1.35rem;
+  margin: 1.9rem 0;
+}
+.guide-callout-title { font-weight: 700; color: var(--navy); margin: 0 0 .4rem; font-size: 1rem; }
+.guide-callout p:last-child { margin: 0; font-size: 1rem; }
+.guide-quote { margin: 1.9rem 0; padding-left: 1.25rem; border-left: 3px solid var(--line); font-style: italic; }
+.guide-quote cite { display: block; font-style: normal; font-weight: 700; margin-top: .5rem; font-size: .92rem; }
+.guide-author {
+  background: #f7f8fa; border: 1px solid var(--line); border-radius: 12px;
+  padding: 1.5rem 1.6rem; max-width: 68ch;
+}
+.guide-author p { margin: 0 0 1rem; color: var(--muted); }
+
+/* The locally-specific block on a city page */
+.city-detail { max-width: 70ch; }
+.city-detail h2 { margin-bottom: 1rem; }
+.city-detail p { margin: 0 0 1.15rem; line-height: 1.72; color: var(--muted); }
+
+@media (max-width: 980px) {
+  .guide-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .guide-grid { grid-template-columns: 1fr; }
+  .guide-body h2 { font-size: 1.35rem; }
+}
