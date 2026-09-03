@@ -2,13 +2,14 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { site } from "@/lib/site";
-import { serviceContent, cities } from "@/lib/content";
+import { serviceContent, cities, CITY_SERVICES } from "@/lib/content";
 import ServiceBody from "@/components/ServiceBody";
 
 export function generateStaticParams() {
-  return serviceContent.flatMap((s) =>
-    cities.map((c) => ({ service: s.slug, city: c.slug }))
-  );
+  // Only kitchens and bathrooms get city pages — see CITY_SERVICES in lib/content.
+  return serviceContent
+    .filter((s) => (CITY_SERVICES as readonly string[]).includes(s.slug))
+    .flatMap((s) => cities.map((c) => ({ service: s.slug, city: c.slug })));
 }
 
 export async function generateMetadata({
