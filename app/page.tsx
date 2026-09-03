@@ -41,7 +41,7 @@ export default function Home() {
       <section className="container section features">
         {features.map((f) => (
           <div key={f.title} className="feature">
-            <h2>{f.title}</h2>
+            <h3>{f.title}</h3>
             <p>{f.text}</p>
           </div>
         ))}
