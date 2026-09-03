@@ -1,6 +1,17 @@
 import Link from "next/link";
-import { site } from "@/lib/site";
+import Image from "next/image";
+import { site, reviews } from "@/lib/site";
+import { gallery } from "@/lib/gallery";
 import type { ServiceContent } from "@/lib/content";
+
+// Which gallery photos back up which service.
+const PHOTO_CATEGORIES: Record<string, string[]> = {
+  "kitchen-remodeling": ["Kitchen"],
+  "custom-cabinetry": ["Kitchen"],
+  "bathroom-remodeling": ["Bathroom"],
+  "tile-flooring": ["Flooring", "Patio", "Walkway"],
+  "home-additions": ["Home Renovation", "Renovation", "Deck"],
+};
 
 export default function ServiceBody({
   service,
