@@ -16,9 +16,11 @@ const PHOTO_CATEGORIES: Record<string, string[]> = {
 export default function ServiceBody({
   service,
   cityName,
+  cityDetail,
 }: {
   service: ServiceContent;
   cityName?: string;
+  cityDetail?: string[];
 }) {
   const where = cityName ? ` in ${cityName}` : " in Palm Beach & Martin County";
   const cats = PHOTO_CATEGORIES[service.slug] ?? ["Kitchen"];
