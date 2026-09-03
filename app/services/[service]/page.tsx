@@ -3,7 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
-import { serviceContent, cities } from "@/lib/content";
+import { serviceContent, cities, hasCityPages } from "@/lib/content";
 import ServiceBody from "@/components/ServiceBody";
 
 export function generateStaticParams() {
