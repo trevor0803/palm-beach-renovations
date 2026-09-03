@@ -100,9 +100,6 @@ export default function Home() {
               </blockquote>
             ))}
           </div>
-          <div className="center">
-            <a className="btn" href={site.social.google} target="_blank" rel="noopener noreferrer">View all reviews</a>
-          </div>
         </div>
       </section>
 
