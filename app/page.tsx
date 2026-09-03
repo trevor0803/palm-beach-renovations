@@ -15,18 +15,7 @@ export default function Home() {
     <main>
       {/* Hero */}
       <section className="hero">
-        <video
-          className="hero-video"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster="/img/hero-poster.jpg"
-          aria-hidden="true"
-        >
-          <source src="/img/hero.webm" type="video/webm" />
-          <source src="/img/hero.mp4" type="video/mp4" />
-        </video>
+        <HeroVideo />
         <div className="hero-overlay" aria-hidden="true" />
         <div className="container hero-inner">
           <h1>Expert Home Renovation Services in Palm Beach &amp; Martin County</h1>
