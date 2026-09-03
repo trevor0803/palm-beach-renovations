@@ -92,7 +92,7 @@ export default async function ServiceCityPage({
       </div>
 
       <div className="container">
-        <ServiceBody service={s} cityName={c.name} />
+        <ServiceBody service={s} cityName={c.name} cityDetail={c.detail} />
       </div>
 
       <section className="container section">
