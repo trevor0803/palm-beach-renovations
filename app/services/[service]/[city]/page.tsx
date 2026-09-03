@@ -51,6 +51,16 @@ export default async function ServiceCityPage({
     areaServed: { "@type": "City", name: c.name, containedInPlace: { "@type": "AdministrativeArea", name: c.county } },
     description: `${s.title} in ${c.name}, ${c.county}, FL.`,
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.domain },
+      { "@type": "ListItem", position: 2, name: "Services", item: `${site.domain}/services` },
+      { "@type": "ListItem", position: 3, name: s.title, item: `${site.domain}/services/${s.slug}` },
+      { "@type": "ListItem", position: 4, name: c.name, item: `${site.domain}/services/${s.slug}/${c.slug}` },
+    ],
+  };
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
