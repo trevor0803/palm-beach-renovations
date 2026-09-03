@@ -6,8 +6,8 @@ import HeroVideo from "@/components/HeroVideo";
 // The `icon` field these once carried was never rendered — dropped rather than left as dead config.
 const features = [
   { title: "Certified Experts", text: "With over 25 years of experience, our skilled professionals are qualified to transform any space." },
-  { icon: "/img/logo.webp", title: "Free Estimates", text: "Finding the right company at the right price shouldn't cost a fortune — that's why estimates are free." },
-  { icon: "/img/logo.webp", title: "Exceptional Quality", text: "We use only the highest-quality materials so your renovation stands the test of time." },
+  { title: "Free Estimates", text: "Finding the right company at the right price shouldn't cost a fortune — that's why estimates are free." },
+  { title: "Exceptional Quality", text: "We use only the highest-quality materials so your renovation stands the test of time." },
 ];
 
 export default function Home() {
