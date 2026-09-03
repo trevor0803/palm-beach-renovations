@@ -172,7 +172,20 @@ export type City = {
   name: string;
   county: string;
   intro: string;
+  /** Genuinely local detail — the reason this page deserves to exist. */
+  detail: string[];
 };
+
+/**
+ * Only these services get city pages. Kitchens and bathrooms are the two with real
+ * "service + city" search demand; cabinetry, flooring and additions are served by
+ * their single service page instead of 15 near-identical variants each.
+ */
+export const CITY_SERVICES = ["kitchen-remodeling", "bathroom-remodeling"] as const;
+
+export function hasCityPages(serviceSlug: string) {
+  return (CITY_SERVICES as readonly string[]).includes(serviceSlug);
+}
 
 export const cities: City[] = [
   { slug: "palm-beach", name: "Palm Beach", county: "Palm Beach County",
