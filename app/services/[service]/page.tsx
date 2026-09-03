@@ -48,6 +48,15 @@ export default async function ServicePage({
     areaServed: cities.map((c) => ({ "@type": "City", name: c.name })),
     description: s.metaDescription,
   };
+  const breadcrumbSchema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: site.domain },
+      { "@type": "ListItem", position: 2, name: "Services", item: `${site.domain}/services` },
+      { "@type": "ListItem", position: 3, name: s.title, item: `${site.domain}/services/${s.slug}` },
+    ],
+  };
   const faqSchema = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
