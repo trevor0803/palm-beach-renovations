@@ -99,16 +99,26 @@ export default async function ServicePage({
         <ServiceBody service={s} />
       </div>
 
-      <section className="container section">
-        <h2 className="center">{s.title} by City</h2>
-        <div className="city-chips">
-          {cities.map((c) => (
-            <Link key={c.slug} href={`/services/${s.slug}/${c.slug}`} className="chip chip-link">
-              {s.shortTitle} in {c.name}
-            </Link>
-          ))}
-        </div>
-      </section>
+      {hasCityPages(s.slug) ? (
+        <section className="container section">
+          <h2 className="center">{s.title} by City</h2>
+          <div className="city-chips">
+            {cities.map((c) => (
+              <Link key={c.slug} href={`/services/${s.slug}/${c.slug}`} className="chip chip-link">
+                {s.shortTitle} in {c.name}
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : (
+        <section className="container section center">
+          <h2>Where we work</h2>
+          <p className="intro">
+            We provide {s.title.toLowerCase()} throughout Palm Beach and Martin County, including{" "}
+            {cities.map((c) => c.name).join(", ")}.
+          </p>
+        </section>
+      )}
     </main>
   );
 }
