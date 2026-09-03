@@ -1,9 +1,11 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site, services, reviews } from "@/lib/site";
+import HeroVideo from "@/components/HeroVideo";
 
+// The `icon` field these once carried was never rendered — dropped rather than left as dead config.
 const features = [
-  { icon: "/img/logo.webp", title: "Certified Experts", text: "With over 25 years of experience, our skilled professionals are qualified to transform any space." },
+  { title: "Certified Experts", text: "With over 25 years of experience, our skilled professionals are qualified to transform any space." },
   { icon: "/img/logo.webp", title: "Free Estimates", text: "Finding the right company at the right price shouldn't cost a fortune — that's why estimates are free." },
   { icon: "/img/logo.webp", title: "Exceptional Quality", text: "We use only the highest-quality materials so your renovation stands the test of time." },
 ];
