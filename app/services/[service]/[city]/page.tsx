@@ -104,7 +104,7 @@ export default async function ServiceCityPage({
           ))}
         </div>
         <p className="center" style={{ marginTop: "1.5rem" }}>
-          <Link href={`/services/${s.slug}`}>← All {s.title} services</Link>
+          <Link className="service-back-link" href={`/services/${s.slug}`}>← All {s.title} services</Link>
         </p>
       </section>
     </main>
