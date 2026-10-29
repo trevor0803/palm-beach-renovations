@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import { site } from "@/lib/site";
-import { cities } from "@/lib/content";
+import { cities, serviceContent } from "@/lib/content";
 
 export default function Footer() {
   return (
@@ -23,6 +23,14 @@ export default function Footer() {
           </ul>
         </div>
         <div>
+          <h3>Services</h3>
+          <ul>
+            {serviceContent.map((s) => (
+              <li key={s.slug}><Link href={`/services/${s.slug}`}>{s.title}</Link></li>
+            ))}
+          </ul>
+        </div>
+        <div>
           <h3>Company</h3>
           <ul>
             <li><a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></li>
@@ -31,15 +39,30 @@ export default function Footer() {
             <li><Link href="/privacy">Privacy Policy</Link></li>
           </ul>
         </div>
-        <div>
+        <div className="footer-areas-wrap">
           <h3>Areas We Serve</h3>
-          <ul className="footer-areas">
-            {cities.map((c) => (
-              <li key={c.slug}>
-                <Link href={`/services/kitchen-remodeling/${c.slug}`}>{c.name}</Link>
-              </li>
-            ))}
-          </ul>
+          <div className="footer-areas-cols">
+            <div>
+              <h4>Kitchen Remodeling</h4>
+              <ul>
+                {cities.map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/services/kitchen-remodeling/${c.slug}`}>{c.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+            <div>
+              <h4>Bathroom Remodeling</h4>
+              <ul>
+                {cities.map((c) => (
+                  <li key={c.slug}>
+                    <Link href={`/services/bathroom-remodeling/${c.slug}`}>{c.name}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
         </div>
       </div>
       <div className="footer-bottom">

@@ -3,6 +3,8 @@ import Image from "next/image";
 import { site, reviews } from "@/lib/site";
 import { gallery } from "@/lib/gallery";
 import type { ServiceContent } from "@/lib/content";
+import GoogleBadge from "@/components/GoogleBadge";
+import { hash, rotate } from "@/lib/proof";
 
 // Which gallery photos back up which service.
 const PHOTO_CATEGORIES: Record<string, string[]> = {
@@ -17,27 +19,37 @@ export default function ServiceBody({
   service,
   cityName,
   cityDetail,
+  hideTopCta = false,
+  excludeSrc,
 }: {
   service: ServiceContent;
   cityName?: string;
   cityDetail?: string[];
+  hideTopCta?: boolean;
+  excludeSrc?: string;
 }) {
   const where = cityName ? ` in ${cityName}` : " in Palm Beach & Martin County";
   const cats = PHOTO_CATEGORIES[service.slug] ?? ["Kitchen"];
-  const photos = gallery.filter((g) => cats.includes(g.category)).slice(0, 3);
-  const proof = reviews.slice(0, 2);
+  // Each city starts at a different point in the photo and review lists, so no two city pages
+  // show the same proof strip.
+  const seed = hash(`${service.slug}:${cityName ?? ""}`);
+  const photoPool = gallery.filter((g) => cats.includes(g.category) && g.src !== excludeSrc);
+  const photos = rotate(photoPool, seed, 3);
+  const proof = rotate(reviews, seed >>> 3, 2);
 
   return (
     <>
-      <section className="service-cta-top">
-        <p className="trust-line">
-          <strong>Licensed &amp; Insured</strong> · 25+ Years of Experience · Free Estimates
-        </p>
-        <div className="hero-cta">
-          <a className="btn" href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a>
-          <Link className="btn btn-outline" href="/contact">Request a Free Estimate</Link>
-        </div>
-      </section>
+      {!hideTopCta && (
+        <section className="service-cta-top">
+          <p className="trust-line">
+            <strong>Licensed &amp; Insured</strong> · 25+ Years of Experience · Free Estimates
+          </p>
+          <div className="hero-cta">
+            <a className="btn" href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a>
+            <Link className="btn btn-outline" href="/contact">Request a Free Estimate</Link>
+          </div>
+        </section>
+      )}
 
       <section className="service-intro section">
         <p className="intro">{service.intro}</p>
@@ -62,7 +74,7 @@ export default function ServiceBody({
             {proof.map((r) => (
               <blockquote key={r.author}>
                 <p>&ldquo;{r.text}&rdquo;</p>
-                <cite>&mdash; {r.author}, Google Review</cite>
+                <cite><GoogleBadge /> {r.author}, Google Review</cite>
               </blockquote>
             ))}
           </div>

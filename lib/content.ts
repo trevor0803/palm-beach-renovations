@@ -23,7 +23,7 @@ export const serviceContent: ServiceContent[] = [
       "Custom cabinetry, countertops, tile, and layouts that turn your kitchen into the heart of the home.",
     heroImage: "/img/gallery/kitchen-navy-white-island.jpg",
     metaDescription:
-      "Expert kitchen remodeling in Palm Beach & Martin County, FL. Custom cabinets, countertops, islands, and lighting. Licensed, insured, free estimates. Call (561) 816-2496.",
+      "Kitchen remodeling in Palm Beach & Martin County, FL. Custom cabinets, countertops and islands. Licensed, insured, free estimates.",
     intro:
       "Your kitchen does more than any other room in the house — it cooks, hosts, and gathers your family. Palm Beach Renovations builds kitchens that look stunning and work even harder, from efficient single-wall layouts to wide-open islands made for entertaining. With 25+ years of experience, we handle the full remodel: cabinetry, countertops, backsplash, flooring, lighting, and the plumbing and electrical behind it all.",
     benefits: [
@@ -53,7 +53,7 @@ export const serviceContent: ServiceContent[] = [
       "From small powder rooms to spa-like master baths, finished on schedule with no shortcuts.",
     heroImage: "/img/gallery/bathroom-marble-walk-in-shower.jpg",
     metaDescription:
-      "Bathroom remodeling in Palm Beach & Martin County, FL. Walk-in showers, tile, vanities, and full master baths. Licensed, insured, free estimates. Call (561) 816-2496.",
+      "Bathroom remodeling in Palm Beach & Martin County, FL. Walk-in showers, tile and vanities. Licensed, insured, free estimates.",
     intro:
       "A well-built bathroom is part daily routine, part retreat. Palm Beach Renovations remodels everything from tight powder rooms to spa-style master suites — curbless walk-in showers, freestanding tubs, double vanities, and tile work that holds up to Florida humidity. We manage the waterproofing, plumbing, and ventilation correctly the first time, so the beautiful finishes you see are backed by the work you don't.",
     benefits: [
@@ -83,7 +83,7 @@ export const serviceContent: ServiceContent[] = [
       "Built-to-fit cabinetry and storage solutions crafted for the way you live.",
     heroImage: "/img/gallery/kitchen-gray-woodgrain-cabinets.jpg",
     metaDescription:
-      "Custom cabinetry in Palm Beach & Martin County, FL. Built-to-fit kitchen, bath, and built-in storage. Licensed, insured, free estimates. Call (561) 816-2496.",
+      "Custom cabinetry in Palm Beach & Martin County, FL. Built-to-fit kitchen, bath and built-in storage. Licensed, insured, free estimates.",
     intro:
       "Stock cabinets fit a catalog; custom cabinets fit your home. Palm Beach Renovations designs and installs built-to-fit cabinetry for kitchens, baths, laundry rooms, offices, and living spaces — making use of every inch and matching the style of your home. Whether you want shaker simplicity or detailed millwork, we build storage that looks intentional and lasts for decades.",
     benefits: [
@@ -113,7 +113,7 @@ export const serviceContent: ServiceContent[] = [
       "Durable, beautiful tile and flooring installation that stands the test of time.",
     heroImage: "/img/gallery/tile-flooring-installation.jpg",
     metaDescription:
-      "Tile and flooring installation in Palm Beach & Martin County, FL. Porcelain, ceramic, luxury vinyl, and more. Licensed, insured, free estimates. Call (561) 816-2496.",
+      "Tile and flooring installation in Palm Beach & Martin County, FL. Porcelain, ceramic and luxury vinyl. Licensed, insured, free estimates.",
     intro:
       "Flooring sets the tone for the whole house, and in Florida it has to handle sand, humidity, and heavy traffic. Palm Beach Renovations installs porcelain and ceramic tile, large-format tile, luxury vinyl plank, and more — with proper subfloor prep and leveling so the finished floor lies flat and lasts. From a single room to a whole-home refresh, we deliver clean grout lines and durable results.",
     benefits: [
@@ -143,7 +143,7 @@ export const serviceContent: ServiceContent[] = [
       "Bedrooms, living spaces, and full-home remodels that add value and function.",
     heroImage: "/img/gallery/home-renovation-4.jpg",
     metaDescription:
-      "Home additions and full remodels in Palm Beach & Martin County, FL. Room additions, open-concept conversions, and whole-home renovation. Free estimates. Call (561) 816-2496.",
+      "Home additions and full remodels in Palm Beach & Martin County, FL. Room additions, open layouts, whole-home renovation. Free estimates.",
     intro:
       "Sometimes a refresh isn't enough — you need more space or a fundamentally better layout. Palm Beach Renovations handles room additions, open-concept conversions, and full-home remodels that add real square footage and market value. We manage the project end to end, from design and permitting through framing, finishes, and final inspection, so a complex job stays organized and on schedule.",
     benefits: [

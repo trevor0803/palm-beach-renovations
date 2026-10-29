@@ -11,7 +11,7 @@ export const site = {
   areaServed: ["Palm Beach County", "Martin County", "Royal Palm Beach", "West Palm Beach", "Jupiter", "Stuart"],
   geo: { lat: 26.7056, lng: -80.0364 }, // Palm Beach county center; refine to office address
   description:
-    "Expert home renovation and remodeling in Palm Beach and Martin County, FL. Kitchens, bathrooms, custom cabinetry, and tile flooring. Licensed, insured, 25+ years experience. Free estimates.",
+    "Home remodeling in Palm Beach and Martin County, FL. Kitchens, bathrooms, custom cabinetry and tile. Licensed, insured, 25+ years of experience. Free estimates.",
   owners: [
     {
       name: "Michael Ullman",

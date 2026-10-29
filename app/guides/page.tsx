@@ -7,7 +7,7 @@ import { guides } from "@/lib/guides";
 export const metadata: Metadata = {
   title: "Remodeling Guides",
   description:
-    "Straight answers on permits, costs, timelines and materials for kitchen and bathroom remodels in Palm Beach and Martin County, FL — written by a licensed contractor.",
+    "Straight answers on permits, costs, timelines and materials for kitchen and bathroom remodels in Palm Beach and Martin County, FL.",
   alternates: { canonical: `${site.domain}/guides` },
 };
 

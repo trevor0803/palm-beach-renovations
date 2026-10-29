@@ -1,6 +1,7 @@
 "use client";
 import { useState } from "react";
 import { site } from "@/lib/site";
+import { trackLead, newEventId } from "@/lib/track";
 
 export default function ContactForm({ serviceOptions }: { serviceOptions: string[] }) {
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
@@ -12,6 +13,7 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: string
     setState("sending");
     setErr("");
     const f = new FormData(e.currentTarget);
+    const eventId = newEventId();
     try {
       const response = await fetch("/api/lead", {
         method: "POST",
@@ -28,11 +30,12 @@ export default function ContactForm({ serviceOptions }: { serviceOptions: string
           source: "website-contact",
           tag: "contact-form",
           company: f.get("hp_check") || "",
-          eventId: crypto.randomUUID?.() || String(Date.now()),
+          eventId,
         }),
       });
       const data = await response.json();
       if (!response.ok) throw new Error(data.error || "Something went wrong. Please try again.");
+      trackLead(eventId, "website-contact", String(f.get("interest") || ""));
       setState("done");
     } catch (error) {
       setErr((error as Error).message);

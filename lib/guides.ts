@@ -28,7 +28,7 @@ export const guides: Guide[] = [
     title: "Do You Need a Permit to Remodel in Palm Beach County?",
     metaTitle: "Do You Need a Permit to Remodel in Palm Beach County? (2026)",
     summary:
-      "Palm Beach County publishes a list of work that does not require a permit. The dividing line is simpler than most homeowners expect — and it explains almost every kitchen and bathroom question we get asked.",
+      "Palm Beach County lists the work that needs no permit. The dividing line is simpler than most homeowners expect, and it answers most kitchen and bath questions.",
     published: "2026-09-03",
     updated: "2026-09-03",
     readingMinutes: 7,
@@ -92,9 +92,9 @@ export const guides: Guide[] = [
   {
     slug: "what-a-kitchen-remodel-costs-palm-beach-county",
     title: "What a Kitchen Remodel Actually Costs in Palm Beach County",
-    metaTitle: "Kitchen Remodel Cost in Palm Beach County: What Drives the Number",
+    metaTitle: "Kitchen Remodel Cost in Palm Beach County: What Drives It",
     summary:
-      "Nobody can quote your kitchen from a blog post. But the things that move the number are predictable, and knowing them tells you where your money is going before you ever get an estimate.",
+      "Nobody can quote your kitchen from a blog post, but the things that move the number are predictable. Know where the money goes before you get an estimate.",
     published: "2026-09-03",
     updated: "2026-09-03",
     readingMinutes: 8,
@@ -143,7 +143,7 @@ export const guides: Guide[] = [
   {
     slug: "kitchen-bathroom-remodel-timeline",
     title: "How Long a Kitchen or Bathroom Remodel Really Takes",
-    metaTitle: "Kitchen & Bathroom Remodel Timeline: What to Expect Week by Week",
+    metaTitle: "Kitchen & Bath Remodel Timeline: Week by Week",
     summary:
       "A realistic week-by-week picture of a South Florida kitchen and bathroom remodel — including the waiting that happens before anyone swings a hammer.",
     published: "2026-09-03",
@@ -242,9 +242,9 @@ export const guides: Guide[] = [
   {
     slug: "choosing-countertops-florida-kitchen",
     title: "Choosing Countertops for a Florida Kitchen",
-    metaTitle: "Quartz vs Granite vs Porcelain: Countertops for a Florida Kitchen",
+    metaTitle: "Quartz vs Granite vs Porcelain: Florida Kitchen Countertops",
     summary:
-      "Quartz, granite, porcelain and solid surface all work in a Palm Beach kitchen. Which one is right depends on light, cooking habits and whether the counter ever sees sun.",
+      "Quartz, granite, porcelain and solid surface all work in a Palm Beach kitchen. The right one depends on light, cooking habits and sun exposure.",
     published: "2026-09-03",
     updated: "2026-09-03",
     readingMinutes: 5,

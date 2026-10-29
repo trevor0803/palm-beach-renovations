@@ -1,3 +1,4 @@
+import { fitTitle } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -18,7 +19,7 @@ export async function generateMetadata({
   const g = getGuide(slug);
   if (!g) return {};
   return {
-    title: g.metaTitle,
+    title: fitTitle(g.metaTitle),
     description: g.summary,
     alternates: { canonical: `${site.domain}/guides/${g.slug}` },
     openGraph: {

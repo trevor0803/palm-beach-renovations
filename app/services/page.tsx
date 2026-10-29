@@ -7,7 +7,7 @@ import { serviceContent, cities } from "@/lib/content";
 export const metadata: Metadata = {
   title: "Renovation Services",
   description:
-    "Kitchen remodeling, bathroom remodeling, custom cabinetry, tile and flooring, and home additions in Palm Beach and Martin County, FL. Free estimates from a licensed, insured contractor.",
+    "Kitchen and bathroom remodeling, custom cabinetry, tile and flooring, and home additions in Palm Beach and Martin County, FL. Free estimates.",
   alternates: { canonical: `${site.domain}/services` },
 };
 

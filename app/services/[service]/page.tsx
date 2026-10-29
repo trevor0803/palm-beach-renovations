@@ -1,3 +1,4 @@
+import { fitTitle } from "@/lib/seo";
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
@@ -19,7 +20,7 @@ export async function generateMetadata({
   const s = serviceContent.find((x) => x.slug === service);
   if (!s) return {};
   return {
-    title: `${s.title} in Palm Beach & Martin County`,
+    title: fitTitle(`${s.title} in Palm Beach & Martin County`),
     description: s.metaDescription,
     alternates: { canonical: `${site.domain}/services/${s.slug}` },
     openGraph: {

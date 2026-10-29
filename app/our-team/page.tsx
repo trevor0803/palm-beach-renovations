@@ -5,7 +5,7 @@ import { site } from "@/lib/site";
 export const metadata: Metadata = {
   title: "Our Team",
   description:
-    "Meet the owners of Palm Beach Renovations. With 25+ years of combined experience, our team delivers quality home remodeling across Palm Beach and Martin County, FL.",
+    "Meet the owners of Palm Beach Renovations. With 25+ years of combined experience, we deliver quality home remodeling in Palm Beach and Martin County.",
   alternates: { canonical: `${site.domain}/our-team` },
 };
 

@@ -2,7 +2,7 @@
   --navy: #1e3a8a;
   --navy-dark: #162d6b;
   --ink: #1a1a1a;
-  --muted: #555;
+  --muted: #3d4651;
   --line: #e5e7eb;
   --bg: #ffffff;
   --band: #f6f7f9;
@@ -17,9 +17,10 @@ body {
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
   color: var(--ink);
   background: var(--bg);
-  line-height: 1.6;
+  line-height: 1.65;
+  font-size: 1.0625rem;
 }
-h1, h2, h3 { line-height: 1.2; letter-spacing: -0.01em; }
+h1, h2, h3 { line-height: 1.18; letter-spacing: -0.015em; font-weight: 800; }
 h1 { font-size: clamp(1.9rem, 4vw, 3rem); }
 h2 { font-size: clamp(1.5rem, 3vw, 2.1rem); }
 a { color: var(--navy); text-decoration: none; }
@@ -100,7 +101,7 @@ img { max-width: 100%; height: auto; }
   }
 }
 
-.intro { font-size: 1.1rem; color: var(--muted); max-width: 70ch; margin: 0 auto; }
+.intro { font-size: 1.15rem; color: var(--muted); max-width: 70ch; margin: 0 auto; }
 
 /* Features */
 .features { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; }
@@ -454,3 +455,184 @@ img { max-width: 100%; height: auto; }
   .guide-grid { grid-template-columns: 1fr; }
   .guide-body h2 { font-size: 1.35rem; }
 }
+
+
+/* ============================================================
+   Design pass  (Oct 2026): hero + form, trust icons, photo service
+   cards, review cards, city page header, footer link grid
+   ============================================================ */
+
+.btn-light { background: #fff; color: var(--navy); border-color: #fff; }
+.btn-light:hover { background: #eef2ff; color: var(--navy-dark); }
+.btn { font-size: 1rem; }
+
+/* Hero: copy on the left, estimate form on the right */
+.hero-split { background-position: center 40%; }
+.hero-split .hero-overlay {
+  background: linear-gradient(100deg, rgba(10, 20, 52, .86) 0%, rgba(10, 20, 52, .66) 55%, rgba(10, 20, 52, .5) 100%);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1.15fr .85fr;
+  gap: 3rem;
+  align-items: center;
+  text-align: left;
+  padding-top: 4rem;
+  padding-bottom: 4rem;
+}
+.hero-split h1 {
+  font-size: clamp(2.1rem, 4.1vw, 3.3rem);
+  max-width: 20ch;
+  margin: 0 0 1.1rem;
+  line-height: 1.08;
+  text-shadow: 0 2px 18px rgba(0, 0, 0, .35);
+}
+.hero-split .lede { font-size: 1.25rem; max-width: 46ch; margin: 0 0 1.25rem; opacity: .96; }
+.eyebrow {
+  margin: 0 0 .9rem; font-size: .85rem; font-weight: 700;
+  letter-spacing: .14em; text-transform: uppercase; color: #f5c56b;
+}
+.hero-checks { list-style: none; padding: 0; margin: 0 0 1.75rem; display: grid; gap: .55rem; }
+.hero-checks li { position: relative; padding-left: 1.9rem; font-weight: 600; font-size: 1.05rem; }
+.hero-checks li::before {
+  content: ""; position: absolute; left: 0; top: .25em; width: 1.2rem; height: 1.2rem; border-radius: 50%;
+  background: #f5c56b
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='none' stroke='%230d193c' stroke-width='3.2' stroke-linecap='round' stroke-linejoin='round' d='m6 12.5 4 4 8-9'/%3E%3C/svg%3E")
+    center / 80% no-repeat;
+}
+.hero-grid .hero-cta { justify-content: flex-start; margin-top: 0; }
+
+/* Estimate form card */
+.qe-card {
+  background: #fff; color: var(--ink); border-radius: 16px; padding: 1.75rem;
+  box-shadow: 0 24px 60px rgba(5, 12, 35, .4); display: flex; flex-direction: column; gap: .85rem;
+}
+.qe-card h2 { margin: 0; font-size: 1.5rem; color: var(--navy); }
+.qe-sub { margin: -.35rem 0 .25rem; color: var(--muted); font-size: .98rem; }
+.qe-card label { display: flex; flex-direction: column; gap: .3rem; font-weight: 700; font-size: .88rem; }
+.qe-card input, .qe-card select {
+  padding: .8rem .85rem; min-height: 48px; border: 1.5px solid #cdd3dd; border-radius: 10px;
+  font: inherit; font-weight: 400; background: #fff; color: var(--ink); width: 100%;
+}
+.qe-card input:focus, .qe-card select:focus { outline: 3px solid rgba(30, 58, 138, .28); border-color: var(--navy); }
+.qe-row { display: grid; grid-template-columns: 1fr 1fr; gap: .85rem; }
+.qe-submit { width: 100%; min-height: 52px; font-size: 1.05rem; margin-top: .25rem; }
+.qe-consent { margin: 0; font-size: .74rem; line-height: 1.45; color: #5b6471; }
+.qe-error { margin: 0; color: #b42318; font-weight: 600; font-size: .92rem; }
+.qe-done { text-align: center; padding: 2.25rem 1.75rem; }
+.qe-done p { margin: 0; color: var(--muted); }
+
+/* Intro + trust cards */
+.intro-lg { font-size: 1.3rem; line-height: 1.7; text-align: center; color: #2b333d; }
+.features { padding-bottom: 3.75rem; gap: 1.5rem; }
+.feature {
+  background: #fff; border: 1px solid var(--line); border-radius: 16px; padding: 1.75rem 1.5rem;
+  box-shadow: 0 6px 20px rgba(13, 25, 60, .05);
+}
+.feature-icon {
+  display: inline-flex; align-items: center; justify-content: center; width: 56px; height: 56px;
+  border-radius: 14px; background: #eaf0ff; color: var(--navy); margin-bottom: .9rem;
+}
+.feature h3 { margin: 0 0 .5rem; font-size: 1.25rem; }
+.feature p { margin: 0; color: var(--muted); }
+.section-band .section { padding: 4rem 1.25rem; }
+
+/* Home service cards: photos on top, 3 + 2 layout with no orphan */
+.home-services { display: grid; grid-template-columns: repeat(6, 1fr); gap: 1.5rem; margin: 2.25rem 0 2.5rem; }
+.home-service {
+  grid-column: span 2; display: flex; flex-direction: column; background: #fff; color: inherit;
+  border: 1px solid var(--line); border-radius: 16px; overflow: hidden;
+  transition: box-shadow .2s, transform .2s, border-color .2s;
+}
+.home-service:nth-child(n+4) { grid-column: span 3; }
+.home-service:hover { text-decoration: none; transform: translateY(-3px); border-color: var(--navy); box-shadow: 0 16px 38px rgba(13, 25, 60, .13); }
+.home-service-media { aspect-ratio: 16 / 10; overflow: hidden; background: var(--band); }
+.home-service-media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform .4s ease; }
+.home-service:hover .home-service-media img { transform: scale(1.05); }
+.home-service-body { padding: 1.4rem 1.5rem 1.6rem; display: flex; flex-direction: column; flex: 1; }
+.home-service-body h3 { margin: 0 0 .45rem; font-size: 1.3rem; color: var(--navy); }
+.home-service-body p { margin: 0 0 1rem; color: var(--muted); }
+.home-service-body .service-feature-link { margin-top: auto; }
+
+/* Reviews */
+.reviews-source {
+  display: flex; align-items: center; justify-content: center; gap: .55rem;
+  margin: .25rem 0 0; color: var(--muted); font-weight: 600;
+}
+.g-badge { flex: none; vertical-align: middle; }
+.review-grid { grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+.review { position: relative; padding: 2.4rem 1.6rem 1.5rem; border-radius: 16px; box-shadow: 0 6px 20px rgba(13, 25, 60, .05); }
+.review-mark {
+  position: absolute; top: .35rem; left: 1.25rem; font-size: 3.6rem; line-height: 1;
+  color: #f0b94d; font-family: Georgia, serif;
+}
+.review p { font-size: 1.04rem; line-height: 1.65; color: #232a33; }
+.review cite, .proof-reviews cite { display: inline-flex; align-items: center; gap: .45rem; }
+
+/* Final CTA */
+.cta-final p { font-size: 1.2rem; opacity: .95; }
+.cta-final .section { padding: 4rem 1.25rem; }
+
+/* City page header: copy left, form right */
+.page-hero {
+  display: grid; grid-template-columns: 1.1fr .9fr; gap: 2.75rem; align-items: start;
+  padding: 1.75rem 0 2.5rem;
+}
+.page-hero-copy h1 { margin: .25rem 0 1rem; font-size: clamp(2rem, 4vw, 2.9rem); }
+.page-hero-intro { font-size: 1.2rem; color: var(--muted); margin: 0 0 1.25rem; max-width: 52ch; }
+.page-hero .trust-line { margin: 0 0 1.25rem; font-size: 1rem; color: var(--muted); }
+.page-hero .trust-line strong { color: var(--navy); }
+.hero-cta-left { justify-content: flex-start; margin-top: 0; }
+.page-hero-form .qe-card { box-shadow: 0 14px 40px rgba(13, 25, 60, .16); border: 1px solid var(--line); }
+.page-hero-form .qe-card h2 { font-size: 1.3rem; }
+
+/* Wider, easier-to-read body copy on service and city pages */
+.service-intro .intro { font-size: 1.2rem; max-width: 72ch; text-align: left; margin-left: 0; }
+.city-detail { max-width: 74ch; }
+.city-detail p { font-size: 1.08rem; color: #2f3742; }
+.proof-strip { padding-bottom: 3rem; }
+.proof-reviews blockquote p { font-size: 1.02rem; color: #232a33; }
+.service-card h3 { font-size: 1.2rem; }
+
+/* Footer */
+.footer-grid { grid-template-columns: 1.3fr .9fr 1.2fr 1fr 2.3fr; gap: 2rem; }
+.footer-areas-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 1.25rem; }
+.footer-areas-cols h4 { margin: 0 0 .35rem; color: #fff; font-size: .9rem; font-weight: 700; }
+.footer-grid { grid-template-columns: 1.2fr .8fr 1.2fr 1fr 2.4fr; }
+.site-footer .footer-areas-cols ul { gap: 0; }
+
+@media (max-width: 1060px) {
+  .footer-grid { grid-template-columns: repeat(2, 1fr); }
+  .footer-areas-wrap { grid-column: 1 / -1; }
+  .home-services { grid-template-columns: repeat(2, 1fr); }
+  .home-service, .home-service:nth-child(n+4) { grid-column: span 1; }
+  .home-service:last-child { grid-column: 1 / -1; }
+  .review-grid { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 860px) {
+  .hero-grid, .page-hero { grid-template-columns: 1fr; gap: 2rem; }
+  .hero-grid { padding-top: 2.5rem; padding-bottom: 2.5rem; }
+  .hero-split .hero-overlay { background: linear-gradient(180deg, rgba(10, 20, 52, .8), rgba(10, 20, 52, .72)); }
+  .hero-split h1 { max-width: none; }
+  .features { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+}
+@media (max-width: 640px) {
+  .home-services, .review-grid { grid-template-columns: 1fr; }
+  .home-service:last-child { grid-column: auto; }
+  .qe-row { grid-template-columns: 1fr; }
+  .qe-card { padding: 1.35rem; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-areas-cols { grid-template-columns: 1fr; }
+  .hero-grid .hero-cta .btn, .hero-cta-left .btn { flex: 1 1 100%; text-align: center; }
+  .intro-lg { font-size: 1.12rem; text-align: left; }
+}
+
+.page-hero-photo { display: block; width: 100%; max-width: 560px; height: auto; aspect-ratio: 16 / 9; object-fit: cover; border-radius: 16px; margin-top: 1.75rem; box-shadow: 0 10px 30px rgba(13, 25, 60, .14); }
+@media (max-width: 860px) { .page-hero-photo { max-width: none; } }
+
+/* .section zeroes side padding on .container.section; give it back so text never touches the screen edge */
+.container.section { padding-left: 1.25rem; padding-right: 1.25rem; }
+.topbar { align-items: center; }
+
+.faq summary { display: flex; align-items: center; min-height: 44px; }
