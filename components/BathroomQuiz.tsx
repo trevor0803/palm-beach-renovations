@@ -19,6 +19,7 @@ const look: Record<string, { accent: string; icon: string }> = {
   tub: { accent: "#6d28d9", icon: "M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-2zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" },
   vanity: { accent: "#b45309", icon: "M3 11h18v9H3zM12 11V6a3 3 0 0 1 3-3M8 15h8" },
   tile: { accent: "#be185d", icon: "M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z" },
+  paint: { accent: "#0f766e", icon: "M5 3h12v6H5zM17 6h3v6h-8v3M10.500 15h3v6h-3z" },
   finish: { accent: "#a16207", icon: "M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.500 6-11 6-11z" },
   glass: { accent: "#0369a1", icon: "M5 3h14v18H5zM9 7l4-3M9 12l7-6M9 17l8-8" },
   toilet: { accent: "#047857", icon: "M6 3h8v7H6zM4 10h16a0 0 0 0 1 0 0 8 8 0 0 1-8 8 8 8 0 0 1-8-8zM9 18l-1 3m7-3 1 3" },
