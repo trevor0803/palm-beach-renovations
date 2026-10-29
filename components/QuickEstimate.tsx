@@ -36,12 +36,17 @@ export default function QuickEstimate({
     setErr("");
     const f = new FormData(e.currentTarget);
     const eventId = newEventId();
+    // One "Name" field; GHL gets it split into first and last.
+    const fullName = String(f.get("name") || "").trim().replace(/\s+/g, " ");
+    const [firstName, ...rest] = fullName.split(" ");
     try {
       const res = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          firstName: f.get("firstName"),
+          firstName,
+          lastName: rest.join(" "),
+          zip: f.get("zip"),
           phone: f.get("phone"),
           email: f.get("email"),
           projectType: f.get("interest"),
@@ -76,8 +81,8 @@ export default function QuickEstimate({
       <h2>{heading}</h2>
       <p className="qe-sub">{sub}</p>
       <label>
-        <span>First name</span>
-        <input name="firstName" autoComplete="given-name" required />
+        <span>Name</span>
+        <input name="name" autoComplete="name" required />
       </label>
       <div className="qe-row">
         <label>
@@ -89,6 +94,10 @@ export default function QuickEstimate({
           <input name="email" type="email" autoComplete="email" required />
         </label>
       </div>
+      <label>
+        <span>Zip code</span>
+        <input name="zip" inputMode="numeric" pattern="[0-9]{5}" maxLength={5} autoComplete="postal-code" placeholder="33411" required />
+      </label>
       <label>
         <span>What are you planning?</span>
         <select name="interest" required defaultValue={defaultService}>
