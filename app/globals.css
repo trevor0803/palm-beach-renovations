@@ -747,3 +747,7 @@ img { max-width: 100%; height: auto; }
 .bq-ph b { font-family: ui-serif, Georgia, serif; font-size: 3rem; font-weight: 500; line-height: 1; opacity: .75; }
 .bq-ph svg { opacity: .75; }
 .bq-chip-q { display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--accent) 10%, #fff); color: var(--accent); font-family: ui-serif, Georgia, serif; font-size: 1.9rem; }
+.bq-note { display: flex; flex-direction: column; gap: .35rem; margin-top: 1.1rem; position: relative; z-index: 1; font-weight: 700; font-size: .9rem; color: var(--ink); }
+.bq-note em { font-weight: 400; font-style: normal; color: var(--muted); }
+.bq-note textarea { font: inherit; font-weight: 400; padding: .75rem .9rem; border: 2px solid #d9dfeb; border-radius: 12px; resize: vertical; min-height: 68px; width: 100%; color: #111827; background: #fff; }
+.bq-note textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }

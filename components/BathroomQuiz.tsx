@@ -68,6 +68,7 @@ function Pill({ label, selected, onPick }: { label: string; selected: boolean; o
 export default function BathroomQuiz() {
   const [open, setOpen] = useState<string[]>([]); // ticked checklist boxes, in tick order
   const [answers, setAnswers] = useState<Answers>({});
+  const [notes, setNotes] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [err, setErr] = useState("");
   const lastOpened = useRef<string | null>(null);
@@ -114,7 +115,10 @@ export default function BathroomQuiz() {
 
   function summaryRows() {
     const rows: { k: string; v: string }[] = [];
-    for (const s of chosenSections) rows.push({ k: s.title, v: labelsFor(s.id, s.opts).join(", ") || "Wants this, no pick yet" });
+    for (const s of chosenSections) {
+      const note = (notes[s.id] || "").trim().replace(/\s+/g, " ");
+      rows.push({ k: s.title, v: (labelsFor(s.id, s.opts).join(", ") || "Wants this, no pick yet") + (note ? ` (Note: ${note})` : "") });
+    }
     for (const b of basics) {
       const v = labelsFor(b.id, b.opts).join(", ");
       if (v) rows.push({ k: b.q.replace(/\?$/, ""), v });
@@ -238,6 +242,16 @@ export default function BathroomQuiz() {
             ))}
           </div>
           )}
+          <label className="bq-note">
+            <span>Anything to add? <em>(optional)</em></span>
+            <textarea
+              rows={2}
+              maxLength={300}
+              value={notes[s.id] || ""}
+              onChange={(e) => setNotes((n) => ({ ...n, [s.id]: e.target.value }))}
+              placeholder={`Notes about your ${s.title.toLowerCase()}`}
+            />
+          </label>
         </section>
       ))}
 
