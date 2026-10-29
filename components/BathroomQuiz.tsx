@@ -14,8 +14,6 @@ function track(name: string, params: Record<string, unknown>) {
   } catch {}
 }
 
-const hasMedia = (s: Section, o: Opt) => (s.layout === "photo" && !!o.img) || (s.layout === "swatch" && !!o.swatch) || (s.layout === "color" && !!o.color);
-
 const look: Record<string, { accent: string; icon: string }> = {
   shower: { accent: "#0e7490", icon: "M4 4h9a4 4 0 0 1 4 4v1M13 9h8l-1.5 3h-5zM8 15v1m4-1v1m4-1v1m-9 3v1m4-1v1m4-1v1" },
   tub: { accent: "#6d28d9", icon: "M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-2zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" },
@@ -30,7 +28,9 @@ const look: Record<string, { accent: string; icon: string }> = {
 type Accent = React.CSSProperties & { "--accent"?: string };
 const accentOf = (id: string): Accent => ({ "--accent": look[id]?.accent || "#1e3a8a" });
 
-function Card({ opt, layout, selected, onPick }: { opt: Opt; layout: Section["layout"]; selected: boolean; onPick: () => void }) {
+function Card({ opt, layout, selected, onPick, icon }: { opt: Opt; layout: Section["layout"]; selected: boolean; onPick: () => void; icon?: string }) {
+  const unsure = opt.id === "not-sure";
+  const noMedia = (layout === "photo" && !opt.img) || (layout === "swatch" && !opt.swatch);
   return (
     <button type="button" className={`bq-card bq-${layout}${selected ? " is-selected" : ""}`} aria-pressed={selected} onClick={onPick}>
       {layout === "photo" && opt.img && (
@@ -39,7 +39,14 @@ function Card({ opt, layout, selected, onPick }: { opt: Opt; layout: Section["la
         </span>
       )}
       {layout === "swatch" && opt.swatch && <span className="bq-media"><TileSwatch kind={opt.swatch} /></span>}
-      {layout === "color" && <span className="bq-chip" style={{ background: opt.color }} aria-hidden="true" />}
+      {noMedia && (
+        <span className="bq-media bq-ph" aria-hidden="true">
+          {unsure ? <b>?</b> : (
+            <svg viewBox="0 0 24 24" width="56" height="56" fill="none" stroke="currentColor" strokeWidth="1.2" strokeLinecap="round" strokeLinejoin="round"><path d={icon} /></svg>
+          )}
+        </span>
+      )}
+      {layout === "color" && <span className={`bq-chip${opt.color ? "" : " bq-chip-q"}`} style={opt.color ? { background: opt.color } : undefined} aria-hidden="true">{!opt.color && "?"}</span>}
       <span className="bq-label">
         <strong>{opt.label}</strong>
         {opt.sub && <small>{opt.sub}</small>}
@@ -217,18 +224,20 @@ export default function BathroomQuiz() {
             <button type="button" className="bq-remove" onClick={() => toggleSection(s.id)} aria-label={`Remove ${s.title}`}>Remove</button>
           </div>
           {s.hint && <p className="bq-hint">{s.hint}</p>}
-          {s.layout !== "text" && s.opts.some((o) => hasMedia(s, o)) && (
-            <div className={`bq-grid bq-grid-${s.layout}`}>
-              {s.opts.filter((o) => hasMedia(s, o)).map((o) => (
-                <Card key={o.id} opt={o} layout={s.layout} selected={(answers[s.id] || []).includes(o.id)} onPick={() => pick(s.id, o.id, s.multi)} />
+          {s.layout !== "text" && (
+            <div className={`bq-grid bq-grid-${s.layout}`} role="group" aria-label={s.q}>
+              {s.opts.map((o) => (
+                <Card key={o.id} opt={o} layout={s.layout} icon={look[s.id]?.icon} selected={(answers[s.id] || []).includes(o.id)} onPick={() => pick(s.id, o.id, s.multi)} />
               ))}
             </div>
           )}
+          {s.layout === "text" && (
           <div className="bq-pills" role="group" aria-label={s.q}>
-            {s.opts.filter((o) => s.layout === "text" || !hasMedia(s, o)).map((o) => (
+            {s.opts.map((o) => (
               <Pill key={o.id} label={o.sub && s.layout === "text" ? `${o.label} · ${o.sub}` : o.label} selected={(answers[s.id] || []).includes(o.id)} onPick={() => pick(s.id, o.id, s.multi)} />
             ))}
           </div>
+          )}
         </section>
       ))}
 

@@ -743,3 +743,7 @@ img { max-width: 100%; height: auto; }
   .bq-label strong { font-size: .96rem; }
   .bq-num { font-size: 2rem; }
 }
+.bq-ph { display: flex; align-items: center; justify-content: center; color: var(--accent); background: linear-gradient(135deg, color-mix(in srgb, var(--accent) 14%, #fff), color-mix(in srgb, var(--accent) 5%, #fff)); }
+.bq-ph b { font-family: ui-serif, Georgia, serif; font-size: 3rem; font-weight: 500; line-height: 1; opacity: .75; }
+.bq-ph svg { opacity: .75; }
+.bq-chip-q { display: flex; align-items: center; justify-content: center; background: color-mix(in srgb, var(--accent) 10%, #fff); color: var(--accent); font-family: ui-serif, Georgia, serif; font-size: 1.9rem; }
