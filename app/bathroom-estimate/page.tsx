@@ -20,7 +20,7 @@ export default function BathroomEstimatePage() {
         <div className="container bq-hero-inner">
           <p className="bq-eyebrow">Palm Beach Renovations · Bathroom Collection</p>
           <h1>Design the bathroom <em>you&apos;ve been dreaming of</em></h1>
-          <p className="bq-hero-sub">Choose your favorites in a few taps. No typing, no pressure. We&apos;ll turn your picks into an accurate, free estimate.</p>
+          <p className="bq-hero-sub">Choose your favorites in a few taps. Quick, easy, no pressure. We&apos;ll turn your picks into an accurate, free estimate.</p>
           <ul className="bq-hero-points">
             <li>Free estimate</li>
             <li>Licensed &amp; insured</li>
