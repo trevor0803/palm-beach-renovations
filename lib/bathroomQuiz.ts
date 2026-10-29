@@ -23,6 +23,9 @@ export type Group = {
   layout: Layout;
   multi?: boolean;
   opts: Opt[];
+  // Optional tie to an earlier group in the same section.
+  hideWhen?: { group: string; ids: string[] }; // hide (and record "Not applicable") when that answer is picked
+  askWhen?: { group: string; id: string; q: string }; // reword the question when that answer is picked
 };
 
 export type Section = {
@@ -64,6 +67,8 @@ export const sections: Section[] = [
         id: "shower-glass",
         label: "Shower glass",
         q: "What about the shower glass?",
+        hideWhen: { group: "shower-style", ids: ["skip"] },
+        askWhen: { group: "shower-style", id: "keep", q: "Want new glass on your current shower?" },
         layout: "text",
         opts: [
           { id: "frameless", label: "Frameless glass", sub: "Clean, open look" },

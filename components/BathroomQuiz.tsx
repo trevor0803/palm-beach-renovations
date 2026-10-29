@@ -111,7 +111,10 @@ export default function BathroomQuiz() {
   }
 
   const answered = (id: string) => (answers[id] || []).length > 0;
-  const stepDone = section ? section.groups.every((gr) => answered(gr.id)) : isDetails ? basics.every((b) => answered(b.id)) : true;
+  const hidden = (gr: Group) => !!gr.hideWhen && (answers[gr.hideWhen.group] || []).some((x) => gr.hideWhen!.ids.includes(x));
+  const questionOf = (gr: Group) => (gr.askWhen && (answers[gr.askWhen.group] || []).includes(gr.askWhen.id) ? gr.askWhen.q : gr.q);
+  const visibleGroups = section ? section.groups.filter((gr) => !hidden(gr)) : [];
+  const stepDone = section ? visibleGroups.every((gr) => answered(gr.id)) : isDetails ? basics.every((b) => answered(b.id)) : true;
 
   function go(next: number) {
     moved.current = true;
@@ -127,7 +130,7 @@ export default function BathroomQuiz() {
   function summaryRows() {
     const rows: { k: string; v: string }[] = [];
     for (const s of sections) {
-      const parts = s.groups.map((gr) => `${gr.label}: ${labelsFor(gr.id, gr.opts).join(", ") || "-"}`);
+      const parts = s.groups.map((gr) => `${gr.label}: ${hidden(gr) ? "Not applicable" : labelsFor(gr.id, gr.opts).join(", ") || "-"}`);
       const note = (notes[s.id] || "").trim().replace(/\s+/g, " ");
       rows.push({ k: s.title, v: parts.join("; ") + (note ? ` (Note: ${note})` : "") });
     }
@@ -201,12 +204,12 @@ export default function BathroomQuiz() {
             <span className="bq-panel-ico"><Icon d={look[section.id].icon} size={22} /></span>
             <h2><small>{section.title}</small>{section.groups[0].q}</h2>
           </div>
-          {section.groups.map((gr, gi) => (
+          {visibleGroups.map((gr, gi) => (
             <div key={gr.id} className="bq-group">
-              {gi > 0 && <h3 className="bq-gq">{gr.q}</h3>}
+              {gi > 0 && <h3 className="bq-gq">{questionOf(gr)}</h3>}
               {gr.hint && <p className="bq-hint">{gr.hint}</p>}
               {gr.layout === "text" ? (
-                <div className="bq-pills" role="group" aria-label={gr.q}>
+                <div className="bq-pills" role="group" aria-label={questionOf(gr)}>
                   {gr.opts.map((o) => (
                     <Pill key={o.id} label={o.sub ? `${o.label} · ${o.sub}` : o.label} selected={(answers[gr.id] || []).includes(o.id)} onPick={() => pick(gr, o.id)} />
                   ))}
