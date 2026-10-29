@@ -134,7 +134,6 @@ export default function BathroomQuiz() {
           lastName: rest.join(" "),
           phone: f.get("phone"),
           email: f.get("email"),
-          zip: f.get("zip"),
           projectType: "Bathroom Remodeling",
           message,
           source: "website-bathroom-quiz",
@@ -261,7 +260,6 @@ export default function BathroomQuiz() {
           <label><span>Phone</span><input name="phone" type="tel" autoComplete="tel" required /></label>
           <label><span>Email</span><input name="email" type="email" autoComplete="email" required /></label>
         </div>
-        <label><span>Zip code</span><input name="zip" inputMode="numeric" pattern="[0-9]{5}" maxLength={5} autoComplete="postal-code" placeholder="33411" required /></label>
         <input name="hp_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
         <button className="btn qe-submit" type="submit" disabled={state === "sending"}>
           {state === "sending" ? "Sending…" : "Get my free estimate"}
