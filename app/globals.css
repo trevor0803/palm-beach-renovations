@@ -751,3 +751,7 @@ img { max-width: 100%; height: auto; }
 .bq-note em { font-weight: 400; font-style: normal; color: var(--muted); }
 .bq-note textarea { font: inherit; font-weight: 400; padding: .75rem .9rem; border: 2px solid #d9dfeb; border-radius: 12px; resize: vertical; min-height: 68px; width: 100%; color: #111827; background: #fff; }
 .bq-note textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+.bq-bar { display: flex; align-items: center; justify-content: space-between; gap: 1rem; margin-top: 1.1rem; padding-top: 1rem; border-top: 1px solid #e4e8f0; color: var(--muted); }
+.bq-bar strong { color: var(--ink); font-size: 1.2rem; }
+.bq-jump { font: inherit; font-weight: 800; color: #fff; background: var(--ink); border: 0; border-radius: 999px; padding: .7rem 1.2rem; min-height: 46px; cursor: pointer; }
+.bq-jump:hover { filter: brightness(1.15); }

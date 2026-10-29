@@ -71,15 +71,7 @@ export default function BathroomQuiz() {
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [err, setErr] = useState("");
-  const lastOpened = useRef<string | null>(null);
   const doneRef = useRef<HTMLHeadingElement>(null);
-
-  useEffect(() => {
-    if (!lastOpened.current) return;
-    const el = document.getElementById(`bq-sec-${lastOpened.current}`);
-    lastOpened.current = null;
-    el?.scrollIntoView({ block: "nearest", behavior: "smooth" });
-  }, [open]);
 
   useEffect(() => {
     if (state === "done") {
@@ -91,7 +83,6 @@ export default function BathroomQuiz() {
   function toggleSection(id: string) {
     setOpen((cur) => {
       if (cur.includes(id)) return cur.filter((x) => x !== id);
-      lastOpened.current = id;
       track("bathroom_quiz_open", { section: id });
       return [...cur, id];
     });
@@ -185,7 +176,7 @@ export default function BathroomQuiz() {
         <span className="bq-num">01</span>
         <div>
           <h2 className="bq-q">Choose what&apos;s on your wish list</h2>
-          <p className="bq-hint">Check everything you&apos;re interested in. Each one opens a few quick choices.</p>
+          <p className="bq-hint">Tap as many as you like. Your choices open below the list.</p>
         </div>
       </div>
 
@@ -209,13 +200,21 @@ export default function BathroomQuiz() {
               </span>
               <span className="bq-item-text">
                 <strong>{s.title}</strong>
-                <small>{on && answered ? "Choice saved" : s.blurb}</small>
+                <small>{on ? (answered ? "Choice saved ✓" : "Open below ↓") : s.blurb}</small>
               </span>
               <span className="bq-box" aria-hidden="true">{on ? "✓" : ""}</span>
             </button>
           );
         })}
       </div>
+        <div className="bq-bar" aria-live="polite">
+          <span><strong>{open.length}</strong> selected</span>
+          {open.length > 0 && (
+            <button type="button" className="bq-jump" onClick={() => document.getElementById(`bq-sec-${open[0]}`)?.scrollIntoView({ block: "start", behavior: "smooth" })}>
+              Choose your options ↓
+            </button>
+          )}
+        </div>
       </div>
 
       {chosenSections.map((s) => (
