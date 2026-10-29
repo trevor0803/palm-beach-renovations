@@ -81,18 +81,6 @@ export default function ServiceBody({
         </section>
       )}
 
-      {service.slug === "bathroom-remodeling" && (
-        <section className="container">
-          <div className="bathroom-promo">
-            <div>
-              <h2>Planning a bathroom? Build your wish list.</h2>
-              <p>Check off the shower, vanity, tile and more you want, then get a free estimate based on your picks.</p>
-            </div>
-            <Link className="btn" href="/bathroom-estimate">Start my wish list</Link>
-          </div>
-        </section>
-      )}
-
       {cityDetail && cityDetail.length > 0 && (
         <section className="container section city-detail">
           <h2>{service.shortTitle} in {cityName}: what to expect</h2>
