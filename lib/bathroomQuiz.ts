@@ -184,9 +184,9 @@ const baseSections: Section[] = [
         multi: true,
         opts: [
           { id: "subway", label: "Subway", sub: "Classic brick pattern", tier: 1, img: "/img/quiz/tile-subway.jpg", alt: "White subway tile shower wall with a built-in niche" },
-          { id: "hexagon", label: "Hexagon", sub: "Geometric", tier: 1, img: "/img/quiz/tile-hexagon.jpg", alt: "White hexagon tile with dark grout" },
+          { id: "hexagon", label: "Hexagon", sub: "Geometric", tier: 1, img: "/img/quiz/tile-hexagon-wall.jpg", alt: "White hexagon tile on a shower wall with a niche" },
           { id: "large-format", label: "Large-format porcelain", sub: "Fewer grout lines", tier: 2, img: "/img/quiz/tile-large-format.jpg", alt: "Large-format white marble-look porcelain tile on a bathroom wall" },
-          { id: "mosaic", label: "Mosaic accent", sub: "Small-tile accents", tier: 2, img: "/img/quiz/tile-mosaic.jpg", alt: "Small round mosaic tile" },
+          { id: "mosaic", label: "Mosaic accent", sub: "Small-tile accents", tier: 2, img: "/img/quiz/tile-mosaic-wall.jpg", alt: "Shower wall with a vertical mosaic glass tile accent stripe" },
           { id: "marble-look", label: "Marble look", sub: "Soft veining", tier: 3, img: "/img/quiz/tile-marble-look.jpg", alt: "Marble-look porcelain tile with gray veining" },
           KEEP,
           NOT_SURE,
