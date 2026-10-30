@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { site } from "@/lib/site";
 import { trackLead, newEventId } from "@/lib/track";
-import { sections, basics, EXCLUSIVE, TIERS, CONTACT_TIMES, type Group, type Opt, type Tier } from "@/lib/bathroomQuiz";
+import { sections, basics, EXCLUSIVE, CONTACT_TIMES, AREAS, INTRO, AFTER_AREAS, OUTRO, type Group, type Opt } from "@/lib/bathroomQuiz";
 
 type Answers = Record<string, string[]>;
 
@@ -83,11 +83,7 @@ function Choice({ label, sub, selected, onPick, multi }: { label: string; sub?: 
 }
 
 export default function BathroomQuiz() {
-  const total = sections.length + 2; // sections + quick details + review/contact
-  const detailsIdx = sections.length;
-  const contactIdx = sections.length + 1;
   const [i, setI] = useState(0);
-  const [maxI, setMaxI] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
   const [others, setOthers] = useState<Record<string, string>>({});
@@ -112,12 +108,6 @@ export default function BathroomQuiz() {
     page?.classList.toggle("is-step", i > 0 || state === "done");
   }, [i, state]);
 
-  const section = i < sections.length ? sections[i] : null;
-  const isDetails = i === detailsIdx;
-  const isContact = i === contactIdx;
-  const stepKey = section ? section.id : isDetails ? "details" : "contact";
-  const accent = accentOf(section ? section.id : isDetails ? "details" : "review");
-
   function pick(group: { id: string; multi?: boolean }, optId: string) {
     setAnswers((a) => {
       const cur = a[group.id] || [];
@@ -131,24 +121,46 @@ export default function BathroomQuiz() {
   const answered = (id: string) => (answers[id] || []).length > 0;
   const hidden = (gr: Group) => !!gr.hideWhen && (answers[gr.hideWhen.group] || []).some((x) => gr.hideWhen!.ids.includes(x));
   const questionOf = (gr: Group) => (gr.askWhen && (answers[gr.askWhen.group] || []).includes(gr.askWhen.id) ? gr.askWhen.q : gr.q);
-  const visibleOf = (s: (typeof sections)[number]) => s.groups.filter((gr) => !hidden(gr));
+  const picked = answers["areas"] || [];
+  const areaOf = (gid: string) => AREAS.find((a) => a.groups.includes(gid))?.id;
+  const chosen = (gr: Group) => picked.includes(areaOf(gr.id) || "");
+  const visibleOf = (s: (typeof sections)[number]) => s.groups.filter((gr) => chosen(gr) && !hidden(gr));
   const sectionDone = (s: (typeof sections)[number]) => visibleOf(s).every((gr) => answered(gr.id));
   const detailsDone = basics.every((b) => answered(b.id));
-  const stepDone = section ? sectionDone(section) : isDetails ? detailsDone : true;
-  const stepDoneAt = (n: number) => (n < sections.length ? sectionDone(sections[n]) : n === detailsIdx ? detailsDone : true);
-  const allDone = sections.every(sectionDone) && detailsDone;
+  const allDone = picked.length > 0 && sections.every(sectionDone) && detailsDone;
 
-  const missing = section
-    ? visibleOf(section).filter((gr) => !answered(gr.id)).map((gr) => gr.label)
-    : isDetails
-      ? basics.filter((b) => !answered(b.id)).map((b) => b.label)
-      : [];
+  // One question per screen: every visible group is its own page, then the quick details, then the review.
+  type Page = { kind: "group"; si: number; gr: Group; last: boolean } | { kind: "basic"; b: (typeof basics)[number] } | { kind: "areas" } | { kind: "review" };
+  const pages: Page[] = [];
+  const basicById = (id: string) => basics.find((b) => b.id === id)!;
+  INTRO.forEach((id) => pages.push({ kind: "basic", b: basicById(id) }));
+  pages.push({ kind: "areas" });
+  AFTER_AREAS.forEach((id) => pages.push({ kind: "basic", b: basicById(id) }));
+  sections.forEach((s, si) => {
+    const vis = visibleOf(s);
+    vis.forEach((gr, gi) => pages.push({ kind: "group", si, gr, last: gi === vis.length - 1 }));
+  });
+  OUTRO.forEach((id) => pages.push({ kind: "basic", b: basicById(id) }));
+  pages.push({ kind: "review" });
+  const idx = Math.min(i, pages.length - 1);
+  const page = pages[idx];
+  const isContact = page.kind === "review";
+  const stepKey = page.kind === "group" ? page.gr.id : page.kind === "basic" ? page.b.id : page.kind === "areas" ? "areas" : "contact";
+  const accent = accentOf(page.kind === "group" ? sections[page.si].id : page.kind === "review" ? "review" : "details");
+  const stepDone = page.kind === "group" ? answered(page.gr.id) : page.kind === "basic" ? answered(page.b.id) : page.kind === "areas" ? picked.length > 0 : true;
+  const firstPageOf = (si: number) => pages.findIndex((p) => p.kind === "group" && p.si === si);
+  const areasIdx = pages.findIndex((p) => p.kind === "areas");
+  const outroIdx = pages.findIndex((p) => p.kind === "basic" && OUTRO.includes(p.b.id));
+  const stepTitle = page.kind === "group" ? sections[page.si].title : page.kind === "review" ? "Review" : page.kind === "areas" ? "Your project" : "Quick details";
+  const qNum = idx + 1;
+  const qTotal = pages.length;
+  const areasKnown = picked.length > 0; // the total only means something once they say what they want changed
+  const barTotal = areasKnown ? qTotal : qTotal + 4;
 
   function go(next: number) {
     moved.current = true;
-    if (next > i) track("bathroom_quiz_step", { step: i + 1, step_id: stepKey });
-    setMaxI((m) => Math.max(m, next));
-    setI(next);
+    if (next > idx) track("bathroom_quiz_step", { step: idx + 1, step_id: stepKey });
+    setI(Math.max(0, next));
   }
 
   const labelsFor = (id: string, opts: Opt[], withTier = false) => {
@@ -166,15 +178,16 @@ export default function BathroomQuiz() {
 
   function buildRows() {
     return sections.map((s, idx) => {
-      const parts = s.groups.map((gr) => `${gr.label}: ${hidden(gr) ? "Not applicable" : labelsFor(gr.id, gr.opts, true).join(", ") || "-"}`);
+      const parts = visibleOf(s).map((gr) => `${gr.label}: ${labelsFor(gr.id, gr.opts, true).join(", ") || "-"}`);
       const note = (notes[s.id] || "").trim().replace(/\s+/g, " ");
-      return { idx, id: s.id, title: s.title, text: parts.join("; "), note };
+      return { idx, id: s.id, title: s.title, text: parts.length ? parts.join("; ") : "Not changing", note };
     });
   }
 
   function buildMessage() {
     const basicsLine = basics.map((b) => `${b.label}: ${labelsFor(b.id, b.opts).join(", ") || "-"}`).join(" | ");
     const lines: string[] = ["BATHROOM ESTIMATE REQUEST (website wish list)", basicsLine];
+    lines.push(`Wants changed: ${AREAS.filter((a) => picked.includes(a.id)).map((a) => a.label).join(", ") || "-"}`);
     const when = CONTACT_TIMES.find((t) => t.id === bestTime);
     if (when) lines.push(`Best time to reach: ${when.label}`);
     lines.push("");
@@ -184,7 +197,7 @@ export default function BathroomQuiz() {
       lines.push(`${r.title.toUpperCase()}: ${r.text}`);
       if (r.note) lines.push(`  NOTE: ${r.note}`);
       for (const gr of sections[r.idx].groups) {
-        if (hidden(gr)) continue;
+        if (!chosen(gr) || hidden(gr)) continue;
         const sel = answers[gr.id] || [];
         if (sel.includes("not-sure")) undecided.push(gr.label);
         for (const id of sel) {
@@ -254,8 +267,6 @@ export default function BathroomQuiz() {
     );
   }
 
-  const stepTitle = section ? section.title : isDetails ? "Quick details" : "Review";
-
   // Render a group's options. Tiered options sit under Essential / Select / Signature headers.
   function renderOpts(gr: Group, icon: string) {
     const sel = answers[gr.id] || [];
@@ -267,35 +278,11 @@ export default function BathroomQuiz() {
         <Choice key={o.id} label={o.label} sub={o.sub} multi={gr.multi} selected={sel.includes(o.id)} onPick={() => pick(gr, o.id)} />
       );
     const gridCls = asCard ? `bq-grid bq-grid-${gr.layout}` : "bq-list";
-    const hasTiers = gr.opts.some((o) => o.tier);
     const q = questionOf(gr);
-    if (!hasTiers) {
-      return (
-        <div className={gridCls} role="group" aria-label={q}>
-          {gr.opts.map(mk)}
-        </div>
-      );
-    }
-    const tiers: Tier[] = [1, 2, 3];
-    const rest = gr.opts.filter((o) => !o.tier);
+    const shown = gr.opts.filter((o) => o.id !== "keep" && o.id !== "skip");
     return (
-      <div role="group" aria-label={q}>
-        {tiers.map((t) => {
-          const list = gr.opts.filter((o) => o.tier === t);
-          if (!list.length) return null;
-          return (
-            <div className="bq-tier" key={t}>
-              <p className="bq-tier-head"><strong>{TIERS[t].name}</strong><span>{TIERS[t].blurb}</span></p>
-              <div className={gridCls}>{list.map(mk)}</div>
-            </div>
-          );
-        })}
-        {rest.length > 0 && (
-          <div className="bq-tier">
-            <p className="bq-tier-head"><strong>Other choices</strong></p>
-            <div className={gridCls}>{rest.map(mk)}</div>
-          </div>
-        )}
+      <div className={gridCls} role="group" aria-label={q}>
+        {shown.map(mk)}
       </div>
     );
   }
@@ -303,39 +290,27 @@ export default function BathroomQuiz() {
   return (
     <div className="bq" ref={rootRef}>
       <div className="bq-meta" ref={metaRef}>
-        <ol className="bq-steps" role="progressbar" aria-label="Progress" aria-valuemin={1} aria-valuemax={total} aria-valuenow={i + 1} aria-valuetext={`Step ${i + 1} of ${total}, ${stepTitle}`}>
-          {Array.from({ length: total }, (_, n) => {
-            const reachable = n <= maxI && (n <= i || Array.from({ length: n }, (_, k) => k).every(stepDoneAt));
-            return (
-              <li key={n}>
-                <button
-                  type="button"
-                  className={`bq-seg${n < i ? " is-done" : ""}${n === i ? " is-now" : ""}`}
-                  disabled={!reachable || n === i}
-                  aria-label={`Go to step ${n + 1}: ${n < sections.length ? sections[n].title : n === detailsIdx ? "Quick details" : "Review"}`}
-                  onClick={() => go(n)}
-                />
-              </li>
-            );
-          })}
-        </ol>
-        <p className="bq-count">Step {i + 1} of {total} <span>· {stepTitle}</span></p>
+        <div className="bq-progress" role="progressbar" aria-label="Progress" aria-valuemin={1} aria-valuemax={qTotal} aria-valuenow={qNum} aria-valuetext={`Question ${qNum} of ${qTotal}, ${stepTitle}`}>
+          <span style={{ width: `${Math.round((qNum / barTotal) * 100)}%` }} />
+        </div>
+        <p className="bq-count">{isContact ? "Last step" : areasKnown ? `Question ${qNum} of ${qTotal}` : `Question ${qNum}`} <span>· {stepTitle}</span></p>
       </div>
 
-      {section && (
-        <section className="bq-panel" style={accent} aria-label={section.title} key={section.id}>
-          <div className="bq-panel-head">
-            <span className="bq-panel-ico"><Icon d={look[section.id].icon} size={22} /></span>
-            <h2 ref={headRef} tabIndex={-1}><small>{section.title}</small>{section.groups[0].q}</h2>
-          </div>
-          {visibleOf(section).map((gr, gi) => (
-            <div key={gr.id} className="bq-group">
-              {gi > 0 && <h3 className="bq-gq">{questionOf(gr)}</h3>}
+      {page.kind === "group" && (() => {
+        const gr = page.gr;
+        const sec = sections[page.si];
+        return (
+          <section className="bq-panel" style={accent} aria-label={questionOf(gr)} key={gr.id}>
+            <div className="bq-panel-head">
+              <span className="bq-panel-ico"><Icon d={look[sec.id].icon} size={22} /></span>
+              <h2 ref={headRef} tabIndex={-1}><small>{sec.title}</small>{questionOf(gr)}</h2>
+            </div>
+            <div className="bq-group">
               <p className="bq-how">
                 <span className="bq-tag">{gr.multi ? "Choose all that apply" : "Choose one"}</span>
                 {gr.hint && gr.hint !== "Choose all that apply." && <span className="bq-hint-inline">{gr.hint}</span>}
               </p>
-              {renderOpts(gr, look[section.id].icon)}
+              {renderOpts(gr, look[sec.id].icon)}
               {(answers[gr.id] || []).includes("other") && (
                 <label className="bq-other">
                   <span>What do you have in mind?</span>
@@ -349,40 +324,59 @@ export default function BathroomQuiz() {
                 </label>
               )}
             </div>
-          ))}
-          <label className="bq-note">
-            <span>Anything to add? <em>(optional)</em></span>
-            <textarea
-              rows={2}
-              maxLength={300}
-              value={notes[section.id] || ""}
-              onChange={(e) => setNotes((n) => ({ ...n, [section.id]: e.target.value }))}
-              placeholder={`Notes about your ${section.title.toLowerCase()}`}
-            />
-          </label>
+            {page.last && (
+              <label className="bq-note">
+                <span>Anything to add about your {sec.title.toLowerCase()}? <em>(optional)</em></span>
+                <textarea
+                  rows={2}
+                  maxLength={300}
+                  value={notes[sec.id] || ""}
+                  onChange={(e) => setNotes((n) => ({ ...n, [sec.id]: e.target.value }))}
+                  placeholder="Details like glass, grab bars, faucet finish, or anything else"
+                />
+              </label>
+            )}
+          </section>
+        );
+      })()}
+
+      {page.kind === "areas" && (
+        <section className="bq-panel" style={accent} aria-label="What do you want changed" key="areas">
+          <div className="bq-panel-head">
+            <span className="bq-panel-ico"><Icon d={look.details.icon} size={22} /></span>
+            <h2 ref={headRef} tabIndex={-1}><small>Your project</small>What do you want changed?</h2>
+          </div>
+          <div className="bq-group">
+            <p className="bq-how">
+              <span className="bq-tag">Choose all that apply</span>
+              <span className="bq-hint-inline">We will ask about just these, one at a time.</span>
+            </p>
+            <div className="bq-list" role="group" aria-label="What do you want changed">
+              {AREAS.map((a) => (
+                <Choice key={a.id} label={a.label} sub={a.sub} multi selected={picked.includes(a.id)} onPick={() => setAnswers((x) => { const cur = x["areas"] || []; return { ...x, areas: cur.includes(a.id) ? cur.filter((y) => y !== a.id) : [...cur, a.id] }; })} />
+              ))}
+            </div>
+          </div>
         </section>
       )}
 
-      {isDetails && (
-        <section className="bq-panel" style={accent} aria-label="Quick details">
+      {page.kind === "basic" && (
+        <section className="bq-panel" style={accent} aria-label={page.b.q} key={page.b.id}>
           <div className="bq-panel-head">
             <span className="bq-panel-ico"><Icon d={look.details.icon} size={22} /></span>
-            <h2 ref={headRef} tabIndex={-1}><small>Quick details</small>Just a few last things</h2>
+            <h2 ref={headRef} tabIndex={-1}><small>Quick details</small>{page.b.q}</h2>
           </div>
-          {basics.map((b) => (
-            <div key={b.id} className="bq-group">
-              <h3 className="bq-gq">{b.q}</h3>
-              <p className="bq-how">
-                <span className="bq-tag">Choose one</span>
-                {b.hint && <span className="bq-hint-inline">{b.hint}</span>}
-              </p>
-              <div className="bq-list" role="group" aria-label={b.q}>
-                {b.opts.map((o) => (
-                  <Choice key={o.id} label={o.label} sub={o.sub} selected={(answers[b.id] || []).includes(o.id)} onPick={() => pick({ id: b.id }, o.id)} />
-                ))}
-              </div>
+          <div className="bq-group">
+            <p className="bq-how">
+              <span className="bq-tag">Choose one</span>
+              {page.b.hint && <span className="bq-hint-inline">{page.b.hint}</span>}
+            </p>
+            <div className="bq-list" role="group" aria-label={page.b.q}>
+              {page.b.opts.map((o) => (
+                <Choice key={o.id} label={o.label} sub={o.sub} selected={(answers[page.b.id] || []).includes(o.id)} onPick={() => pick({ id: page.b.id }, o.id)} />
+              ))}
             </div>
-          ))}
+          </div>
         </section>
       )}
 
@@ -400,7 +394,7 @@ export default function BathroomQuiz() {
                     <strong>{r.title}</strong>
                     <span>{r.text.replace(/^[^:]+: /, "").replace(/; ([^:;]+): /g, " · $1: ")}{r.note ? ` · Note: ${r.note}` : ""}</span>
                   </div>
-                  <button type="button" className="bq-edit" onClick={() => go(r.idx)}>Edit</button>
+                  <button type="button" className="bq-edit" onClick={() => go(firstPageOf(r.idx) >= 0 ? firstPageOf(r.idx) : areasIdx)}>Edit</button>
                 </li>
               ))}
               <li>
@@ -408,7 +402,7 @@ export default function BathroomQuiz() {
                   <strong>Quick details</strong>
                   <span>{basicRows.map((b) => `${b.k}: ${b.v}`).join(" · ")}</span>
                 </div>
-                <button type="button" className="bq-edit" onClick={() => go(detailsIdx)}>Edit</button>
+                <button type="button" className="bq-edit" onClick={() => go(outroIdx)}>Edit</button>
               </li>
             </ul>
           </section>
@@ -447,15 +441,13 @@ export default function BathroomQuiz() {
       )}
 
       <div className="bq-nav">
-        {!isContact && !stepDone && missing.length > 0 && (
-          <p className="bq-need" role="status">Still to answer: {missing.join(", ")}</p>
-        )}
+        {!isContact && !stepDone && <p className="bq-need" role="status">Pick an answer to continue</p>}
         <div className="bq-navrow">
-          {i > 0 ? <button type="button" className="bq-back" onClick={() => go(i - 1)}>← Back</button> : <span />}
+          {idx > 0 ? <button type="button" className="bq-back" onClick={() => go(idx - 1)}>← Back</button> : <span />}
           {!isContact && (
             <div className="bq-next">
-              <button type="button" className="btn" disabled={!stepDone} onClick={() => go(i + 1)}>
-                {i === detailsIdx ? "Review →" : "Next →"}
+              <button type="button" className="btn" disabled={!stepDone} onClick={() => go(idx + 1)}>
+                {pages[idx + 1]?.kind === "review" ? "Review →" : "Next →"}
               </button>
             </div>
           )}

@@ -377,3 +377,21 @@ export const CONTACT_TIMES = [
   { id: "afternoon", label: "Afternoon" },
   { id: "evening", label: "Evening" },
 ];
+
+// "What do you want changed?" checklist. Each area asks one picture question; only ticked areas are asked.
+export const AREAS: { id: string; label: string; sub?: string; groups: string[] }[] = [
+  { id: "shower", label: "Shower", sub: "Style, glass, comfort", groups: ["shower-style"] },
+  { id: "tub", label: "Tub", groups: ["tub-style"] },
+  { id: "vanity", label: "Vanity and sink", sub: "Cabinet, top, faucets", groups: ["vanity-style"] },
+  { id: "shower-tile", label: "Shower and wall tile", groups: ["shower-tile"] },
+  { id: "floor", label: "Floor", sub: "Tile or plank", groups: ["floor-tile"] },
+  { id: "paint", label: "Paint", groups: ["paint-colors"] },
+  { id: "toilet", label: "Toilet", groups: ["toilet-style"] },
+  { id: "lighting", label: "Lighting and mirrors", groups: ["lighting"] },
+  { id: "storage", label: "Storage", sub: "Cabinets, towel racks", groups: ["storage"] },
+];
+
+// Quick questions asked before and after the area pictures (ids from basics).
+export const INTRO = ["room"];
+export const AFTER_AREAS = ["level"];
+export const OUTRO = ["timeline", "budget"];

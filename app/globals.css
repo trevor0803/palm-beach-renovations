@@ -857,3 +857,6 @@ img { max-width: 100%; height: auto; }
 .bq-other { display: flex; flex-direction: column; gap: .35rem; margin-top: 1rem; font-weight: 700; font-size: .9rem; color: var(--ink); position: relative; z-index: 1; }
 .bq-other input { font: inherit; font-size: 1rem; font-weight: 400; padding: .8rem .95rem; min-height: 50px; border: 2px solid var(--accent); border-radius: 12px; width: 100%; color: #111827; background: #fff; }
 .bq-other input:focus { outline: none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
+.bq-nav { background: #f3f5fa; box-shadow: 0 -10px 18px rgba(243, 245, 250, .95); padding-top: .6rem; }
+.bq-nav .bq-need { padding: .1rem 0 .1rem; font-weight: 600; }
+.bq { padding-bottom: 1rem; }
