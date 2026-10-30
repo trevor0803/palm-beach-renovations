@@ -26,6 +26,7 @@ const look: Record<string, { accent: string; icon: string }> = {
 };
 const KEEP_ICON = "M4 12a8 8 0 0 1 14-5.3M20 4v4h-4M20 12a8 8 0 0 1-14 5.3M4 20v-4h4";
 const SKIP_ICON = "M12 3a9 9 0 1 0 0 18 9 9 0 0 0 0-18zM6 6l12 12";
+const OTHER_ICON = "M4 20h4L19 9l-4-4L4 16zM13 7l4 4";
 
 type Accent = React.CSSProperties & { "--accent"?: string };
 const accentOf = (id: string): Accent => ({ "--accent": look[id]?.accent || "#1e3a8a" });
@@ -40,7 +41,7 @@ function Icon({ d, size = 24, sw = 1.8 }: { d: string; size?: number; sw?: numbe
 
 function Card({ opt, layout, selected, onPick, icon }: { opt: Opt; layout: Group["layout"]; selected: boolean; onPick: () => void; icon: string }) {
   const noMedia = layout === "photo" && !opt.img;
-  const glyph = opt.id === "keep" ? KEEP_ICON : opt.id === "skip" ? SKIP_ICON : icon;
+  const glyph = opt.id === "keep" ? KEEP_ICON : opt.id === "skip" ? SKIP_ICON : opt.id === "other" ? OTHER_ICON : icon;
   const unsure = opt.id === "not-sure";
   return (
     <button type="button" className={`bq-card bq-${layout}${selected ? " is-selected" : ""}`} aria-pressed={selected} onClick={onPick}>
@@ -56,7 +57,7 @@ function Card({ opt, layout, selected, onPick, icon }: { opt: Opt; layout: Group
       )}
       {layout === "color" && (
         <span className={`bq-chip${opt.color ? "" : " bq-chip-q"}`} style={opt.color ? { background: opt.color } : undefined} aria-hidden="true">
-          {!opt.color && (unsure ? "?" : <Icon d={opt.id === "keep" ? KEEP_ICON : SKIP_ICON} size={28} sw={1.6} />)}
+          {!opt.color && (unsure ? "?" : <Icon d={opt.id === "keep" ? KEEP_ICON : opt.id === "other" ? OTHER_ICON : SKIP_ICON} size={28} sw={1.6} />)}
         </span>
       )}
       <span className="bq-label">
@@ -89,6 +90,7 @@ export default function BathroomQuiz() {
   const [maxI, setMaxI] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
+  const [others, setOthers] = useState<Record<string, string>>({});
   const [bestTime, setBestTime] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [err, setErr] = useState("");
@@ -153,7 +155,13 @@ export default function BathroomQuiz() {
     const sel = answers[id] || [];
     return opts
       .filter((o) => sel.includes(o.id))
-      .map((o) => (withTier && o.tier ? `${o.label} (Tier ${o.tier})` : o.label));
+      .map((o) => {
+        if (o.id === "other") {
+          const t = (others[id] || "").trim().replace(/\s+/g, " ");
+          return t ? `Something else: "${t}"` : "Something else";
+        }
+        return withTier && o.tier ? `${o.label} (Tier ${o.tier})` : o.label;
+      });
   };
 
   function buildRows() {
@@ -284,7 +292,7 @@ export default function BathroomQuiz() {
         })}
         {rest.length > 0 && (
           <div className="bq-tier">
-            <p className="bq-tier-head"><strong>Something else</strong></p>
+            <p className="bq-tier-head"><strong>Other choices</strong></p>
             <div className={gridCls}>{rest.map(mk)}</div>
           </div>
         )}
@@ -328,6 +336,18 @@ export default function BathroomQuiz() {
                 {gr.hint && gr.hint !== "Choose all that apply." && <span className="bq-hint-inline">{gr.hint}</span>}
               </p>
               {renderOpts(gr, look[section.id].icon)}
+              {(answers[gr.id] || []).includes("other") && (
+                <label className="bq-other">
+                  <span>What do you have in mind?</span>
+                  <input
+                    type="text"
+                    maxLength={120}
+                    value={others[gr.id] || ""}
+                    onChange={(e) => setOthers((o) => ({ ...o, [gr.id]: e.target.value }))}
+                    placeholder="Describe it in a few words"
+                  />
+                </label>
+              )}
             </div>
           ))}
           <label className="bq-note">

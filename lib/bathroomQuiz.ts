@@ -29,6 +29,7 @@ export type Group = {
   opts: Opt[];
   hideWhen?: { group: string; ids: string[] }; // hide (record "Not applicable") when that answer is picked
   askWhen?: { group: string; id: string; q: string }; // reword the question when that answer is picked
+  noOther?: boolean; // skip the automatic "Something else" option
 };
 
 export type Section = {
@@ -47,11 +48,12 @@ const g = (f: string) => `/img/gallery/${f}`;
 const KEEP: Opt = { id: "keep", label: "Keep what I have" };
 const SKIP: Opt = { id: "skip", label: "Skip this" };
 const NOT_SURE: Opt = { id: "not-sure", label: "Not sure yet" };
+const OTHER: Opt = { id: "other", label: "Something else", sub: "Tell us in your own words" };
 
 // Ids that clear every other pick in a multi-select group.
 export const EXCLUSIVE = ["keep", "skip", "not-sure"];
 
-export const sections: Section[] = [
+const baseSections: Section[] = [
   {
     id: "shower",
     title: "Shower & glass",
@@ -79,13 +81,13 @@ export const sections: Section[] = [
         q: "What about the shower glass?",
         hideWhen: { group: "shower-style", ids: ["skip"] },
         askWhen: { group: "shower-style", id: "keep", q: "Want new glass on your current shower?" },
-        layout: "text",
+        layout: "photo",
         opts: [
-          { id: "semi-frameless", label: "Semi-frameless glass", sub: "Slim frame, great value", tier: 1 },
-          { id: "curtain", label: "Shower curtain", sub: "Simple and low cost", tier: 1 },
-          { id: "frameless", label: "Frameless glass", sub: "Clean look, no frame edges", tier: 2 },
-          { id: "fixed-panel", label: "Fixed glass panel, no door", sub: "Open walk-in look", tier: 2 },
-          { id: "frameless-sliding", label: "Fully frameless sliding glass", sub: "Premium, minimal hardware", tier: 3 },
+          { id: "semi-frameless", label: "Semi-frameless glass", sub: "Slim frame, great value", tier: 1, img: "/img/quiz/glass-semi.jpg", alt: "Semi-frameless glass shower door with a slim chrome frame" },
+          { id: "curtain", label: "Shower curtain", sub: "Simple and low cost", tier: 1, img: "/img/quiz/glass-curtain.jpg", alt: "White shower curtain on a chrome rod over a tub" },
+          { id: "frameless", label: "Frameless glass", sub: "Clean look, no frame edges", tier: 2, img: "/img/quiz/glass-frameless.jpg", alt: "Frameless glass shower door with a brushed nickel handle" },
+          { id: "fixed-panel", label: "Fixed glass panel, no door", sub: "Open walk-in look", tier: 2, img: "/img/quiz/glass-fixed.jpg", alt: "Walk-in shower with a single fixed glass panel and no door" },
+          { id: "frameless-sliding", label: "Fully frameless sliding glass", sub: "Premium, minimal hardware", tier: 3, img: "/img/quiz/glass-sliding.jpg", alt: "Fully frameless sliding glass shower doors with black hardware" },
           KEEP,
           NOT_SURE,
         ],
@@ -95,15 +97,15 @@ export const sections: Section[] = [
         label: "Safety and comfort",
         q: "Any safety or comfort features?",
         hint: "Choose all that apply.",
-        layout: "text",
+        layout: "photo",
         multi: true,
         hideWhen: { group: "shower-style", ids: ["skip"] },
         opts: [
-          { id: "grab-bars", label: "Grab bars", sub: "Stylish, for safety" },
-          { id: "bench", label: "Built-in shower bench" },
-          { id: "handheld", label: "Handheld shower head", sub: "Easier to use sitting or standing" },
-          { id: "slip-resistant", label: "Slip-resistant shower floor" },
-          { id: "niche", label: "Built-in shelf (niche)", sub: "For shampoo and soap" },
+          { id: "grab-bars", label: "Grab bars", sub: "Stylish, for safety", img: "/img/quiz/comfort-grab-bar.jpg", alt: "Brushed nickel grab bar on a tiled shower wall" },
+          { id: "bench", label: "Built-in shower bench", img: "/img/quiz/comfort-bench.jpg", alt: "Built-in tiled shower bench" },
+          { id: "handheld", label: "Handheld shower head", sub: "Easier to use sitting or standing", img: "/img/quiz/comfort-handheld.jpg", alt: "Handheld shower head on a slide bar" },
+          { id: "slip-resistant", label: "Slip-resistant shower floor", img: "/img/quiz/comfort-slip.jpg", alt: "Slip-resistant pebble shower floor" },
+          { id: "niche", label: "Built-in shelf (niche)", sub: "For shampoo and soap", img: "/img/quiz/comfort-niche.jpg", alt: "Built-in tiled shower niche with shampoo bottles" },
           { id: "skip", label: "None of these" },
         ],
       },
@@ -214,6 +216,7 @@ export const sections: Section[] = [
         q: "Want heated floors?",
         hint: "Warm underfoot.",
         layout: "text",
+        noOther: true,
         hideWhen: { group: "floor-tile", ids: ["keep"] },
         opts: [
           { id: "yes", label: "Yes, add heated floors" },
@@ -257,12 +260,12 @@ export const sections: Section[] = [
         id: "toilet-style",
         label: "Toilet",
         q: "What kind of toilet?",
-        layout: "text",
+        layout: "photo",
         opts: [
-          { id: "comfort", label: "Comfort height", sub: "Taller seat, easier to use" },
-          { id: "wall-hung", label: "Wall-hung", sub: "Mounted on the wall, easy to clean" },
-          { id: "bidet", label: "Toilet with bidet seat" },
-          { id: "standard", label: "Standard toilet" },
+          { id: "comfort", label: "Comfort height", sub: "Taller seat, easier to use", img: "/img/quiz/toilet-comfort.jpg", alt: "Comfort height white toilet" },
+          { id: "wall-hung", label: "Wall-hung", sub: "Mounted on the wall, easy to clean", img: "/img/quiz/toilet-wall-hung.jpg", alt: "Wall-hung toilet with concealed tank" },
+          { id: "bidet", label: "Toilet with bidet seat", img: "/img/quiz/toilet-bidet.jpg", alt: "Toilet with a bidet seat" },
+          { id: "standard", label: "Standard toilet", img: "/img/quiz/toilet-standard.jpg", alt: "Standard white two-piece toilet" },
           KEEP,
           NOT_SURE,
         ],
@@ -278,14 +281,16 @@ export const sections: Section[] = [
         label: "Lighting and mirrors",
         q: "What lighting and mirrors?",
         hint: "Choose all that apply.",
-        layout: "text",
+        layout: "photo",
         multi: true,
         opts: [
-          { id: "led-mirror", label: "LED backlit mirror", sub: "Glowing edge, even light" },
-          { id: "vanity-lights", label: "New vanity light fixtures" },
-          { id: "recessed", label: "Ceiling lights", sub: "Flush with the ceiling" },
-          { id: "shower-light", label: "Light in the shower" },
-          { id: "exhaust-fan", label: "Quiet exhaust fan" },
+          { id: "led-mirror", label: "LED backlit mirror", sub: "Glowing edge, even light", img: "/img/quiz/light-led-mirror.jpg", alt: "LED backlit bathroom mirror with a glowing edge" },
+          { id: "round-mirror", label: "Round mirror", sub: "Framed, statement look", img: "/img/quiz/light-round-mirror.jpg", alt: "Round black-framed bathroom mirror" },
+          { id: "framed-mirror", label: "Large framed mirror", sub: "Classic, full width", img: "/img/quiz/light-framed-mirror.jpg", alt: "Large framed gold bathroom mirror" },
+          { id: "vanity-lights", label: "New vanity light fixtures", img: "/img/quiz/light-sconces.jpg", alt: "Wall sconce vanity lights beside a mirror" },
+          { id: "recessed", label: "Ceiling lights", sub: "Flush with the ceiling", img: "/img/quiz/light-recessed.jpg", alt: "Recessed ceiling lights" },
+          { id: "shower-light", label: "Light in the shower", img: "/img/quiz/light-shower.jpg", alt: "Recessed light in a tiled shower" },
+          { id: "exhaust-fan", label: "Quiet exhaust fan", img: "/img/quiz/light-fan.jpg", alt: "Quiet exhaust fan with LED light" },
           KEEP,
           NOT_SURE,
         ],
@@ -295,18 +300,24 @@ export const sections: Section[] = [
         label: "Storage and upgrades",
         q: "Which storage and upgrades?",
         hint: "Choose all that apply.",
-        layout: "text",
+        layout: "photo",
         multi: true,
         opts: [
-          { id: "linen-cabinet", label: "Linen cabinet" },
-          { id: "medicine-cabinet", label: "Medicine cabinet", sub: "Built into the wall" },
-          { id: "heated-towel", label: "Heated towel rack" },
+          { id: "linen-cabinet", label: "Linen cabinet", img: "/img/quiz/store-linen.jpg", alt: "Tall linen cabinet beside a vanity" },
+          { id: "medicine-cabinet", label: "Medicine cabinet", sub: "Built into the wall", img: "/img/quiz/store-medicine.jpg", alt: "Recessed medicine cabinet in the wall" },
+          { id: "heated-towel", label: "Heated towel rack", img: "/img/quiz/store-towel-rack.jpg", alt: "Heated towel rack" },
           { id: "skip", label: "None of these" },
         ],
       },
     ],
   },
 ];
+
+// Every question ends with "Something else" (the page shows a text box when it is picked).
+export const sections: Section[] = baseSections.map((sec) => ({
+  ...sec,
+  groups: sec.groups.map((gr) => (gr.noOther ? gr : { ...gr, opts: [...gr.opts, OTHER] })),
+}));
 
 // Quick pill questions shown after the sections. Single select, all required.
 export type Basic = { id: string; label: string; q: string; hint?: string; opts: { id: string; label: string; sub?: string }[] };

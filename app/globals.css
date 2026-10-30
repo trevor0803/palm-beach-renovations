@@ -854,3 +854,6 @@ img { max-width: 100%; height: auto; }
 .bq-ph svg { width: 36px; height: 36px; }
 .bq-ph b { font-size: 2.2rem; }
 @media (max-width: 640px) { .bq-navrow .bq-next { flex: 1; } .bq-navrow .bq-next .btn { width: 100%; } }
+.bq-other { display: flex; flex-direction: column; gap: .35rem; margin-top: 1rem; font-weight: 700; font-size: .9rem; color: var(--ink); position: relative; z-index: 1; }
+.bq-other input { font: inherit; font-size: 1rem; font-weight: 400; padding: .8rem .95rem; min-height: 50px; border: 2px solid var(--accent); border-radius: 12px; width: 100%; color: #111827; background: #fff; }
+.bq-other input:focus { outline: none; box-shadow: 0 0 0 4px color-mix(in srgb, var(--accent) 22%, transparent); }
