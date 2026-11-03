@@ -71,7 +71,7 @@ export default async function LanderPage({ params }: Props) {
       </section>
 
       <section className="ld-sec ld-hello" aria-labelledby="ld-hello-h">
-        <video src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" muted loop playsInline autoPlay preload="none" aria-label="Michael Ullman waving hello" />
+        <video src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" controls playsInline preload="none" aria-label="A short hello from Michael Ullman" />
         <div>
           <h2 id="ld-hello-h">Say hello to Mike</h2>
           <p>Michael, Adam or Tom will be the one on the other end of your call. Tell us a little about your project and we will take it from there.</p>
