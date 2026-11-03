@@ -52,6 +52,7 @@ export default async function LanderPage({ params }: Props) {
             <h1>{l.headline}</h1>
             <p>{l.sub}</p>
             <ul className="ld-facts">
+              <li>Complete bathroom and kitchen remodels</li>
               <li>Licensed and insured</li>
               <li>Serving Palm Beach and Martin County</li>
               <li>Owner-led, from first call to final walkthrough</li>
