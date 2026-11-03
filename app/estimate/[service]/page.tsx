@@ -47,14 +47,11 @@ export default async function LanderPage({ params }: Props) {
 
       <section className="ld-hero">
         <div className="ld-hero-in">
-          <div className="ld-hero-copy">
-            <h1>{l.headline}</h1>
-            <div className="ld-stage">
-              <LanderVideo src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" label="A hello from Mike, one of the owners" />
-              <div className="ld-stage-text">
-                <p className="ld-name"><strong>Mike Ullman</strong><span>Owner, Palm Beach Renovations</span></p>
-                <p>{l.sub}</p>
-              </div>
+          <div className="ld-stage">
+            <LanderVideo src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" label="A hello from Mike, one of the owners" />
+            <div className="ld-stage-text">
+              <p className="ld-name"><strong>Mike Ullman</strong><span>Owner, Palm Beach Renovations</span></p>
+              <h1>{l.headline}</h1>
             </div>
           </div>
           <LanderSurvey lander={l} />
@@ -71,7 +68,7 @@ export default async function LanderPage({ params }: Props) {
       </section>
 
       <section className="ld-sec ld-owners" aria-labelledby="ld-own-h">
-        <h2 id="ld-own-h">The three owners who will be on your project</h2>
+        <h2 id="ld-own-h">Meet the owners</h2>
         <div className="ld-owner-grid">
           {site.owners.map((o) => (
             <figure key={o.name}>
