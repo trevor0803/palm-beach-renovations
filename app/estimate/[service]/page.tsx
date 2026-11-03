@@ -45,8 +45,6 @@ export default async function LanderPage({ params }: Props) {
       </header>
 
       <section className="ld-hero">
-        <Image src={l.hero.src} alt="" fill priority sizes="100vw" style={{ objectFit: "cover", objectPosition: l.hero.position }} aria-hidden="true" />
-        <div className="ld-hero-shade" aria-hidden="true" />
         <div className="ld-hero-in">
           <div className="ld-hero-copy">
             <h1>{l.headline}</h1>
@@ -56,6 +54,14 @@ export default async function LanderPage({ params }: Props) {
               <li>Licensed and insured</li>
               <li>Serving Palm Beach and Martin County</li>
               <li>Owner-led, from first call to final walkthrough</li>
+            </ul>
+            <ul className="ld-crew" aria-label="The owners">
+              {site.owners.map((o) => (
+                <li key={o.name}>
+                  <Image src={o.photo} alt={`${o.name}, owner`} width={360} height={540} sizes="(max-width: 900px) 30vw, 170px" priority />
+                  <span>{o.name.split(" ")[0] === "Thomas" ? "Tom" : o.name.split(" ")[0]}</span>
+                </li>
+              ))}
             </ul>
           </div>
           <LanderSurvey lander={l} />
@@ -69,15 +75,6 @@ export default async function LanderPage({ params }: Props) {
             <li key={s.t}><strong>{s.t}</strong><span>{s.d}</span></li>
           ))}
         </ol>
-      </section>
-
-      <section className="ld-sec ld-hello" aria-labelledby="ld-hello-h">
-        <video src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" controls playsInline preload="none" aria-label="A short hello from Michael Ullman" />
-        <div>
-          <h2 id="ld-hello-h">Say hello to Mike</h2>
-          <p>Michael, Adam or Tom will be the one on the other end of your call. Tell us a little about your project and we will take it from there.</p>
-          <a className="ld-cta" href="#start">Start my estimate</a>
-        </div>
       </section>
 
       <section className="ld-sec ld-owners" aria-labelledby="ld-own-h">

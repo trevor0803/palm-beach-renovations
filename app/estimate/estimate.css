@@ -16,12 +16,16 @@ body:has(.ld-root) .skip-link { display: none; }
 .ld-top a { color: #fff; font-weight: 700; text-decoration: none; background: rgba(13,43,46,.7); padding: 10px 14px; border-radius: 999px; font-size: 15px; white-space: nowrap; }
 
 /* hero */
-.ld-hero { position: relative; isolation: isolate; color: #fff; }
-.ld-hero-shade { position: absolute; inset: 0; z-index: -1; background: linear-gradient(180deg, rgba(13,43,46,.88) 0%, rgba(13,43,46,.8) 55%, rgba(13,43,46,.92) 100%); }
-.ld-hero-in { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 84px 20px 36px; display: grid; gap: 24px; }
-.ld-hero h1 { font-size: clamp(30px, 8vw, 54px); max-width: 16ch; }
+.ld-hero { position: relative; isolation: isolate; color: #fff; background: radial-gradient(900px 500px at 15% 10%, #1b6a66 0%, rgba(27,106,102,0) 70%), var(--ink); }
+.ld-hero-in { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 84px 20px 28px; display: grid; gap: 24px; }
+.ld-hero h1 { font-size: clamp(30px, 8vw, 46px); max-width: 18ch; }
 .ld-hero-copy p { margin: 14px 0 0; max-width: 46ch; font-size: 17px; color: #e6f0ee; }
-.ld-facts { list-style: none; padding: 0; margin: 18px 0 0; display: grid; gap: 6px; font-size: 15px; }
+.ld-crew { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 520px; }
+.ld-crew li { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 3/4; background: #123c40; }
+.ld-crew img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
+.ld-crew span { position: absolute; inset: auto 0 0 0; padding: 22px 10px 9px; background: linear-gradient(transparent, rgba(13,43,46,.88)); font-weight: 600; font-size: 15px; }
+.ld-who .ld-faces { display: none; }
+.ld-facts { display: none; list-style: none; padding: 0; margin: 18px 0 0; gap: 6px; font-size: 15px; }
 .ld-facts li { padding-left: 22px; position: relative; }
 .ld-facts li::before { content: ""; position: absolute; left: 2px; top: .5em; width: 9px; height: 5px; border-left: 2px solid var(--brass); border-bottom: 2px solid var(--brass); transform: rotate(-45deg); }
 
@@ -77,11 +81,6 @@ body:has(.ld-root) .skip-link { display: none; }
 .ld-next li strong { font-size: 19px; }
 .ld-next li span { color: #3d5659; }
 
-.ld-hello { display: grid; grid-template-columns: 130px 1fr; gap: 18px; align-items: center; }
-.ld-hello video { width: 130px; aspect-ratio: 2/3; object-fit: cover; border-radius: 16px; background: var(--glass); }
-.ld-hello h2 { margin-bottom: 10px; }
-.ld-hello p { margin: 0 0 16px; color: #3d5659; max-width: 46ch; }
-.ld-hello .ld-cta { max-width: 260px; }
 .ld-owner-grid { display: grid; gap: 22px; }
 .ld-owner-grid figure { margin: 0; display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: start; }
 .ld-owner-grid img { width: 112px; height: 168px; object-fit: cover; object-position: center 15%; border-radius: 14px; }
@@ -104,13 +103,12 @@ body:has(.ld-root) .skip-link { display: none; }
 .ld-foot p { margin: 4px 0; }
 
 @media (min-width: 900px) {
-  .ld-hello { grid-template-columns: 220px 1fr; gap: 36px; }
-  .ld-hello video { width: 220px; }
   .ld-top { padding: 20px 40px; }
   .ld-top img { width: 130px; }
-  .ld-hero-in { grid-template-columns: 1.1fr 460px; align-items: center; gap: 56px; padding: 120px 32px 80px; min-height: 680px; }
-  .ld-hero-shade { background: linear-gradient(90deg, rgba(13,43,46,.92) 0%, rgba(13,43,46,.8) 45%, rgba(13,43,46,.35) 100%); }
+  .ld-hero-in { grid-template-columns: 1.1fr 460px; align-items: center; gap: 56px; padding: 110px 32px 64px; }
   .ld-card { padding: 28px; }
+  .ld-facts { display: grid; }
+  .ld-crew { margin-top: 24px; max-width: 420px; }
   .ld-owner-grid { grid-template-columns: repeat(3, 1fr); }
   .ld-owner-grid figure { grid-template-columns: 1fr; }
   .ld-owner-grid img { width: 100%; height: 380px; }
@@ -120,5 +118,4 @@ body:has(.ld-root) .skip-link { display: none; }
   .ld-next li { padding: 26px 0 0; }
   .ld-next li::before { left: 0; top: -17px; }
 }
-@media (prefers-reduced-motion: reduce) {
-  .ld-hello video { display: block; } .ld-step { animation: none; } .ld-progress span { transition: none; } }
+@media (prefers-reduced-motion: reduce) { .ld-step { animation: none; } .ld-progress span { transition: none; } }
