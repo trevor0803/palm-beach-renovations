@@ -70,6 +70,15 @@ export default async function LanderPage({ params }: Props) {
         </ol>
       </section>
 
+      <section className="ld-sec ld-hello" aria-labelledby="ld-hello-h">
+        <video src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" muted loop playsInline autoPlay preload="none" aria-label="Michael Ullman waving hello" />
+        <div>
+          <h2 id="ld-hello-h">Say hello to Mike</h2>
+          <p>Michael, Adam or Tom will be the one on the other end of your call. Tell us a little about your project and we will take it from there.</p>
+          <a className="ld-cta" href="#start">Start my estimate</a>
+        </div>
+      </section>
+
       <section className="ld-sec ld-owners" aria-labelledby="ld-own-h">
         <h2 id="ld-own-h">The three owners who will be on your project</h2>
         <div className="ld-owner-grid">
