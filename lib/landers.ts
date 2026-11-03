@@ -1,0 +1,131 @@
+// Paid-traffic landers (/estimate/bathroom and /estimate/kitchen). One short survey per service.
+// No prices and no product choices: an owner calls, books a specific time to see the project,
+// and sends an estimate shortly after.
+
+export type LanderOpt = { id: string; label: string; sub?: string };
+export type LanderQ = { id: string; label: string; q: string; opts: LanderOpt[] };
+
+export type Lander = {
+  slug: "bathroom" | "kitchen";
+  service: string; // "Bathroom"
+  projectType: string; // sent to GHL
+  headline: string;
+  sub: string;
+  hero: { src: string; alt: string; position: string };
+  workTitle: string;
+  work: { src: string; alt: string }[];
+  reviewAuthors: string[];
+  questions: LanderQ[];
+};
+
+const g = (f: string) => `/img/gallery/${f}`;
+
+const START: LanderQ = {
+  id: "start",
+  label: "Start",
+  q: "When would you like to start?",
+  opts: [
+    { id: "asap", label: "As soon as possible" },
+    { id: "1-3", label: "In 1 to 3 months" },
+    { id: "3-6", label: "In 3 to 6 months" },
+    { id: "exploring", label: "Just exploring for now" },
+  ],
+};
+
+export const landers: Record<string, Lander> = {
+  bathroom: {
+    slug: "bathroom",
+    service: "Bathroom",
+    projectType: "Bathroom Remodeling",
+    headline: "Tell us about your bathroom. One of the owners will call you.",
+    sub: "Three quick questions, about a minute. We call to learn about your project, set a specific time to see it in person, and send your estimate shortly after.",
+    hero: { src: g("bathroom-marble-walk-in-shower.jpg"), alt: "Finished walk-in shower with white tile, black fixtures and a window niche", position: "center 40%" },
+    workTitle: "Recent bathrooms",
+    work: [
+      { src: g("bathroom-remodel-2.jpg"), alt: "Finished bathroom remodel" },
+      { src: g("bathroom-diamond-tile-corner-shower.jpg"), alt: "Corner shower with textured diamond-pattern tile" },
+      { src: g("bathroom-floating-wood-vanity-tub.jpg"), alt: "Bathroom with a floating wood vanity, oval mirrors and a freestanding tub" },
+      { src: g("bathroom-remodel-10.jpg"), alt: "Double vanity with gold faucets and a framed mirror" },
+      { src: g("bathroom-remodel-6.jpg"), alt: "Walk-in shower with a stone bench and mosaic floor" },
+      { src: g("bathroom-remodel-7.jpg"), alt: "Double vanity with black framed mirrors and a granite top" },
+    ],
+    reviewAuthors: ["Jessica F.", "Sharon P.", "Noel W."],
+    questions: [
+      {
+        id: "room",
+        label: "Which bath",
+        q: "Which bathroom are we talking about?",
+        opts: [
+          { id: "primary", label: "Primary bathroom" },
+          { id: "guest", label: "Guest bathroom" },
+          { id: "hall", label: "Hall or kids' bathroom" },
+          { id: "powder", label: "Powder room" },
+          { id: "multiple", label: "More than one" },
+        ],
+      },
+      {
+        id: "scope",
+        label: "Project",
+        q: "What do you have in mind?",
+        opts: [
+          { id: "full", label: "A complete remodel", sub: "Start fresh, top to bottom" },
+          { id: "shower-tub", label: "Update the shower or tub" },
+          { id: "refresh", label: "Refresh the vanity and finishes" },
+          { id: "accessible", label: "Make it safer and easier to use" },
+          { id: "advice", label: "Not sure yet, I'd like advice" },
+        ],
+      },
+      START,
+    ],
+  },
+  kitchen: {
+    slug: "kitchen",
+    service: "Kitchen",
+    projectType: "Kitchen Remodeling",
+    headline: "Tell us about your kitchen. One of the owners will call you.",
+    sub: "Three quick questions, about a minute. We call to learn about your project, set a specific time to see it in person, and send your estimate shortly after.",
+    hero: { src: g("kitchen-remodel-7.jpg"), alt: "Finished kitchen with a white waterfall island and brass pendant lights", position: "center 40%" },
+    workTitle: "Recent kitchens",
+    work: [
+      { src: g("kitchen-navy-white-island.jpg"), alt: "Navy and white kitchen with a quartz island" },
+      { src: g("kitchen-remodel-6.jpg"), alt: "Navy kitchen with a large island and pendant lights" },
+      { src: g("kitchen-gray-woodgrain-cabinets.jpg"), alt: "Kitchen with gray woodgrain cabinets and stone backsplash" },
+      { src: g("kitchen-remodel-10.jpg"), alt: "Open kitchen with a butcher-block island and wood-look floors" },
+      { src: g("kitchen-remodel-5.jpg"), alt: "Navy kitchen with stainless appliances and a center island" },
+      { src: g("kitchen-remodel-9.jpg"), alt: "White shaker kitchen with a range hood and gray floors" },
+    ],
+    reviewAuthors: ["Jake A.", "Elizabeth D.", "Mary G."],
+    questions: [
+      {
+        id: "scope",
+        label: "Project",
+        q: "What are you hoping to do?",
+        opts: [
+          { id: "full", label: "A complete remodel", sub: "Start fresh, top to bottom" },
+          { id: "cabinets-counters", label: "New cabinets and countertops" },
+          { id: "layout", label: "Change the layout or open it up" },
+          { id: "refresh", label: "Update the look", sub: "Paint, backsplash, lighting" },
+          { id: "advice", label: "Not sure yet, I'd like advice" },
+        ],
+      },
+      {
+        id: "size",
+        label: "Size",
+        q: "How big is your kitchen?",
+        opts: [
+          { id: "small", label: "Small", sub: "Galley or compact" },
+          { id: "medium", label: "Medium" },
+          { id: "large", label: "Large or open to the living area" },
+          { id: "not-sure", label: "Not sure" },
+        ],
+      },
+      START,
+    ],
+  },
+};
+
+export const CALL_TIMES = [
+  { id: "morning", label: "Morning" },
+  { id: "afternoon", label: "Afternoon" },
+  { id: "evening", label: "Evening" },
+];
