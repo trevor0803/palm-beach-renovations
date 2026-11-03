@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { site } from "@/lib/site";
 import { trackLead, newEventId } from "@/lib/track";
-import { CALL_TIMES, type Lander } from "@/lib/landers";
+import type { Lander } from "@/lib/landers";
 
 type Answers = Record<string, string>;
 
@@ -38,7 +38,6 @@ export default function LanderSurvey({ lander }: { lander: Lander }) {
   const total = qs.length + 1;
   const [i, setI] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
-  const [callTime, setCallTime] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [first, setFirst] = useState("");
   const [err, setErr] = useState("");
@@ -77,11 +76,11 @@ export default function LanderSurvey({ lander }: { lander: Lander }) {
     const eventId = newEventId();
     const fullName = String(f.get("name") || "").trim().replace(/\s+/g, " ");
     const [firstName, ...rest] = fullName.split(" ");
-    const when = CALL_TIMES.find((t) => t.id === callTime);
+    const about = String(f.get("about") || "").trim();
     const message = [
       `AD LANDER SURVEY (${lander.service})`,
       ...qs.map((q) => `${q.label}: ${labelOf(q.id)}`),
-      when ? `Best time to call: ${when.label}` : "",
+      about ? `About the project: ${about}` : "",
     ].filter(Boolean).join("\n");
     try {
       const res = await fetch("/api/lead", {
@@ -162,14 +161,7 @@ export default function LanderSurvey({ lander }: { lander: Lander }) {
             <label><span>ZIP code</span><input name="zip" autoComplete="postal-code" inputMode="numeric" pattern="[0-9]{5}" maxLength={5} required /></label>
           </div>
           <label><span>Email</span><input name="email" type="email" autoComplete="email" required /></label>
-          <div className="ld-times" role="group" aria-label="Best time for the call (optional)">
-            <span>Best time for the call <em>(optional)</em></span>
-            <div>
-              {CALL_TIMES.map((t) => (
-                <button key={t.id} type="button" className={`ld-time${callTime === t.id ? " is-on" : ""}`} aria-pressed={callTime === t.id} onClick={() => setCallTime(callTime === t.id ? "" : t.id)}>{t.label}</button>
-              ))}
-            </div>
-          </div>
+          <label><span>Briefly tell us about your project <em>(optional)</em></span><textarea name="about" rows={3} maxLength={600} /></label>
           <input name="hp_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
           <button className="ld-submit" type="submit" disabled={state === "sending"}>{state === "sending" ? "Sending…" : "Request my call"}</button>
           {err && <p className="ld-error" role="alert">{err}</p>}

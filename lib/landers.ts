@@ -123,8 +123,3 @@ export const landers: Record<string, Lander> = {
   },
 };
 
-export const CALL_TIMES = [
-  { id: "morning", label: "Morning" },
-  { id: "afternoon", label: "Afternoon" },
-  { id: "evening", label: "Evening" },
-];

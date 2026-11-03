@@ -61,14 +61,12 @@ body:has(.ld-root) .skip-link { display: none; }
 .ld-back { margin-top: 14px; background: none; border: 0; font: inherit; color: var(--lagoon); text-decoration: underline; cursor: pointer; padding: 8px 4px; min-height: 44px; }
 
 .ld-form { display: grid; gap: 12px; }
-.ld-form label span, .ld-times > span { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
-.ld-form input:not([name=hp_check]) { width: 100%; font: inherit; font-size: 17px; min-height: 52px; padding: 10px 14px; border: 2px solid #cfe0dc; border-radius: 12px; background: #fff; color: var(--ink); }
-.ld-form input:focus { border-color: var(--lagoon); outline: none; box-shadow: 0 0 0 3px rgba(27,106,102,.25); }
+.ld-form label em { font-style: normal; font-weight: 400; color: #4b6568; }
+.ld-form label span { display: block; font-size: 14px; font-weight: 600; margin-bottom: 4px; }
+.ld-form textarea, .ld-form input:not([name=hp_check]) { width: 100%; font: inherit; font-size: 17px; min-height: 52px; padding: 10px 14px; border: 2px solid #cfe0dc; border-radius: 12px; background: #fff; color: var(--ink); }
+.ld-form textarea { resize: vertical; min-height: 88px; line-height: 1.4; }
+.ld-form textarea:focus, .ld-form input:focus { border-color: var(--lagoon); outline: none; box-shadow: 0 0 0 3px rgba(27,106,102,.25); }
 .ld-two { display: grid; grid-template-columns: 1fr 120px; gap: 10px; }
-.ld-times em { font-style: normal; font-weight: 400; color: #4b6568; }
-.ld-times div { display: flex; gap: 8px; flex-wrap: wrap; }
-.ld-time { font: inherit; min-height: 44px; padding: 8px 16px; border-radius: 99px; border: 2px solid #cfe0dc; background: #fff; cursor: pointer; }
-.ld-time.is-on { background: var(--glass); border-color: var(--lagoon); font-weight: 600; }
 .ld-submit, .ld-cta { display: block; width: 100%; text-align: center; font: inherit; font-weight: 700; font-size: 18px; min-height: 56px; padding: 14px 20px; border: 0; border-radius: 12px; background: var(--brass); color: #fff; cursor: pointer; text-decoration: none; }
 .ld-submit { color: #1b1403; }
 .ld-submit:hover, .ld-cta:hover { filter: brightness(1.08); }
