@@ -20,10 +20,10 @@ body:has(.ld-root) .skip-link { display: none; }
 .ld-hero-in { position: relative; z-index: 1; max-width: 1160px; margin: 0 auto; padding: 84px 20px 28px; display: grid; gap: 24px; }
 .ld-hero h1 { font-size: clamp(30px, 8vw, 46px); max-width: 18ch; }
 .ld-hero-copy p { margin: 14px 0 0; max-width: 46ch; font-size: 17px; color: #e6f0ee; }
-.ld-crew { list-style: none; margin: 22px 0 0; padding: 0; display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; max-width: 520px; }
-.ld-crew li { position: relative; border-radius: 14px; overflow: hidden; aspect-ratio: 3/4; background: #123c40; }
-.ld-crew img { width: 100%; height: 100%; object-fit: cover; object-position: center 18%; }
-.ld-crew span { position: absolute; inset: auto 0 0 0; padding: 22px 10px 9px; background: linear-gradient(transparent, rgba(13,43,46,.88)); font-weight: 600; font-size: 15px; }
+.ld-vid { display: flex; align-items: center; gap: 16px; margin-top: 22px; }
+.ld-vid video { flex: none; width: 140px; aspect-ratio: 2/3; object-fit: cover; border-radius: 16px; background: #123c40; box-shadow: 0 10px 30px rgba(0,0,0,.35); }
+.ld-vid p { margin: 0; display: grid; gap: 4px; font-size: 15px; color: #cfe0dc; }
+.ld-vid strong { color: #fff; font-family: var(--serif); font-size: 22px; font-weight: 600; }
 .ld-who .ld-faces { display: none; }
 .ld-facts { display: none; list-style: none; padding: 0; margin: 18px 0 0; gap: 6px; font-size: 15px; }
 .ld-facts li { padding-left: 22px; position: relative; }
@@ -107,9 +107,11 @@ body:has(.ld-root) .skip-link { display: none; }
   .ld-top img { width: 130px; }
   .ld-hero-in { grid-template-columns: 1.1fr 460px; align-items: center; gap: 56px; padding: 110px 32px 64px; }
   .ld-card { padding: 28px; }
+  .ld-vid { margin-top: 28px; gap: 22px; }
+  .ld-vid video { width: 210px; }
+  .ld-vid strong { font-size: 26px; }
   .ld-facts { display: grid; }
-  .ld-crew { margin-top: 24px; max-width: 420px; }
-  .ld-owner-grid { grid-template-columns: repeat(3, 1fr); }
+    .ld-owner-grid { grid-template-columns: repeat(3, 1fr); }
   .ld-owner-grid figure { grid-template-columns: 1fr; }
   .ld-owner-grid img { width: 100%; height: 380px; }
   .ld-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }

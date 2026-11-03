@@ -49,20 +49,10 @@ export default async function LanderPage({ params }: Props) {
           <div className="ld-hero-copy">
             <h1>{l.headline}</h1>
             <p>{l.sub}</p>
-            <ul className="ld-facts">
-              <li>Complete bathroom and kitchen remodels</li>
-              <li>Licensed and insured</li>
-              <li>Serving Palm Beach and Martin County</li>
-              <li>Owner-led, from first call to final walkthrough</li>
-            </ul>
-            <ul className="ld-crew" aria-label="The owners">
-              {site.owners.map((o) => (
-                <li key={o.name}>
-                  <Image src={o.photo} alt={`${o.name}, owner`} width={360} height={540} sizes="(max-width: 900px) 30vw, 170px" priority />
-                  <span>{o.name.split(" ")[0] === "Thomas" ? "Tom" : o.name.split(" ")[0]}</span>
-                </li>
-              ))}
-            </ul>
+            <div className="ld-vid">
+              <video src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" controls playsInline preload="metadata" aria-label="A hello from Mike, one of the owners" />
+              <p><strong>Hear from Mike</strong><span>One of the three owners of Palm Beach Renovations</span></p>
+            </div>
           </div>
           <LanderSurvey lander={l} />
         </div>
