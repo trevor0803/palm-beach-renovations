@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { reviews, site } from "@/lib/site";
 import { landers } from "@/lib/landers";
 import LanderSurvey from "@/components/LanderSurvey";
+import LanderVideo from "@/components/LanderVideo";
 import "../estimate.css";
 
 type Props = { params: Promise<{ service: string }> };
@@ -48,10 +49,12 @@ export default async function LanderPage({ params }: Props) {
         <div className="ld-hero-in">
           <div className="ld-hero-copy">
             <h1>{l.headline}</h1>
-            <p>{l.sub}</p>
-            <div className="ld-vid">
-              <video src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" controls playsInline preload="metadata" aria-label="A hello from Mike, one of the owners" />
-              <p><strong>Hear from Mike</strong><span>One of the three owners of Palm Beach Renovations</span></p>
+            <div className="ld-stage">
+              <LanderVideo src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" label="A hello from Mike, one of the owners" />
+              <div className="ld-stage-text">
+                <p className="ld-name"><strong>Mike Ullman</strong><span>Owner, Palm Beach Renovations</span></p>
+                <p>{l.sub}</p>
+              </div>
             </div>
           </div>
           <LanderSurvey lander={l} />
