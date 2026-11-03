@@ -46,6 +46,8 @@ export default async function LanderPage({ params }: Props) {
       </header>
 
       <section className="ld-hero">
+        <Image src={l.hero.src} alt="" fill priority sizes="100vw" className="ld-hero-bg" style={{ objectPosition: l.hero.position }} aria-hidden="true" />
+        <div className="ld-hero-tint" aria-hidden="true" />
         <div className="ld-hero-in">
           <div className="ld-hero-copy">
             <h1>{l.headline}</h1>
@@ -72,16 +74,16 @@ export default async function LanderPage({ params }: Props) {
 
       <section className="ld-sec ld-owners" aria-labelledby="ld-own-h">
         <h2 id="ld-own-h">The three owners who will be on your project</h2>
-        <div className="ld-owner-grid">
-          {site.owners.map((o) => (
-            <figure key={o.name}>
-              <Image src={o.photo} alt={`${o.name}, owner of ${site.name}`} width={600} height={900} sizes="(max-width: 700px) 100vw, 360px" />
-              <figcaption>
+        <div className="ld-owners-wrap">
+          <Image className="ld-badge" src="/img/lander/owners-badge.jpg" alt="Michael, Adam and Tom, the owners of Palm Beach Renovations" width={900} height={900} sizes="(max-width: 700px) 70vw, 340px" />
+          <div className="ld-bios">
+            {site.owners.map((o) => (
+              <div key={o.name}>
                 <strong>{o.name}</strong>
                 <p>{o.bio}</p>
-              </figcaption>
-            </figure>
-          ))}
+              </div>
+            ))}
+          </div>
         </div>
       </section>
 

@@ -39,7 +39,7 @@ export const landers: Record<string, Lander> = {
     projectType: "Bathroom Remodeling",
     headline: "Planning a full bathroom remodel? One of the owners will call you.",
     sub: "Three quick questions, about a minute. We call to learn about your project, set a specific time to see it in person, and send your estimate shortly after.",
-    hero: { src: g("bathroom-marble-walk-in-shower.jpg"), alt: "Finished walk-in shower with white tile, black fixtures and a window niche", position: "center 40%" },
+    hero: { src: "/img/lander/hero-bathroom.jpg", alt: "Finished primary bathroom with a glass walk-in shower, two black vanities and a freestanding tub", position: "center 60%" },
     workTitle: "Recent bathrooms",
     work: [
       { src: g("bathroom-remodel-2.jpg"), alt: "Finished bathroom remodel" },
@@ -82,7 +82,7 @@ export const landers: Record<string, Lander> = {
     projectType: "Kitchen Remodeling",
     headline: "Tell us about your kitchen. One of the owners will call you.",
     sub: "Three quick questions, about a minute. We call to learn about your project, set a specific time to see it in person, and send your estimate shortly after.",
-    hero: { src: g("kitchen-remodel-7.jpg"), alt: "Finished kitchen with a white waterfall island and brass pendant lights", position: "center 40%" },
+    hero: { src: "/img/lander/hero-kitchen-v2.jpg", alt: "Finished kitchen with navy cabinets, white quartz counters and an island", position: "center 60%" },
     workTitle: "Recent kitchens",
     work: [
       { src: g("kitchen-navy-white-island.jpg"), alt: "Navy and white kitchen with a quartz island" },
