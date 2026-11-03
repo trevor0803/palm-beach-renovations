@@ -46,8 +46,6 @@ export default async function LanderPage({ params }: Props) {
       </header>
 
       <section className="ld-hero">
-        <Image src={l.hero.src} alt="" fill priority sizes="100vw" className="ld-hero-bg" style={{ objectPosition: l.hero.position }} aria-hidden="true" />
-        <div className="ld-hero-tint" aria-hidden="true" />
         <div className="ld-hero-in">
           <div className="ld-hero-copy">
             <h1>{l.headline}</h1>

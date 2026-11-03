@@ -81,9 +81,9 @@ export const landers: Record<string, Lander> = {
     slug: "kitchen",
     service: "Kitchen",
     projectType: "Kitchen Remodeling",
-    headline: "Tell us about your kitchen. One of the owners will call you.",
+    headline: "Planning a full kitchen remodel? One of the owners will call you.",
     sub: "Three quick questions, about a minute. We call to learn about your project, set a specific time to see it in person, and send your estimate shortly after.",
-    hero: { src: "/img/lander/hero-kitchen-v2.jpg", alt: "Finished kitchen with navy cabinets, white quartz counters and an island", position: "center 60%" },
+    hero: { src: g("kitchen-remodel-7.jpg"), alt: "Finished kitchen with a white waterfall island, brass pendant lights and a wall of sliding glass doors", position: "center 42%" },
     workTitle: "Recent kitchens",
     featured: { src: "/img/lander/kitchen-full.jpg", alt: "Finished kitchen with navy cabinets, white quartz counters and an island" },
     work: [
@@ -96,15 +96,13 @@ export const landers: Record<string, Lander> = {
     reviewAuthors: ["Jake A.", "Elizabeth D.", "Mary G."],
     questions: [
       {
-        id: "scope",
-        label: "Project",
-        q: "What are you hoping to do?",
+        id: "concept",
+        label: "Design",
+        q: "Do you have a kitchen concept in mind?",
         opts: [
-          { id: "full", label: "A complete remodel", sub: "Start fresh, top to bottom" },
-          { id: "cabinets-counters", label: "New cabinets and countertops" },
-          { id: "layout", label: "Change the layout or open it up" },
-          { id: "refresh", label: "Update the look", sub: "Paint, backsplash, lighting" },
-          { id: "advice", label: "Not sure yet, I'd like advice" },
+          { id: "have-plan", label: "Yes, I know what I want", sub: "I have a design or photos" },
+          { id: "some-ideas", label: "I have some ideas", sub: "I'd like guidance to finish the plan" },
+          { id: "need-advice", label: "Not yet, I need advice", sub: "Help me figure out the whole design" },
         ],
       },
       {
