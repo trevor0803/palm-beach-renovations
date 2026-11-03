@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { breadcrumbLd } from "@/lib/seo";
 import { site, services } from "@/lib/site";
 import ContactForm from "@/components/ContactForm";
 
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="container">
+    <main className="container pb">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd([{ name: "Contact", path: "/contact" }])) }} />
       <header className="page-head">
         <h1>Transform Your Space With Us Today</h1>
         <p>Connect with us through the form below or give us a call. We&apos;ll get right back to you.</p>

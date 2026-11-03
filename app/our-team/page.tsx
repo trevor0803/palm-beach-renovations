@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Image from "next/image";
+import { breadcrumbLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 
 export const metadata: Metadata = {
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 
 export default function TeamPage() {
   return (
-    <main className="container">
+    <main className="container pb">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd([{ name: "Our Team", path: "/our-team" }])) }} />
       <header className="page-head">
         <h1>Meet Our Dedicated Team</h1>
         <p>

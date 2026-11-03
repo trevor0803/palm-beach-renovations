@@ -35,6 +35,7 @@ export async function generateMetadata({
       description: `Professional ${s.title.toLowerCase()} for ${c.name} homeowners. Free estimates.`,
       url: `${site.domain}/services/${s.slug}/${c.slug}`,
       type: "website",
+      images: [{ url: s.heroImage, alt: `${s.title} in ${c.name} by ${site.name}` }],
     },
   };
 }
@@ -88,7 +89,7 @@ export default async function ServiceCityPage({
   )[0];
 
   return (
-    <main>
+    <main className="pb">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />

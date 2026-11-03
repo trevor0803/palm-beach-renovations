@@ -16,18 +16,21 @@ export const site = {
     {
       name: "Michael Ullman",
       role: "Owner",
+      short: "Husband and father of three",
       photo: "/img/team-michael.webp",
       bio: "Guided by faith, family, and integrity, Michael is a proud husband and father of three who is dedicated to serving homeowners across Palm Beach and Martin Counties. His commitment to trust, reliability, and strong values helps shape the culture and vision of Palm Beach Renovations.",
     },
     {
       name: "Adam Mayer",
       role: "Owner",
+      short: "U.S. Marine Corps veteran",
       photo: "/img/team-adam.webp",
       bio: "As a Marine Corps veteran and devoted husband, Adam is committed to excellence in everything he does. His strong work ethic, reliability, and dedication to quality craftsmanship make him a valued member of the Palm Beach Renovations team.",
     },
     {
       name: "Thomas Callahan",
       role: "Owner",
+      short: "U.S. Army veteran and father of two",
       photo: "/img/team-thomas.webp",
       bio: "A U.S. Army veteran and loving father of two boys, Tom brings discipline and dedication to every job. A tireless worker skilled across multiple trades, he takes pride in delivering quality craftsmanship for homeowners throughout Palm Beach and Martin Counties.",
     },

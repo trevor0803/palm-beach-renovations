@@ -4,7 +4,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import MetaPixel from "@/components/MetaPixel";
 import Analytics from "@/components/Analytics";
+import localFont from "next/font/local";
 import "./globals.css";
+import "./polish.css";
+
+const display = localFont({ src: "../public/fonts/fraunces-latin.woff2", weight: "500 700", variable: "--font-display", display: "swap" });
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.domain),
@@ -32,13 +36,13 @@ export const metadata: Metadata = {
     siteName: site.name,
     title: "Palm Beach Renovations | Home Remodeling in Palm Beach, FL",
     description: site.description,
-    images: [{ url: "/icon-512.png", width: 512, height: 512, alt: site.name }],
+    images: [{ url: "/og-home.jpg", width: 1200, height: 630, alt: "Finished kitchen remodel by Palm Beach Renovations" }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Palm Beach Renovations | Home Remodeling in Palm Beach, FL",
     description: site.description,
-    images: ["/icon-512.png"],
+    images: ["/og-home.jpg"],
   },
   robots: {
     index: true,
@@ -60,7 +64,8 @@ const jsonLd = {
   "@type": "GeneralContractor",
   "@id": `${site.domain}/#business`,
   name: site.name,
-  image: `${site.domain}/icon-512.png`,
+  image: [`${site.domain}/og-home.jpg`, `${site.domain}/icon-512.png`],
+  logo: `${site.domain}/icon-512.png`,
   url: site.domain,
   telephone: site.phone,
   priceRange: "$$",
@@ -83,13 +88,26 @@ const jsonLd = {
   sameAs: [site.social.google],
 };
 
+const websiteLd = {
+  "@context": "https://schema.org",
+  "@type": "WebSite",
+  "@id": `${site.domain}/#website`,
+  url: site.domain,
+  name: site.name,
+  publisher: { "@id": `${site.domain}/#business` },
+};
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
+    <html lang="en" className={display.variable}>
       <body>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteLd) }}
         />
         <MetaPixel />
         <a href="#main" className="skip-link">Skip to content</a>

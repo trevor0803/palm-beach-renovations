@@ -111,7 +111,7 @@ export const serviceContent: ServiceContent[] = [
     shortTitle: "Tile & Flooring",
     blurb:
       "Durable, beautiful tile and flooring installation that stands the test of time.",
-    heroImage: "/img/gallery/tile-flooring-installation.jpg",
+    heroImage: "/img/gallery/bathroom-diamond-tile-corner-shower.jpg",
     metaDescription:
       "Tile and flooring installation in Palm Beach & Martin County, FL. Porcelain, ceramic and luxury vinyl. Licensed, insured, free estimates.",
     intro:
@@ -141,7 +141,7 @@ export const serviceContent: ServiceContent[] = [
     shortTitle: "Additions",
     blurb:
       "Bedrooms, living spaces, and full-home remodels that add value and function.",
-    heroImage: "/img/gallery/home-renovation-4.jpg",
+    heroImage: "/img/gallery/wood-windows-hardwood-hallway.jpg",
     metaDescription:
       "Home additions and full remodels in Palm Beach & Martin County, FL. Room additions, open layouts, whole-home renovation. Free estimates.",
     intro:

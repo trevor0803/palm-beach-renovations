@@ -20,15 +20,15 @@ export const gallery: GalleryImage[] = [
   // Kitchens
   { src: "/img/gallery/kitchen-navy-white-island.jpg", category: "Kitchen", alt: "Kitchen with navy and white cabinets and a marble waterfall island by Palm Beach Renovations" },
   { src: "/img/gallery/kitchen-gray-woodgrain-cabinets.jpg", category: "Kitchen", alt: "Kitchen with gray woodgrain cabinets and a stone backsplash by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-3.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-4.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-5.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-6.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-7.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-9.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-10.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-11.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
-  { src: "/img/gallery/kitchen-remodel-12.jpg", category: "Kitchen", alt: "Completed kitchen remodel by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-3.jpg", category: "Renovation", alt: "Bright renovated room with white tile floor and large windows by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-4.jpg", category: "Renovation", alt: "Living room with white built-in cabinets and shelving by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-5.jpg", category: "Kitchen", alt: "Navy kitchen with stainless appliances and a center island by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-6.jpg", category: "Kitchen", alt: "Navy kitchen with a marble island and pendant lights by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-7.jpg", category: "Kitchen", alt: "Kitchen with a white waterfall island, brass pendant lights and glass doors to the yard by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-9.jpg", category: "Kitchen", alt: "White kitchen with a stainless range hood and gray plank floors by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-10.jpg", category: "Kitchen", alt: "Open kitchen with a butcher-block island and wood-look floors by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-11.jpg", category: "Bathroom", alt: "Bathroom with a tropical mural, round mirror and glass shower by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-remodel-12.jpg", category: "Kitchen", alt: "Open room with natural wood kitchen cabinets and wood-look floors by Palm Beach Renovations" },
 
   // Bathrooms
   { src: "/img/gallery/bathroom-marble-walk-in-shower.jpg", category: "Bathroom", alt: "Walk-in shower with white marble tile and black fixtures by Palm Beach Renovations" },
@@ -38,14 +38,14 @@ export const gallery: GalleryImage[] = [
   { src: "/img/gallery/bathroom-shower-glass-mosaic-accent.jpg", category: "Bathroom", alt: "Walk-in shower with marble tile and a glass mosaic accent stripe by Palm Beach Renovations" },
   { src: "/img/gallery/bathroom-diamond-tile-corner-shower.jpg", category: "Bathroom", alt: "Corner shower with white diamond-pattern tile and a mosaic floor by Palm Beach Renovations" },
   { src: "/img/gallery/bathroom-gray-double-vanity.jpg", category: "Bathroom", alt: "Master bathroom with a gray double vanity and glass shower by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-2.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-6.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-7.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-8.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-9.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-10.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-11.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
-  { src: "/img/gallery/bathroom-remodel-12.jpg", category: "Bathroom", alt: "Renovated bathroom by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-2.jpg", category: "Bathroom", alt: "Bathroom with a tiled walk-in shower, window and dark vanity by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-6.jpg", category: "Bathroom", alt: "Walk-in shower with a tiled bench and pebble mosaic floor by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-7.jpg", category: "Bathroom", alt: "Double vanity with black-framed mirrors and a granite top by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-8.jpg", category: "Kitchen", alt: "Kitchen with sage cabinets, butcher-block counters and a farmhouse sink by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-9.jpg", category: "Bathroom", alt: "Marble-look walk-in shower and toilet in a renovated bathroom by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-10.jpg", category: "Bathroom", alt: "Double vanity with gold faucets and a large framed mirror by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-11.jpg", category: "Bathroom", alt: "Black tile corner shower with a wood-look plank floor by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-remodel-12.jpg", category: "Bathroom", alt: "Glass-enclosed marble shower with a built-in bench by Palm Beach Renovations" },
 
   // Decks & outdoor living
   { src: "/img/gallery/covered-wood-deck-by-pool.jpg", category: "Deck", alt: "Covered wood deck beside a backyard pool by Palm Beach Renovations" },
@@ -58,13 +58,13 @@ export const gallery: GalleryImage[] = [
   { src: "/img/gallery/wood-windows-hardwood-hallway.jpg", category: "Windows", alt: "Hallway with a wall of wood-framed windows and hardwood floors by Palm Beach Renovations" },
 
   // Home renovations
-  { src: "/img/gallery/home-renovation-1.jpg", category: "Home Renovation", alt: "Whole-home renovation by Palm Beach Renovations" },
-  { src: "/img/gallery/home-renovation-2.jpg", category: "Home Renovation", alt: "Whole-home renovation by Palm Beach Renovations" },
-  { src: "/img/gallery/home-renovation-4.jpg", category: "Home Renovation", alt: "Whole-home renovation by Palm Beach Renovations" },
+  { src: "/img/gallery/home-renovation-1.jpg", category: "Bathroom", alt: "Walk-in shower with herringbone tile and brass fixtures by Palm Beach Renovations" },
+  { src: "/img/gallery/home-renovation-2.jpg", category: "Home Renovation", alt: "House exterior with new windows installed by Palm Beach Renovations" },
+  { src: "/img/gallery/home-renovation-4.jpg", category: "Home Renovation", alt: "Open framing during a whole-home renovation by Palm Beach Renovations" },
 
   // Other renovation projects
-  { src: "/img/gallery/renovation-project-5.jpg", category: "Renovation", alt: "Renovation project by Palm Beach Renovations" },
-  { src: "/img/gallery/renovation-project-6.jpg", category: "Renovation", alt: "Renovation project by Palm Beach Renovations" },
-  { src: "/img/gallery/renovation-project-7.jpg", category: "Renovation", alt: "Renovation project by Palm Beach Renovations" },
-  { src: "/img/gallery/renovation-project-8.jpg", category: "Renovation", alt: "Renovation project by Palm Beach Renovations" },
+  { src: "/img/gallery/renovation-project-5.jpg", category: "Bathroom", alt: "Walk-in shower with stone-look tile and a rain shower head by Palm Beach Renovations" },
+  { src: "/img/gallery/renovation-project-6.jpg", category: "Renovation", alt: "Polished marble-look floor in a renovated room by Palm Beach Renovations" },
+  { src: "/img/gallery/renovation-project-7.jpg", category: "Bathroom", alt: "Bathroom with a freestanding tub, white vanity and gold-framed mirror by Palm Beach Renovations" },
+  { src: "/img/gallery/renovation-project-8.jpg", category: "Renovation", alt: "Living room with a gray sofa and built-in shelving by Palm Beach Renovations" },
 ];

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { breadcrumbLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 import GalleryGrid from "@/components/GalleryGrid";
 
@@ -11,7 +12,8 @@ export const metadata: Metadata = {
 
 export default function GalleryPage() {
   return (
-    <main className="container">
+    <main className="container pb">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd([{ name: "Gallery", path: "/gallery" }])) }} />
       <header className="page-head">
         <h1>Project Gallery</h1>
         <p>

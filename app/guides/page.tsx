@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function GuidesIndex() {
   return (
-    <main>
+    <main className="pb">
       <div className="container">
         <header className="page-head">
           <h1>Remodeling Guides</h1>

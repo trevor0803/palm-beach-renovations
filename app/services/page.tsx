@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import Image from "next/image";
+import { breadcrumbLd } from "@/lib/seo";
 import { site } from "@/lib/site";
 import { serviceContent, cities } from "@/lib/content";
 
@@ -13,7 +14,8 @@ export const metadata: Metadata = {
 
 export default function ServicesPage() {
   return (
-    <main className="container">
+    <main className="container pb">
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd([{ name: "Services", path: "/services" }])) }} />
       <header className="page-head">
         <h1>Our Renovation Services</h1>
         <p>

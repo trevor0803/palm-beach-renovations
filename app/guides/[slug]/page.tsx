@@ -108,7 +108,7 @@ export default async function GuidePage({
   };
 
   return (
-    <main>
+    <main className="pb">
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }} />
 
