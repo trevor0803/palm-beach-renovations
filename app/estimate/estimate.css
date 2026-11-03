@@ -89,17 +89,18 @@ body:has(.ld-root) .skip-link { display: none; }
 .ld-next li strong { font-size: 19px; }
 .ld-next li span { color: #3d5659; }
 
-.ld-owners-wrap { display: grid; gap: 24px; justify-items: center; }
-.ld-badge { width: min(72%, 300px); height: auto; border-radius: 50%; box-shadow: 0 16px 40px rgba(13,43,46,.25); }
-.ld-bios { display: grid; gap: 18px; justify-self: stretch; }
-.ld-bios strong { font-family: var(--serif); font-size: 22px; }
-.ld-bios p { margin: 4px 0 0; font-size: 16px; color: #3d5659; max-width: 62ch; }
+.ld-owner-grid { display: grid; gap: 22px; }
+.ld-owner-grid figure { margin: 0; display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: start; }
+.ld-owner-grid img { width: 112px; height: 168px; object-fit: cover; object-position: center 15%; border-radius: 14px; }
+.ld-owner-grid strong { font-family: var(--serif); font-size: 22px; }
+.ld-owner-grid p { margin: 6px 0 0; font-size: 15.5px; color: #3d5659; }
 .ld-owner-grid figure { margin: 0; display: grid; grid-template-columns: 112px 1fr; gap: 16px; align-items: start; }
 .ld-owner-grid img { width: 112px; height: 168px; object-fit: cover; object-position: center 15%; border-radius: 14px; }
 .ld-owner-grid strong { font-family: var(--serif); font-size: 22px; }
 .ld-owner-grid p { margin: 6px 0 0; font-size: 15.5px; color: #3d5659; }
 
 .ld-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 10px; }
+.ld-grid .ld-feat { grid-column: 1 / -1; aspect-ratio: 16/10; object-position: center 55%; }
 .ld-grid img { width: 100%; height: auto; aspect-ratio: 1; object-fit: cover; border-radius: 12px; }
 
 .ld-rev-grid { display: grid; gap: 14px; }
@@ -124,9 +125,11 @@ body:has(.ld-root) .skip-link { display: none; }
   .ld-video { width: 250px; }
   .ld-stage-text > p:not(.ld-name) { display: block; }
         .ld-facts { display: grid; }
-    .ld-owners-wrap { grid-template-columns: 340px 1fr; gap: 56px; align-items: center; justify-items: start; }
-  .ld-badge { width: 340px; }
+    .ld-owner-grid { grid-template-columns: repeat(3, 1fr); }
+  .ld-owner-grid figure { grid-template-columns: 1fr; }
+  .ld-owner-grid img { width: 100%; height: 380px; }
   .ld-grid { grid-template-columns: repeat(3, 1fr); gap: 14px; }
+  .ld-grid .ld-feat { grid-column: 1 / 3; grid-row: 1 / 3; aspect-ratio: auto; height: 100%; }
   .ld-rev-grid { grid-template-columns: repeat(3, 1fr); }
   .ld-next ol { grid-template-columns: repeat(4, 1fr); border-left: 0; border-top: 3px solid var(--glass); gap: 20px; padding-top: 0; }
   .ld-next li { padding: 26px 0 0; }

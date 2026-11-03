@@ -74,22 +74,23 @@ export default async function LanderPage({ params }: Props) {
 
       <section className="ld-sec ld-owners" aria-labelledby="ld-own-h">
         <h2 id="ld-own-h">The three owners who will be on your project</h2>
-        <div className="ld-owners-wrap">
-          <Image className="ld-badge" src="/img/lander/owners-badge.jpg" alt="Michael, Adam and Tom, the owners of Palm Beach Renovations" width={900} height={900} sizes="(max-width: 700px) 70vw, 340px" />
-          <div className="ld-bios">
-            {site.owners.map((o) => (
-              <div key={o.name}>
+        <div className="ld-owner-grid">
+          {site.owners.map((o) => (
+            <figure key={o.name}>
+              <Image src={o.photo} alt={`${o.name}, owner of ${site.name}`} width={600} height={900} sizes="(max-width: 700px) 40vw, 360px" />
+              <figcaption>
                 <strong>{o.name}</strong>
                 <p>{o.bio}</p>
-              </div>
-            ))}
-          </div>
+              </figcaption>
+            </figure>
+          ))}
         </div>
       </section>
 
       <section className="ld-sec ld-work" aria-labelledby="ld-work-h">
         <h2 id="ld-work-h">{l.workTitle}</h2>
         <div className="ld-grid">
+          <Image className="ld-feat" src={l.featured.src} alt={l.featured.alt} width={1080} height={1080} sizes="(max-width: 700px) 100vw, 640px" />
           {l.work.map((w) => (
             <Image key={w.src} src={w.src} alt={w.alt} width={640} height={640} sizes="(max-width: 700px) 50vw, 320px" />
           ))}
