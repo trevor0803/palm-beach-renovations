@@ -1,3 +1,5 @@
+import { blogPosts, type BlogPost } from "./blog-posts";
+
 export type Guide = {
   slug: string;
   title: string;
@@ -22,7 +24,7 @@ export type Block =
   | { t: "callout"; title: string; text: string }
   | { t: "quote"; text: string; cite: string };
 
-export const guides: Guide[] = [
+const baseGuides: Guide[] = [
   {
     slug: "do-you-need-a-permit-to-remodel-palm-beach-county",
     title: "Do You Need a Permit to Remodel in Palm Beach County?",
@@ -282,6 +284,42 @@ export const guides: Guide[] = [
     related: ["what-a-kitchen-remodel-costs-palm-beach-county", "kitchen-bathroom-remodel-timeline"],
   },
 ];
+
+// Posts written by MAT Factory live in lib/blog-posts.ts; turn each into a guide.
+const HERO_IMAGES = [
+  "/img/gallery/kitchen-remodel-3.jpg",
+  "/img/gallery/bathroom-remodel-6.jpg",
+  "/img/gallery/kitchen-gray-woodgrain-cabinets.jpg",
+  "/img/gallery/bathroom-glass-shower-subway-tile.jpg",
+  "/img/gallery/kitchen-remodel-9.jpg",
+  "/img/gallery/bathroom-gray-double-vanity.jpg",
+];
+
+function toGuide(p: BlogPost, i: number): Guide {
+  const wordCount = [p.intro, ...p.sections.flatMap((s) => [s.heading, ...s.paragraphs])]
+    .join(" ")
+    .split(/\s+/)
+    .filter(Boolean).length;
+  return {
+    slug: p.slug,
+    title: p.title,
+    metaTitle: p.seoTitle || p.title,
+    summary: p.description,
+    published: p.publishedAt,
+    updated: p.updatedAt,
+    readingMinutes: Math.max(3, Math.ceil(wordCount / 220)),
+    heroImage: HERO_IMAGES[(blogPosts.length - 1 - i + HERO_IMAGES.length * 10) % HERO_IMAGES.length],
+    body: [
+      { t: "p", text: p.intro },
+      ...p.sections.flatMap((s): Block[] => [
+        { t: "h2", text: s.heading },
+        ...s.paragraphs.map((text): Block => ({ t: "p", text })),
+      ]),
+    ],
+  };
+}
+
+export const guides: Guide[] = [...blogPosts.map(toGuide), ...baseGuides];
 
 export function getGuide(slug: string) {
   return guides.find((g) => g.slug === slug);

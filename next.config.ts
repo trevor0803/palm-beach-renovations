@@ -56,7 +56,11 @@ const nextConfig: NextConfig = {
   poweredByHeader: false,
   images: { formats: ["image/webp"] },
   async redirects() {
-    return retiredCityPages();
+    return [
+      // MAT Factory links new posts as /blog/<slug>; they live under /guides.
+      { source: "/blog/:slug", destination: "/guides/:slug", permanent: true },
+      ...retiredCityPages(),
+    ];
   },
 };
 
