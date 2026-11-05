@@ -6,7 +6,7 @@ import { trackLead, newEventId } from "@/lib/track";
 import { downloadWishlistPdf, type WishData } from "@/lib/wishlistPdf";
 import * as bathData from "@/lib/bathroomQuiz";
 import * as kitchenData from "@/lib/kitchenQuiz";
-import type { Group, Opt } from "@/lib/bathroomQuiz";
+import { TIERS, type Group, type Opt } from "@/lib/bathroomQuiz";
 
 type Kind = "bathroom" | "kitchen";
 const CFG = {
@@ -336,6 +336,25 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
     const gridCls = asCard ? `bq-grid bq-grid-${gr.layout}` : "bq-list";
     const q = questionOf(gr);
     const shown = gr.opts.filter((o) => o.id !== "keep" && o.id !== "skip");
+    if (shown.some((o) => o.tier)) {
+      const tiers = [1, 2, 3] as const;
+      const rest = shown.filter((o) => !o.tier);
+      return (
+        <div role="group" aria-label={q}>
+          {tiers.map((t) => {
+            const list = shown.filter((o) => o.tier === t);
+            if (!list.length) return null;
+            return (
+              <div className="bq-tier" key={t}>
+                <p className="bq-tier-head"><strong>Tier {t} · {TIERS[t].name}</strong><span>{TIERS[t].blurb}</span></p>
+                <div className={gridCls}>{list.map(mk)}</div>
+              </div>
+            );
+          })}
+          {rest.length > 0 && <div className="bq-tier"><div className={gridCls}>{rest.map(mk)}</div></div>}
+        </div>
+      );
+    }
     return (
       <div className={gridCls} role="group" aria-label={q}>
         {shown.map(mk)}

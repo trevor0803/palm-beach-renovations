@@ -107,7 +107,7 @@ export async function downloadWishlistPdf(d: WishData) {
     }
   };
   const heading = (text: string) => {
-    need(16);
+    need(58); // keep a heading with its first photo
     doc.setFillColor(...GOLD);
     doc.rect(M, y, 10, 1.2, "F");
     doc.setFont("times", "bold");
