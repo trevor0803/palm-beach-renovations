@@ -1,0 +1,36 @@
+import type { Metadata } from "next";
+import Image from "next/image";
+import { site } from "@/lib/site";
+import BathroomQuiz from "@/components/BathroomQuiz";
+
+// A paid-traffic funnel, not a search landing page: noindex, not in the sitemap, not linked from the site.
+export const metadata: Metadata = {
+  title: { absolute: "Kitchen Wish List | Palm Beach Renovations" },
+  description: "Check off what you want, pick your favorites, and get a free kitchen remodel estimate in Palm Beach and Martin County.",
+  alternates: { canonical: `${site.domain}/kitchen-estimate` },
+  robots: { index: false, follow: false },
+};
+
+export default function KitchenEstimatePage() {
+  return (
+    <main className="bq-page">
+      <section className="bq-hero">
+        <Image src="/img/gallery/kitchen-remodel-7.jpg" alt="" fill priority sizes="100vw" className="bq-hero-img" />
+        <div className="bq-hero-shade" aria-hidden="true" />
+        <div className="container bq-hero-inner">
+          <p className="bq-eyebrow">Palm Beach Renovations · Kitchen Collection</p>
+          <h1>Design your <em>dream kitchen</em></h1>
+          <p className="bq-hero-sub">Tap your favorites in about 3 minutes. No prices, no pressure. We turn your picks into a free, accurate estimate.</p>
+          <ul className="bq-hero-points">
+            <li>Free estimate</li>
+            <li>Licensed &amp; insured</li>
+            <li>Owner-led team</li>
+          </ul>
+        </div>
+      </section>
+      <div className="container bq-wrap">
+        <BathroomQuiz kind="kitchen" />
+      </div>
+    </main>
+  );
+}

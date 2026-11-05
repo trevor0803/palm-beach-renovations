@@ -3,7 +3,16 @@ import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { site } from "@/lib/site";
 import { trackLead, newEventId } from "@/lib/track";
-import { sections, basics, EXCLUSIVE, CONTACT_TIMES, AREAS, INTRO, AFTER_AREAS, OUTRO, type Group, type Opt } from "@/lib/bathroomQuiz";
+import { downloadWishlistPdf, type WishData } from "@/lib/wishlistPdf";
+import * as bathData from "@/lib/bathroomQuiz";
+import * as kitchenData from "@/lib/kitchenQuiz";
+import type { Group, Opt } from "@/lib/bathroomQuiz";
+
+type Kind = "bathroom" | "kitchen";
+const CFG = {
+  bathroom: { data: bathData, noun: "Bathroom", label: "bathroom", projectType: "Bathroom Remodeling", source: "website-bathroom-quiz", tag: "bathroom-quiz", track: "bathroom_quiz" },
+  kitchen: { data: kitchenData, noun: "Kitchen", label: "kitchen", projectType: "Kitchen Remodeling", source: "website-kitchen-quiz", tag: "kitchen-quiz", track: "kitchen_quiz" },
+} as const;
 
 type Answers = Record<string, string[]>;
 
@@ -14,6 +23,12 @@ function track(name: string, params: Record<string, unknown>) {
 }
 
 const look: Record<string, { accent: string; icon: string }> = {
+  cabinets: { accent: "#1f3a6e", icon: "M4 4h16v16H4zM12 4v16M9 11v2m6-2v2" },
+  counters: { accent: "#8a5a2b", icon: "M3 9h18v3H3zM6 12v8m12-8v8" },
+  layout: { accent: "#0e7490", icon: "M4 4h16v16H4zM4 12h8M12 4v8M12 16h8" },
+  backsplash: { accent: "#be185d", icon: "M4 5h7v6H4zM13 5h7v6h-7zM8 13h7v6H8z" },
+  floor: { accent: "#6d28d9", icon: "M3 20 8 8h8l5 12zM8 8l-1 12m9-12 1 12" },
+  sink: { accent: "#0f766e", icon: "M4 12h16a0 0 0 0 1 0 0v1a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM12 12V5a2 2 0 0 1 2-2h2" },
   shower: { accent: "#0e7490", icon: "M4 4h9a4 4 0 0 1 4 4v1M13 9h8l-1.5 3h-5zM8 15v1m4-1v1m4-1v1m-9 3v1m4-1v1m4-1v1" },
   tub: { accent: "#6d28d9", icon: "M3 12h18v2a5 5 0 0 1-5 5H8a5 5 0 0 1-5-5v-2zM6 12V6a2 2 0 0 1 4 0M7 19l-1 2m11-2 1 2" },
   vanity: { accent: "#b45309", icon: "M3 11h18v9H3zM12 11V6a3 3 0 0 1 3-3M8 15h8" },
@@ -82,7 +97,9 @@ function Choice({ label, sub, selected, onPick, multi }: { label: string; sub?: 
   );
 }
 
-export default function BathroomQuiz() {
+export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}) {
+  const cfg = CFG[kind];
+  const { sections, basics, EXCLUSIVE, CONTACT_TIMES, AREAS, INTRO, AFTER_AREAS, OUTRO } = cfg.data;
   const [i, setI] = useState(0);
   const [answers, setAnswers] = useState<Answers>({});
   const [notes, setNotes] = useState<Record<string, string>>({});
@@ -90,6 +107,8 @@ export default function BathroomQuiz() {
   const [bestTime, setBestTime] = useState("");
   const [state, setState] = useState<"idle" | "sending" | "done">("idle");
   const [err, setErr] = useState("");
+  const [pdfName, setPdfName] = useState("");
+  const [pdfBusy, setPdfBusy] = useState(false);
   const rootRef = useRef<HTMLDivElement>(null);
   const metaRef = useRef<HTMLDivElement>(null);
   const headRef = useRef<HTMLHeadingElement>(null);
@@ -159,7 +178,7 @@ export default function BathroomQuiz() {
 
   function go(next: number) {
     moved.current = true;
-    if (next > idx) track("bathroom_quiz_step", { step: idx + 1, step_id: stepKey });
+    if (next > idx) track(`${cfg.track}_step`, { step: idx + 1, step_id: stepKey });
     setI(Math.max(0, next));
   }
 
@@ -186,7 +205,7 @@ export default function BathroomQuiz() {
 
   function buildMessage() {
     const basicsLine = basics.map((b) => `${b.label}: ${labelsFor(b.id, b.opts).join(", ") || "-"}`).join(" | ");
-    const lines: string[] = ["BATHROOM ESTIMATE REQUEST (website wish list)", basicsLine];
+    const lines: string[] = [`${cfg.noun.toUpperCase()} ESTIMATE REQUEST (website wish list)`, basicsLine];
     lines.push(`Wants changed: ${AREAS.filter((a) => picked.includes(a.id)).map((a) => a.label).join(", ") || "-"}`);
     const when = CONTACT_TIMES.find((t) => t.id === bestTime);
     if (when) lines.push(`Best time to reach: ${when.label}`);
@@ -229,23 +248,54 @@ export default function BathroomQuiz() {
           lastName: rest.join(" "),
           phone: f.get("phone"),
           email: f.get("email"),
-          projectType: "Bathroom Remodeling",
+          projectType: cfg.projectType,
           message: buildMessage(),
-          source: "website-bathroom-quiz",
-          tag: "bathroom-quiz",
+          source: cfg.source,
+          tag: cfg.tag,
           company: f.get("hp_check") || "",
           eventId,
         }),
       });
       const data = await res.json();
       if (!res.ok) throw new Error(data.error || "Something went wrong. Please call us instead.");
-      trackLead(eventId, "website-bathroom-quiz", "Bathroom Remodeling");
+      trackLead(eventId, cfg.source, cfg.projectType);
+      setPdfName(fullName);
       moved.current = true;
       setState("done");
     } catch (error) {
       setErr((error as Error).message);
       setState("idle");
     }
+  }
+
+  function pdfData(): WishData {
+    const secs = sections.map((s) => ({
+      title: s.title,
+      items: visibleOf(s).map((gr) => ({ label: gr.label, value: labelsFor(gr.id, gr.opts).join(", ") || "-" })),
+      note: (notes[s.id] || "").trim().replace(/\s+/g, " "),
+    }));
+    const undecided: string[] = [];
+    for (const s of sections) for (const gr of visibleOf(s)) if ((answers[gr.id] || []).includes("not-sure")) undecided.push(gr.label);
+    return {
+      title: `Your ${cfg.noun} Wish List`,
+      file: `${cfg.label}-wish-list`,
+      name: pdfName,
+      date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
+      wants: AREAS.filter((a) => picked.includes(a.id)).map((a) => a.label).join(", "),
+      details: basics.map((b) => ({ label: b.label, value: labelsFor(b.id, b.opts).join(", ") || "-" })),
+      sections: secs,
+      undecided,
+      bestTime: CONTACT_TIMES.find((t) => t.id === bestTime)?.label,
+    };
+  }
+
+  async function savePdf() {
+    setPdfBusy(true);
+    try {
+      await downloadWishlistPdf(pdfData());
+      track(`${cfg.track}_pdf`, {});
+    } catch {}
+    setPdfBusy(false);
   }
 
   const rows = buildRows();
@@ -256,8 +306,9 @@ export default function BathroomQuiz() {
       <div className="bq" ref={rootRef}>
         <div className="bq-meta" ref={metaRef} />
         <div className="bq-done" role="status">
-          <h2 ref={headRef} tabIndex={-1}>Thank you! Your bathroom plan is in.</h2>
+          <h2 ref={headRef} tabIndex={-1}>Thank you! Your {cfg.label} plan is in.</h2>
           <p>We&apos;ll review your picks and call to set up your free in-home visit. Need us sooner? Call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.</p>
+          <p><button type="button" className="btn btn-gold bq-pdf" onClick={savePdf} disabled={pdfBusy}>{pdfBusy ? "Preparing your PDF…" : "Download your wish list (PDF)"}</button></p>
           <ul className="bq-summary">
             {rows.map((r) => (<li key={r.id}><span>{r.title}</span><strong>{r.text}{r.note ? ` (Note: ${r.note})` : ""}</strong></li>))}
             {basicRows.map((r) => (<li key={r.k}><span>{r.k}</span><strong>{r.v}</strong></li>))}
@@ -332,7 +383,7 @@ export default function BathroomQuiz() {
                   maxLength={300}
                   value={notes[sec.id] || ""}
                   onChange={(e) => setNotes((n) => ({ ...n, [sec.id]: e.target.value }))}
-                  placeholder="Details like glass, grab bars, faucet finish, or anything else"
+                  placeholder="Anything else we should know"
                 />
               </label>
             )}
@@ -372,7 +423,7 @@ export default function BathroomQuiz() {
               {page.b.hint && <span className="bq-hint-inline">{page.b.hint}</span>}
             </p>
             <div className="bq-list" role="group" aria-label={page.b.q}>
-              {page.b.opts.map((o) => (
+              {(page.b.opts as { id: string; label: string; sub?: string }[]).map((o) => (
                 <Choice key={o.id} label={o.label} sub={o.sub} selected={(answers[page.b.id] || []).includes(o.id)} onPick={() => pick({ id: page.b.id }, o.id)} />
               ))}
             </div>

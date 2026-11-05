@@ -860,3 +860,7 @@ img { max-width: 100%; height: auto; }
 .bq-nav { background: #f3f5fa; box-shadow: 0 -10px 18px rgba(243, 245, 250, .95); padding-top: .6rem; }
 .bq-nav .bq-need { padding: .1rem 0 .1rem; font-weight: 600; }
 .bq { padding-bottom: 1rem; }
+
+.bq-pdf { margin: .5rem 0 1.25rem; background: var(--gold, #e9b44c); border: 2px solid var(--gold, #e9b44c); color: #17120a; border-radius: 999px; font-weight: 700; cursor: pointer; }
+.bq-pdf:hover { filter: brightness(1.06); }
+.bq-pdf:disabled { opacity: .6; cursor: wait; }
