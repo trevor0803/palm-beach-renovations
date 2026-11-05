@@ -26,6 +26,7 @@ const look: Record<string, { accent: string; icon: string }> = {
   cabinets: { accent: "#1f3a6e", icon: "M4 4h16v16H4zM12 4v16M9 11v2m6-2v2" },
   counters: { accent: "#8a5a2b", icon: "M3 9h18v3H3zM6 12v8m12-8v8" },
   layout: { accent: "#0e7490", icon: "M4 4h16v16H4zM4 12h8M12 4v8M12 16h8" },
+  hood: { accent: "#b45309", icon: "M5 4h14l2 7H3zM8 11v3m4-3v3m4-3v3M6 19h12" },
   backsplash: { accent: "#be185d", icon: "M4 5h7v6H4zM13 5h7v6h-7zM8 13h7v6H8z" },
   floor: { accent: "#6d28d9", icon: "M3 20 8 8h8l5 12zM8 8l-1 12m9-12 1 12" },
   sink: { accent: "#0f766e", icon: "M4 12h16a0 0 0 0 1 0 0v1a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5zM12 12V5a2 2 0 0 1 2-2h2" },
