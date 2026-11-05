@@ -268,10 +268,15 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
     }
   }
 
+  const picksFor = (id: string, opts: Opt[]) => {
+    const labels = labelsFor(id, opts);
+    return opts.filter((o) => (answers[id] || []).includes(o.id)).map((o, i) => ({ label: labels[i], sub: o.sub, img: o.img, color: o.color }));
+  };
+
   function pdfData(): WishData {
     const secs = sections.map((s) => ({
       title: s.title,
-      items: visibleOf(s).map((gr) => ({ label: gr.label, value: labelsFor(gr.id, gr.opts).join(", ") || "-" })),
+      items: visibleOf(s).map((gr) => ({ label: gr.label, value: labelsFor(gr.id, gr.opts).join(", ") || "-", picks: picksFor(gr.id, gr.opts) })),
       note: (notes[s.id] || "").trim().replace(/\s+/g, " "),
     }));
     const undecided: string[] = [];
@@ -307,7 +312,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
         <div className="bq-meta" ref={metaRef} />
         <div className="bq-done" role="status">
           <h2 ref={headRef} tabIndex={-1}>Thank you! Your {cfg.label} plan is in.</h2>
-          <p>We&apos;ll review your picks and call to set up your free in-home visit. Need us sooner? Call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>.</p>
+          <p>Haven&apos;t scheduled your free in-home visit yet? Please call us at <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a>. Already scheduled? We&apos;ll use your picks to prepare for it.</p>
           <p><button type="button" className="btn btn-gold bq-pdf" onClick={savePdf} disabled={pdfBusy}>{pdfBusy ? "Preparing your PDF…" : "Download your wish list (PDF)"}</button></p>
           <ul className="bq-summary">
             {rows.map((r) => (<li key={r.id}><span>{r.title}</span><strong>{r.text}{r.note ? ` (Note: ${r.note})` : ""}</strong></li>))}
