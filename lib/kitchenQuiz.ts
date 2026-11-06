@@ -64,6 +64,22 @@ const baseSections: Section[] = [
         ],
       },
       {
+        id: "cabinet-count",
+        label: "Cabinet count",
+        q: "About how many cabinets will the new kitchen have?",
+        hint: "Count each door or drawer stack as one. Rough is fine. This helps us size the project.",
+        layout: "text",
+        noOther: true,
+        hideWhen: { group: "cabinet-style", ids: ["keep"] },
+        opts: [
+          { id: "under-15", label: "Under 15", sub: "Small kitchen or galley" },
+          { id: "15-25", label: "15 to 25", sub: "Typical kitchen" },
+          { id: "25-35", label: "25 to 35", sub: "Larger kitchen, maybe an island" },
+          { id: "35-plus", label: "35 or more", sub: "Big kitchen, island and pantry wall" },
+          NOT_SURE,
+        ],
+      },
+      {
         id: "cabinet-door",
         label: "Door style (upgraded cabinets)",
         q: "Which cabinet door style do you like?",
@@ -410,19 +426,6 @@ export const basics = [
     ],
   },
   {
-    id: "cabinet-count",
-    label: "Cabinet count",
-    q: "About how many cabinets will the new kitchen have?",
-    hint: "Count each door or drawer stack as one. Rough is fine. This helps us size the project.",
-    opts: [
-      { id: "under-15", label: "Under 15", sub: "Small kitchen or galley" },
-      { id: "15-25", label: "15 to 25", sub: "Typical kitchen" },
-      { id: "25-35", label: "25 to 35", sub: "Larger kitchen, maybe an island" },
-      { id: "35-plus", label: "35 or more", sub: "Big kitchen, island and pantry wall" },
-      { id: "not-sure", label: "Not sure" },
-    ],
-  },
-  {
     id: "level",
     label: "Style level",
     q: "Which style level feels right overall?",
@@ -467,7 +470,7 @@ export const CONTACT_TIMES = [
 ];
 
 export const AREAS: { id: string; label: string; sub?: string; groups: string[] }[] = [
-  { id: "cabinets", label: "Cabinets", sub: "Style, uppers, hardware", groups: ["cabinet-style", "cabinet-build", "cabinet-door", "cabinet-finish", "cabinet-details", "upper-cabinets", "cabinet-hardware"] },
+  { id: "cabinets", label: "Cabinets", sub: "Style, uppers, hardware", groups: ["cabinet-style", "cabinet-build", "cabinet-count", "cabinet-door", "cabinet-finish", "cabinet-details", "upper-cabinets", "cabinet-hardware"] },
   { id: "counters", label: "Countertops", groups: ["counter-material"] },
   { id: "layout", label: "Layout and island", sub: "Open up or move things", groups: ["layout-change"] },
   { id: "backsplash", label: "Backsplash", groups: ["backsplash-style"] },
@@ -478,6 +481,6 @@ export const AREAS: { id: string; label: string; sub?: string; groups: string[] 
   { id: "hood", label: "Range hood and add-ons", sub: "Hood, pantry, extras", groups: ["range-hood", "kitchen-addons"] },
 ];
 
-export const INTRO = ["room", "cabinet-count"];
+export const INTRO = ["room"];
 export const AFTER_AREAS = ["level"];
 export const OUTRO = ["timeline", "budget"];
