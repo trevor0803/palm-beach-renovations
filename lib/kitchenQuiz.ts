@@ -96,23 +96,6 @@ const baseSections: Section[] = [
         ],
       },
       {
-        id: "cabinet-finish",
-        label: "Wood and finish (upgraded cabinets)",
-        q: "What wood or finish do you want?",
-        hint: "Choose as many as you like.",
-        layout: "photo",
-        multi: true,
-        showOnlyWhen: { group: "cabinet-build", ids: ["semi-custom", "custom"] },
-        opts: [
-          { id: "rift-oak", label: "Rift-cut white oak", sub: "Straight grain, natural", tier: 3, img: k("fin-riftoak"), alt: "Rift-cut white oak kitchen cabinets" },
-          { id: "walnut", label: "Walnut", sub: "Rich, figured grain", tier: 3, img: k("fin-walnut"), alt: "Walnut kitchen cabinets" },
-          { id: "deep-green", label: "Painted deep green", sub: "Bold color, brass hardware", tier: 2, img: k("fin-green"), alt: "Deep forest green painted cabinets" },
-          { id: "greige", label: "Painted warm greige", sub: "Soft and timeless", tier: 2, img: k("fin-greige"), alt: "Warm greige painted cabinets" },
-          { id: "espresso", label: "Dark espresso stain", sub: "Deep wood, traditional", tier: 2, img: k("fin-espresso"), alt: "Dark espresso stained cabinets" },
-          NOT_SURE,
-        ],
-      },
-      {
         id: "cabinet-details",
         label: "Cabinet details (upgraded cabinets)",
         q: "Any special cabinet details?",
@@ -132,7 +115,7 @@ const baseSections: Section[] = [
       {
         id: "cabinet-hardware",
         label: "Cabinet hardware",
-        q: "What pulls and knobs do you like?",
+        q: "What style of pulls do you like?",
         hint: "Choose as many as you like.",
         layout: "photo",
         multi: true,
@@ -141,7 +124,6 @@ const baseSections: Section[] = [
           { id: "nickel", label: "Brushed nickel", sub: "Soft, goes with everything", tier: 1, img: k("hw-nickel"), alt: "Brushed nickel knobs and pulls on white cabinets" },
           { id: "black", label: "Matte black bars", sub: "Crisp contrast", tier: 1, img: k("hw-bar-black"), alt: "Matte black bar pull on a gray shaker drawer" },
           { id: "gold", label: "Brushed gold bars", sub: "Warm metal accent", tier: 2, img: k("hw-bar-gold"), alt: "Brushed gold bar pull on a white shaker drawer" },
-          { id: "brass-knob", label: "Aged brass knobs", sub: "Traditional charm", tier: 2, img: k("hw-knob-brass"), alt: "Aged brass round knobs on a navy cabinet" },
           { id: "no-hardware", label: "No visible hardware", sub: "Integrated edge pulls", tier: 3, img: k("hw-edge"), alt: "Handleless integrated edge-pull kitchen drawers" },
           KEEP,
           NOT_SURE,
@@ -215,7 +197,7 @@ const baseSections: Section[] = [
           { id: "hexagon", label: "Hexagon", sub: "Geometric, graphic", tier: 2, img: k("bs-hexagon"), alt: "White hexagon tile backsplash with dark grout" },
           { id: "zellige", label: "Handmade zellige look", sub: "Glossy, varied color", tier: 3, img: k("bs-zellige"), alt: "Green zellige tile backsplash" },
           { id: "arabesque", label: "Arabesque or scalloped", sub: "Decorative shape", tier: 2, img: k("bs-arabesque"), alt: "Cream arabesque tile backsplash" },
-          { id: "slab", label: "Full-height stone slab", sub: "One surface, counter to ceiling", tier: 3, img: k("bs-slab"), alt: "Full-height marble slab backsplash" },
+          { id: "slab", label: "Same as my countertop", sub: "Counter material runs up the wall", tier: 2, img: k("bs-slab"), alt: "Countertop stone continuing up the wall as a backsplash" },
           KEEP,
           NOT_SURE,
         ],
@@ -237,7 +219,6 @@ const baseSections: Section[] = [
           { id: "vinyl-plank", label: "Waterproof plank", sub: "Warm look, easy care", tier: 1, img: k("fl-vinyl"), alt: "Light oak waterproof plank kitchen floor" },
           { id: "wood-look", label: "Wood-look tile", sub: "Looks like wood, built for Florida", tier: 1, img: k("fl-woodtile"), alt: "Wood-look porcelain plank kitchen floor" },
           { id: "large-format", label: "Large-format tile", sub: "Fewer grout lines", tier: 2, img: k("fl-large"), alt: "Large-format gray porcelain kitchen floor" },
-          { id: "checker", label: "Checkerboard tile", sub: "Classic pattern", tier: 2, img: k("fl-checker"), alt: "Black and white checkerboard kitchen floor" },
           { id: "travertine", label: "Travertine or natural stone", sub: "Warm, Mediterranean feel", tier: 3, img: k("fl-travertine"), alt: "Honed travertine kitchen floor" },
           { id: "herringbone-wood", label: "Herringbone hardwood", sub: "Showpiece pattern", tier: 3, img: k("fl-herringbone-wood"), alt: "Engineered hardwood in herringbone pattern" },
           KEEP,
@@ -322,7 +303,8 @@ const baseSections: Section[] = [
         q: "What kind of range hood do you like?",
         layout: "photo",
         opts: [
-          { id: "steel", label: "Stainless chimney hood", sub: "Simple and practical", tier: 1, img: k("hood-steel"), alt: "Stainless chimney range hood" },
+          { id: "microwave", label: "Over-the-range microwave / fan", sub: "Vent built into the microwave", tier: 1, img: k("hood-micro"), alt: "Over-the-range microwave with built-in vent fan" },
+          { id: "steel", label: "Stainless chimney hood", sub: "Simple and practical", tier: 2, img: k("hood-steel"), alt: "Stainless chimney range hood" },
           { id: "painted", label: "Painted wood surround", sub: "Matches the cabinets", tier: 2, img: k("hood-painted"), alt: "Painted wood range hood surround" },
           { id: "insert", label: "Hidden insert", sub: "Built into a cabinet box", tier: 2, img: k("hood-insert"), alt: "Range hood insert hidden in a cabinet" },
           { id: "plaster", label: "Custom plaster or stone", sub: "A showpiece over the range", tier: 3, img: k("hood-plaster"), alt: "Custom plaster range hood" },
@@ -352,6 +334,25 @@ const baseSections: Section[] = [
     ],
   },
   {
+    id: "paint",
+    title: "Paint",
+    groups: [
+      {
+        id: "paint-yes",
+        label: "Painting",
+        q: "Are we painting?",
+        hint: "Walls and trim in this space.",
+        layout: "text",
+        noOther: true,
+        opts: [
+          { id: "yes", label: "Yes, include painting" },
+          { id: "no", label: "No, skip painting" },
+          NOT_SURE,
+        ],
+      },
+    ],
+  },
+  {
     id: "extras",
     title: "Lighting & appliances",
     groups: [
@@ -363,11 +364,11 @@ const baseSections: Section[] = [
         layout: "photo",
         multi: true,
         opts: [
-          { id: "recessed", label: "Recessed lights", sub: "Clean, even light", tier: 1, img: k("lt-recessed"), alt: "Recessed lighting in a white kitchen" },
-          { id: "under-cabinet", label: "Under-cabinet lighting", sub: "Warm glow on the counters", tier: 1, img: k("lt-undercab"), alt: "Under-cabinet LED lighting" },
-          { id: "pendants", label: "Pendants over the island", sub: "Glass or metal", tier: 2, img: k("lt-pendants"), alt: "Glass pendants over a kitchen island" },
-          { id: "linear", label: "Linear chandelier", sub: "Long island statement", tier: 3, img: k("lt-linear"), alt: "Linear chandelier over an island" },
-          { id: "statement", label: "Oversized statement pendants", sub: "Woven or sculptural", tier: 3, img: k("lt-statement"), alt: "Woven rattan pendants over an island" },
+          { id: "recessed", label: "Recessed lights", sub: "Clean, even light", img: k("lt-recessed"), alt: "Recessed lighting in a white kitchen" },
+          { id: "under-cabinet", label: "Under-cabinet lighting", sub: "Warm glow on the counters", img: k("lt-undercab"), alt: "Under-cabinet LED lighting" },
+          { id: "pendants", label: "Pendants over the island", sub: "Glass or metal", img: k("lt-pendants"), alt: "Glass pendants over a kitchen island" },
+          { id: "linear", label: "Linear chandelier", sub: "Long island statement", img: k("lt-linear"), alt: "Linear chandelier over an island" },
+          { id: "statement", label: "Oversized statement pendants", sub: "Woven or sculptural", img: k("lt-statement"), alt: "Woven rattan pendants over an island" },
           KEEP,
           NOT_SURE,
         ],
@@ -470,13 +471,14 @@ export const CONTACT_TIMES = [
 ];
 
 export const AREAS: { id: string; label: string; sub?: string; groups: string[] }[] = [
-  { id: "cabinets", label: "Cabinets", sub: "Style, uppers, hardware", groups: ["cabinet-style", "cabinet-build", "cabinet-count", "cabinet-door", "cabinet-finish", "cabinet-details", "upper-cabinets", "cabinet-hardware"] },
+  { id: "cabinets", label: "Cabinets", sub: "Style, uppers, hardware", groups: ["cabinet-style", "cabinet-build", "cabinet-count", "cabinet-door", "cabinet-details", "upper-cabinets", "cabinet-hardware"] },
   { id: "counters", label: "Countertops", groups: ["counter-material"] },
   { id: "layout", label: "Layout and island", sub: "Open up or move things", groups: ["layout-change"] },
   { id: "backsplash", label: "Backsplash", groups: ["backsplash-style"] },
   { id: "floor", label: "Flooring", groups: ["floor-material"] },
   { id: "sink", label: "Sink and faucet", groups: ["sink-style", "faucet-finish", "faucet-extras", "ro-system"] },
   { id: "lighting", label: "Lighting", groups: ["kitchen-lighting"] },
+  { id: "paint", label: "Paint", groups: ["paint-yes"] },
   { id: "appliances", label: "Appliances", groups: ["appliances", "appliance-finish"] },
   { id: "hood", label: "Range hood and add-ons", sub: "Hood, pantry, extras", groups: ["range-hood", "kitchen-addons"] },
 ];
