@@ -148,7 +148,8 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
   const chosen = (gr: Group) => picked.includes(areaOf(gr.id) || "");
   const visibleOf = (s: (typeof sections)[number]) => s.groups.filter((gr) => chosen(gr) && !hidden(gr));
   const sectionDone = (s: (typeof sections)[number]) => visibleOf(s).every((gr) => answered(gr.id));
-  const detailsDone = basics.every((b) => answered(b.id));
+  const asked = basics.filter((b) => [...INTRO, ...AFTER_AREAS, ...OUTRO].includes(b.id));
+  const detailsDone = [...INTRO, ...AFTER_AREAS, ...OUTRO].every((id) => answered(id));
   const allDone = picked.length > 0 && sections.every(sectionDone) && detailsDone;
 
   // One question per screen: every visible group is its own page, then the quick details, then the review.
@@ -208,7 +209,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
   }
 
   function buildMessage() {
-    const basicsLine = basics.map((b) => `${b.label}: ${labelsFor(b.id, b.opts).join(", ") || "-"}`).join(" | ");
+    const basicsLine = asked.map((b) => `${b.label}: ${labelsFor(b.id, b.opts).join(", ") || "-"}`).join(" | ");
     const lines: string[] = [`${cfg.noun.toUpperCase()} ESTIMATE REQUEST (website wish list)`, basicsLine];
     lines.push(`Wants changed: ${AREAS.filter((a) => picked.includes(a.id)).map((a) => a.label).join(", ") || "-"}`);
     const when = CONTACT_TIMES.find((t) => t.id === bestTime);
@@ -291,7 +292,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
       name: pdfName,
       date: new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" }),
       wants: AREAS.filter((a) => picked.includes(a.id)).map((a) => a.label).join(", "),
-      details: basics.map((b) => ({ label: b.label, value: labelsFor(b.id, b.opts).join(", ") || "-" })),
+      details: asked.map((b) => ({ label: b.label, value: labelsFor(b.id, b.opts).join(", ") || "-" })),
       sections: secs,
       undecided,
       bestTime: CONTACT_TIMES.find((t) => t.id === bestTime)?.label,
@@ -308,7 +309,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
   }
 
   const rows = buildRows();
-  const basicRows = basics.map((b) => ({ k: b.label, v: labelsFor(b.id, b.opts).join(", ") || "-" }));
+  const basicRows = asked.map((b) => ({ k: b.label, v: labelsFor(b.id, b.opts).join(", ") || "-" }));
 
   if (state === "done") {
     return (

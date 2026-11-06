@@ -421,5 +421,5 @@ export const AREAS: { id: string; label: string; sub?: string; groups: string[] 
 
 // Quick questions asked before and after the area pictures (ids from basics).
 export const INTRO = ["room"];
-export const AFTER_AREAS = ["level"];
+export const AFTER_AREAS: string[] = [];
 export const OUTRO = ["timeline", "budget"];
