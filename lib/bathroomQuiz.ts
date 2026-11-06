@@ -29,6 +29,7 @@ export type Group = {
   opts: Opt[];
   hideWhen?: { group: string; ids: string[] }; // hide (record "Not applicable") when that answer is picked
   askWhen?: { group: string; id: string; q: string }; // reword the question when that answer is picked
+  showOnlyWhen?: { group: string; ids: string[] }; // show only when that answer is one of ids
   noOther?: boolean; // skip the automatic "Something else" option
 };
 
@@ -76,6 +77,19 @@ const baseSections: Section[] = [
         ],
       },
       {
+        id: "shower-curb",
+        label: "Shower curb",
+        q: "What should the shower curb be made of?",
+        hint: "The small step at the shower entry.",
+        layout: "photo",
+        hideWhen: { group: "shower-style", ids: ["skip", "curbless"] },
+        opts: [
+          { id: "tile-curb", label: "Tile curb", sub: "Matches the shower tile", img: "/img/quiz/curb-tile.jpg", alt: "Shower curb clad in white porcelain tile" },
+          { id: "marble-curb", label: "Marble curb", sub: "Solid stone threshold", img: "/img/quiz/curb-marble.jpg", alt: "Solid white marble shower curb" },
+          NOT_SURE,
+        ],
+      },
+      {
         id: "shower-glass",
         label: "Shower glass",
         q: "What about the shower glass?",
@@ -93,6 +107,22 @@ const baseSections: Section[] = [
         ],
       },
       {
+        id: "shower-niche",
+        label: "Shower niche",
+        q: "What kind of shower niche or shelf?",
+        hint: "Choose all that apply.",
+        layout: "photo",
+        multi: true,
+        hideWhen: { group: "shower-style", ids: ["skip"] },
+        opts: [
+          { id: "standard", label: "Standard niche", sub: "One recessed shelf", img: "/img/quiz/niche-standard.jpg", alt: "Standard tiled shower niche" },
+          { id: "large", label: "Large or double niche", sub: "Two shelves, accent tile back", img: "/img/quiz/niche-large.jpg", alt: "Large double shower niche with accent tile" },
+          { id: "linear", label: "Linear niche", sub: "Long, thin and modern", img: "/img/quiz/niche-linear.jpg", alt: "Linear horizontal shower niche" },
+          { id: "ledge", label: "Wall ledge", sub: "A shallow shelf across the wall", img: "/img/quiz/niche-ledge.jpg", alt: "Tiled ledge shelf across a shower wall" },
+          SKIP,
+        ],
+      },
+      {
         id: "shower-comfort",
         label: "Safety and comfort",
         q: "Any safety or comfort features?",
@@ -105,7 +135,6 @@ const baseSections: Section[] = [
           { id: "bench", label: "Built-in shower bench", img: "/img/quiz/comfort-bench.jpg", alt: "Built-in tiled shower bench" },
           { id: "handheld", label: "Handheld shower head", sub: "Easier to use sitting or standing", img: "/img/quiz/comfort-handheld.jpg", alt: "Handheld shower head on a slide bar" },
           { id: "slip-resistant", label: "Slip-resistant shower floor", img: "/img/quiz/comfort-slip.jpg", alt: "Slip-resistant pebble shower floor" },
-          { id: "niche", label: "Built-in shelf (niche)", sub: "For shampoo and soap", img: "/img/quiz/comfort-niche.jpg", alt: "Built-in tiled shower niche with shampoo bottles" },
           { id: "skip", label: "None of these" },
         ],
       },
@@ -189,6 +218,22 @@ const baseSections: Section[] = [
           { id: "mosaic", label: "Mosaic accent", sub: "Small-tile accents", tier: 2, img: "/img/quiz/tile-mosaic-wall.jpg", alt: "Shower wall with a vertical mosaic glass tile accent stripe" },
           { id: "marble-look", label: "Marble look", sub: "Soft veining", tier: 3, img: "/img/quiz/tile-marble-look.jpg", alt: "Marble-look porcelain tile with gray veining" },
           KEEP,
+          NOT_SURE,
+        ],
+      },
+      {
+        id: "tile-edge",
+        label: "Tile edge finish",
+        q: "How should the tile edges be finished?",
+        hint: "Where the tile stops, like outside corners and the top of the wall.",
+        layout: "photo",
+        hideWhen: { group: "shower-tile", ids: ["keep"] },
+        opts: [
+          { id: "bullnose", label: "Bullnose tile", sub: "Rounded edge tile", img: "/img/quiz/edge-bullnose.jpg", alt: "Rounded bullnose tile edge" },
+          { id: "finished-edge", label: "Finished-edge tile", sub: "Factory edge, clean corner", img: "/img/quiz/edge-finished.jpg", alt: "Finished-edge porcelain tile corner" },
+          { id: "metal-nickel", label: "Metal trim, brushed nickel", sub: "Slim metal profile", img: "/img/quiz/edge-metal-nickel.jpg", alt: "Brushed nickel metal tile edge trim" },
+          { id: "metal-black", label: "Metal trim, matte black", sub: "Slim metal profile", img: "/img/quiz/edge-metal-black.jpg", alt: "Matte black metal tile edge trim" },
+          { id: "metal-brass", label: "Metal trim, brushed brass", sub: "Slim metal profile", img: "/img/quiz/edge-metal-brass.jpg", alt: "Brushed brass metal tile edge trim" },
           NOT_SURE,
         ],
       },
@@ -380,11 +425,11 @@ export const CONTACT_TIMES = [
 
 // "What do you want changed?" checklist. Each area asks one picture question; only ticked areas are asked.
 export const AREAS: { id: string; label: string; sub?: string; groups: string[] }[] = [
-  { id: "shower", label: "Shower", sub: "Style, glass, comfort", groups: ["shower-style"] },
+  { id: "shower", label: "Shower", sub: "Style, curb, glass, niche", groups: ["shower-style", "shower-curb", "shower-glass", "shower-niche", "shower-comfort"] },
   { id: "tub", label: "Tub", groups: ["tub-style"] },
-  { id: "vanity", label: "Vanity and sink", sub: "Cabinet, top, faucets", groups: ["vanity-style"] },
-  { id: "shower-tile", label: "Shower and wall tile", groups: ["shower-tile"] },
-  { id: "floor", label: "Floor", sub: "Tile or plank", groups: ["floor-tile"] },
+  { id: "vanity", label: "Vanity and sink", sub: "Cabinet, top, faucets", groups: ["vanity-style", "faucet-finish"] },
+  { id: "shower-tile", label: "Shower and wall tile", groups: ["shower-tile", "tile-edge"] },
+  { id: "floor", label: "Floor", sub: "Tile or plank", groups: ["floor-tile", "floor-heat"] },
   { id: "paint", label: "Paint", groups: ["paint-colors"] },
   { id: "toilet", label: "Toilet", groups: ["toilet-style"] },
   { id: "lighting", label: "Lighting and mirrors", groups: ["lighting"] },

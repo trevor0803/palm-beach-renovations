@@ -139,7 +139,9 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
   }
 
   const answered = (id: string) => (answers[id] || []).length > 0;
-  const hidden = (gr: Group) => !!gr.hideWhen && (answers[gr.hideWhen.group] || []).some((x) => gr.hideWhen!.ids.includes(x));
+  const hidden = (gr: Group) =>
+    (!!gr.hideWhen && (answers[gr.hideWhen.group] || []).some((x) => gr.hideWhen!.ids.includes(x))) ||
+    (!!gr.showOnlyWhen && !(answers[gr.showOnlyWhen.group] || []).some((x) => gr.showOnlyWhen!.ids.includes(x)));
   const questionOf = (gr: Group) => (gr.askWhen && (answers[gr.askWhen.group] || []).includes(gr.askWhen.id) ? gr.askWhen.q : gr.q);
   const picked = answers["areas"] || [];
   const areaOf = (gid: string) => AREAS.find((a) => a.groups.includes(gid))?.id;
@@ -192,7 +194,8 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
           const t = (others[id] || "").trim().replace(/\s+/g, " ");
           return t ? `Something else: "${t}"` : "Something else";
         }
-        return withTier && o.tier ? `${o.label} (Tier ${o.tier})` : o.label;
+        const exact = id === "room" ? (others["room-exact"] || "").trim().replace(/\s+/g, " ") : "";
+        return (withTier && o.tier ? `${o.label} (Tier ${o.tier})` : o.label) + (exact ? ` (exact size: ${exact})` : "");
       });
   };
 
@@ -452,6 +455,19 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
                 <Choice key={o.id} label={o.label} sub={o.sub} selected={(answers[page.b.id] || []).includes(o.id)} onPick={() => pick({ id: page.b.id }, o.id)} />
               ))}
             </div>
+            {page.b.id === "room" && kind === "kitchen" && (
+              <label className="bq-other">
+                Know the exact size? Add it here (optional)
+                <input
+                  type="text"
+                  inputMode="text"
+                  maxLength={60}
+                  placeholder="Example: 12 x 14 ft"
+                  value={others["room-exact"] || ""}
+                  onChange={(e) => setOthers((v) => ({ ...v, "room-exact": e.target.value }))}
+                />
+              </label>
+            )}
           </div>
         </section>
       )}

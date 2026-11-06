@@ -64,6 +64,56 @@ const baseSections: Section[] = [
         ],
       },
       {
+        id: "cabinet-door",
+        label: "Door style (upgraded cabinets)",
+        q: "Which cabinet door style do you like?",
+        hint: "Semi-custom and custom cabinets can be built in any of these.",
+        layout: "photo",
+        showOnlyWhen: { group: "cabinet-build", ids: ["semi-custom", "custom"] },
+        opts: [
+          { id: "full-inset", label: "Full inset", sub: "Doors sit flush inside the frame", tier: 2, img: k("dr-inset"), alt: "Full inset painted shaker cabinet doors with exposed hinges" },
+          { id: "beaded-inset", label: "Beaded inset", sub: "Traditional, finely detailed", tier: 3, img: k("dr-beaded"), alt: "Beaded inset cabinet doors in sage" },
+          { id: "raised-panel", label: "Raised panel", sub: "Classic, stained wood", tier: 2, img: k("dr-raised"), alt: "Raised-panel stained cherry cabinet doors" },
+          { id: "fluted", label: "Fluted or reeded", sub: "Vertical texture, great on islands", tier: 3, img: k("dr-fluted"), alt: "Fluted oak kitchen island" },
+          { id: "lacquer-slab", label: "Slab, matte lacquer", sub: "Sleek and handleless", tier: 3, img: k("dr-lacquer"), alt: "Charcoal matte lacquer slab cabinets" },
+          NOT_SURE,
+        ],
+      },
+      {
+        id: "cabinet-finish",
+        label: "Wood and finish (upgraded cabinets)",
+        q: "What wood or finish do you want?",
+        hint: "Choose as many as you like.",
+        layout: "photo",
+        multi: true,
+        showOnlyWhen: { group: "cabinet-build", ids: ["semi-custom", "custom"] },
+        opts: [
+          { id: "rift-oak", label: "Rift-cut white oak", sub: "Straight grain, natural", tier: 3, img: k("fin-riftoak"), alt: "Rift-cut white oak kitchen cabinets" },
+          { id: "walnut", label: "Walnut", sub: "Rich, figured grain", tier: 3, img: k("fin-walnut"), alt: "Walnut kitchen cabinets" },
+          { id: "deep-green", label: "Painted deep green", sub: "Bold color, brass hardware", tier: 2, img: k("fin-green"), alt: "Deep forest green painted cabinets" },
+          { id: "greige", label: "Painted warm greige", sub: "Soft and timeless", tier: 2, img: k("fin-greige"), alt: "Warm greige painted cabinets" },
+          { id: "espresso", label: "Dark espresso stain", sub: "Deep wood, traditional", tier: 2, img: k("fin-espresso"), alt: "Dark espresso stained cabinets" },
+          NOT_SURE,
+        ],
+      },
+      {
+        id: "cabinet-details",
+        label: "Cabinet details (upgraded cabinets)",
+        q: "Any special cabinet details?",
+        hint: "Choose all that apply.",
+        layout: "photo",
+        multi: true,
+        showOnlyWhen: { group: "cabinet-build", ids: ["semi-custom", "custom"] },
+        opts: [
+          { id: "furniture-island", label: "Furniture-style island", sub: "Turned legs, paneled sides", tier: 3, img: k("dt-furniture"), alt: "Furniture-style kitchen island with turned legs" },
+          { id: "hutch", label: "Built-in hutch or butler's pantry", sub: "Glass doors and serving counter", tier: 3, img: k("dt-hutch"), alt: "Built-in hutch with glass doors" },
+          { id: "interior-lighting", label: "Lit glass cabinets", sub: "Display shelves with interior lights", tier: 2, img: k("dt-glasslight"), alt: "Glass cabinets with interior lighting" },
+          { id: "bar", label: "Built-in bar", sub: "Wine rack and beverage fridge", tier: 3, img: k("dt-bar"), alt: "Built-in kitchen bar with wine rack" },
+          { id: "crown", label: "Layered crown and light rail", sub: "Finished trim to the ceiling", tier: 2, img: k("dt-crown"), alt: "Layered crown molding on kitchen cabinets" },
+          SKIP,
+        ],
+      },
+      {
         id: "cabinet-hardware",
         label: "Cabinet hardware",
         q: "What pulls and knobs do you like?",
@@ -216,6 +266,34 @@ const baseSections: Section[] = [
           NOT_SURE,
         ],
       },
+      {
+        id: "faucet-extras",
+        label: "Faucet extras",
+        q: "Any extras at the sink?",
+        hint: "Choose all that apply.",
+        layout: "photo",
+        multi: true,
+        opts: [
+          { id: "soap", label: "Built-in soap dispenser", sub: "No bottle on the counter", img: k("fx-soap"), alt: "Soap dispenser beside a kitchen faucet" },
+          { id: "glass-rinser", label: "Glass rinser (cup washer)", sub: "Rinse glasses with a push", img: k("fx-rinser"), alt: "Glass rinser cup washer at a kitchen sink" },
+          { id: "hot-tap", label: "Instant hot water tap", sub: "Hot water on demand", img: k("fx-hot"), alt: "Instant hot water tap at a kitchen sink" },
+          { id: "filter-tap", label: "Filtered water faucet", sub: "A separate tap for drinking water", img: k("fx-filter"), alt: "Filtered drinking water faucet at a kitchen sink" },
+          SKIP,
+        ],
+      },
+      {
+        id: "ro-system",
+        label: "Reverse osmosis water system",
+        q: "Do you want an R.O. (reverse osmosis) drinking water system under the sink?",
+        hint: "Filtered drinking water at its own faucet.",
+        layout: "photo",
+        opts: [
+          { id: "yes", label: "Yes, add an R.O. system", sub: "Installed under the kitchen sink", img: k("ro-system"), alt: "Reverse osmosis filter system under a kitchen sink" },
+          { id: "have-one", label: "I already have one", sub: "Reconnect it to the new sink" },
+          { id: "skip", label: "No thanks" },
+          NOT_SURE,
+        ],
+      },
     ],
   },
   {
@@ -246,7 +324,7 @@ const baseSections: Section[] = [
         opts: [
           { id: "drawers", label: "Deep drawers with dividers", sub: "Pots and pans within reach", tier: 1, img: k("st-drawers"), alt: "Deep kitchen drawer with dividers" },
           { id: "corner", label: "Corner solutions", sub: "Lazy Susan or pull-out corners", tier: 1, img: k("st-corner"), alt: "Pull-out corner cabinet shelves" },
-          { id: "outlets", label: "Hidden or pop-up outlets", sub: "Clean counters and backsplash", tier: 1, img: k("add-outlets"), alt: "Pop-up outlet in a kitchen counter" },
+          { id: "outlets", label: "Pop-up outlets in the countertop", sub: "Power on the island without wall plugs", tier: 2, img: k("add-outlets"), alt: "Pop-up outlet in a kitchen counter" },
           { id: "microwave", label: "Microwave drawer", sub: "Out of sight under the counter", tier: 2, img: k("add-microwave"), alt: "Microwave drawer in a kitchen island" },
           { id: "potfiller", label: "Pot filler", sub: "Faucet over the range", tier: 2, img: k("add-potfiller"), alt: "Pot filler faucet over a range" },
           { id: "pullout-pantry", label: "Pull-out pantry", sub: "Tall and organized", tier: 2, img: k("st-pantry"), alt: "Tall pull-out pantry cabinet" },
@@ -320,12 +398,27 @@ export const basics = [
   {
     id: "room",
     label: "Kitchen size",
-    q: "How big is your kitchen?",
+    q: "About how big is the kitchen?",
+    hint: "Pick the closest. You can add exact measurements below.",
     opts: [
-      { id: "small", label: "Small", sub: "Galley or compact" },
-      { id: "medium", label: "Medium" },
-      { id: "large", label: "Large" },
-      { id: "open", label: "Open to the living area" },
+      { id: "compact", label: "Compact", sub: "Under 100 sq ft, about 8 x 10 ft or smaller" },
+      { id: "small", label: "Small", sub: "100 to 140 sq ft, about 10 x 12 ft" },
+      { id: "average", label: "Average", sub: "140 to 200 sq ft, about 12 x 15 ft" },
+      { id: "large", label: "Large", sub: "200 to 300 sq ft, about 14 x 18 ft" },
+      { id: "extra-large", label: "Extra large or open to the great room", sub: "Over 300 sq ft" },
+      { id: "not-sure", label: "Not sure" },
+    ],
+  },
+  {
+    id: "cabinet-count",
+    label: "Cabinet count",
+    q: "About how many cabinets will the new kitchen have?",
+    hint: "Count each door or drawer stack as one. Rough is fine. This helps us size the project.",
+    opts: [
+      { id: "under-15", label: "Under 15", sub: "Small kitchen or galley" },
+      { id: "15-25", label: "15 to 25", sub: "Typical kitchen" },
+      { id: "25-35", label: "25 to 35", sub: "Larger kitchen, maybe an island" },
+      { id: "35-plus", label: "35 or more", sub: "Big kitchen, island and pantry wall" },
       { id: "not-sure", label: "Not sure" },
     ],
   },
@@ -374,17 +467,17 @@ export const CONTACT_TIMES = [
 ];
 
 export const AREAS: { id: string; label: string; sub?: string; groups: string[] }[] = [
-  { id: "cabinets", label: "Cabinets", sub: "Style, uppers, hardware", groups: ["cabinet-style", "cabinet-build", "upper-cabinets", "cabinet-hardware"] },
+  { id: "cabinets", label: "Cabinets", sub: "Style, uppers, hardware", groups: ["cabinet-style", "cabinet-build", "cabinet-door", "cabinet-finish", "cabinet-details", "upper-cabinets", "cabinet-hardware"] },
   { id: "counters", label: "Countertops", groups: ["counter-material"] },
   { id: "layout", label: "Layout and island", sub: "Open up or move things", groups: ["layout-change"] },
   { id: "backsplash", label: "Backsplash", groups: ["backsplash-style"] },
   { id: "floor", label: "Flooring", groups: ["floor-material"] },
-  { id: "sink", label: "Sink and faucet", groups: ["sink-style", "faucet-finish"] },
+  { id: "sink", label: "Sink and faucet", groups: ["sink-style", "faucet-finish", "faucet-extras", "ro-system"] },
   { id: "lighting", label: "Lighting", groups: ["kitchen-lighting"] },
   { id: "appliances", label: "Appliances", groups: ["appliances", "appliance-finish"] },
   { id: "hood", label: "Range hood and add-ons", sub: "Hood, pantry, extras", groups: ["range-hood", "kitchen-addons"] },
 ];
 
-export const INTRO = ["room"];
+export const INTRO = ["room", "cabinet-count"];
 export const AFTER_AREAS = ["level"];
 export const OUTRO = ["timeline", "budget"];
