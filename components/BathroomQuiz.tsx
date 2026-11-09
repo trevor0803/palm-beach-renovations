@@ -500,10 +500,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
             </ul>
           </section>
 
-          <form className="bq-contact" onSubmit={submit}>
-            <p className="bq-kicker">Last step</p>
-            <h2>Almost done. Where should we reach you?</h2>
-            <p className="bq-promise">We&apos;ll call once to book your free in-home visit. No spam, never shared.</p>
+          <form className="bq-contact bq-contact--plain" onSubmit={submit}>
             <label><span>Name</span><input name="name" autoComplete="name" required /></label>
             <div className="qe-row">
               <label><span>Phone</span><input name="phone" type="tel" autoComplete="tel" required /></label>
@@ -521,7 +518,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
             </div>
             <input name="hp_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
             <button className="btn qe-submit" type="submit" disabled={state === "sending" || !allDone}>
-              {state === "sending" ? "Sending…" : "Get my free estimate"}
+              {state === "sending" ? "Sending…" : "Submit to Palm Beach Renovations"}
             </button>
             {!allDone && <p className="bq-promise">A few questions above are still open. Use Edit to finish them.</p>}
             {err && <p className="qe-error" role="alert">{err}</p>}
