@@ -864,3 +864,15 @@ img { max-width: 100%; height: auto; }
 .bq-pdf { margin: .5rem 0 1.25rem; background: var(--gold, #e9b44c); border: 2px solid var(--gold, #e9b44c); color: #17120a; border-radius: 999px; font-weight: 700; cursor: pointer; }
 .bq-pdf:hover { filter: brightness(1.06); }
 .bq-pdf:disabled { opacity: .6; cursor: wait; }
+
+/* Wish list review: contact fields sit on the page, no boxed card */
+.bq-contact--plain { padding: 0; background: none; box-shadow: none; border-radius: 0; color: var(--ink, #111827); margin-top: 1.5rem; }
+.bq-contact--plain label { color: var(--ink, #111827); }
+.bq-contact--plain input { border: 2px solid #d5dae6; background: #fff; }
+.bq-contact--plain .bq-times > span { color: var(--ink, #111827); }
+.bq-contact--plain .bq-promise, .bq-contact--plain .bq-consent, .bq-contact--plain .bq-or { color: #4b5563; }
+.bq-contact--plain .bq-or a { color: #1e3a8a; }
+.bq-contact--plain .bq-times em { color: #6b7280; }
+.bq-contact--plain .bq-time { color: #1e3a8a; background: #fff; border-color: #c5cce0; }
+.bq-contact--plain .bq-time.is-selected { background: #e3c77c; border-color: #c9a24b; color: #0f1d3d; }
+.bq-contact--plain .qe-error { color: #b91c1c; }
