@@ -88,10 +88,10 @@ export const landers: Record<string, Lander> = {
     featured: { src: "/img/lander/kitchen-full.jpg", alt: "Finished kitchen with navy cabinets, white quartz counters and an island" },
     work: [
       { src: g("kitchen-quartz-island-white-cabinets.jpg"), alt: "Kitchen with white cabinets and a large quartz island with a sink" },
+      { src: g("kitchen-black-cabinets-white-island.jpg"), alt: "Open kitchen with black cabinets, a white quartz island and bar stools" },
       { src: g("kitchen-navy-white-island.jpg"), alt: "Navy and white kitchen with a quartz island" },
       { src: g("kitchen-remodel-6.jpg"), alt: "Navy kitchen with a large island and pendant lights" },
       { src: g("kitchen-gray-woodgrain-cabinets.jpg"), alt: "Kitchen with gray woodgrain cabinets and stone backsplash" },
-      { src: g("kitchen-remodel-10.jpg"), alt: "Open kitchen with a butcher-block island and wood-look floors" },
     ],
     reviewAuthors: ["Jake A.", "Elizabeth D.", "Mary G."],
     questions: [

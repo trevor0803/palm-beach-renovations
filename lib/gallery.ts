@@ -73,4 +73,5 @@ export const gallery: GalleryImage[] = [
   { src: "/img/gallery/bathroom-glass-shower-gray-tile.jpg", category: "Bathroom", alt: "Frameless glass shower with a gray tile floor and a wood vanity by Palm Beach Renovations" },
   { src: "/img/gallery/kitchen-quartz-island-white-cabinets.jpg", category: "Kitchen", alt: "Kitchen with white cabinets and a large quartz island with a sink by Palm Beach Renovations" },
   { src: "/img/gallery/renovation-open-living-area.jpg", category: "Renovation", alt: "Open living area with wood-look floors and sliding glass doors to the pool by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-black-cabinets-white-island.jpg", category: "Kitchen", alt: "Open kitchen with black cabinets, a white quartz island and bar stools by Palm Beach Renovations" },
 ];
