@@ -287,7 +287,7 @@ const baseSections: Section[] = [
         opts: [
           { id: "yes", label: "Yes, add an R.O. system", sub: "Installed under the kitchen sink", img: k("ro-system"), alt: "Reverse osmosis filter system under a kitchen sink" },
           { id: "have-one", label: "I already have one", sub: "Reconnect it to the new sink" },
-          { id: "skip", label: "No thanks" },
+          { id: "no", label: "No, I don't need one" },
           NOT_SURE,
         ],
       },
