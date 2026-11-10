@@ -351,7 +351,6 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
             if (!list.length) return null;
             return (
               <div className="bq-tier" key={t}>
-                <p className="bq-tier-head"><strong>Tier {t} · {TIERS[t].name}</strong><span>{TIERS[t].blurb}</span></p>
                 <div className={gridCls}>{list.map(mk)}</div>
               </div>
             );
