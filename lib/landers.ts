@@ -44,11 +44,11 @@ export const landers: Record<string, Lander> = {
     workTitle: "Recent bathrooms",
     featured: { src: "/img/lander/hero-bathroom.jpg", alt: "Finished primary bathroom with a glass walk-in shower, two black vanities and a freestanding tub" },
     work: [
-      { src: g("bathroom-diamond-tile-corner-shower.jpg"), alt: "Corner shower with textured diamond-pattern tile" },
+      { src: g("bathroom-walk-in-shower-quartz-vanity.jpg"), alt: "Large walk-in glass shower with a linear drain and a quartz vanity" },
+      { src: g("bathroom-marble-shower-wood-vanity.jpg"), alt: "Marble-look walk-in shower with a glass door and a wood vanity" },
+      { src: g("bathroom-sliding-glass-shower-pebble-floor.jpg"), alt: "Sliding glass shower door with black hardware and a pebble shower floor" },
+      { src: g("bathroom-glass-shower-gray-tile.jpg"), alt: "Frameless glass shower with a gray tile floor and a wood vanity" },
       { src: g("bathroom-floating-wood-vanity-tub.jpg"), alt: "Bathroom with a floating wood vanity, oval mirrors and a freestanding tub" },
-      { src: g("bathroom-remodel-10.jpg"), alt: "Double vanity with gold faucets and a framed mirror" },
-      { src: g("bathroom-remodel-6.jpg"), alt: "Walk-in shower with a stone bench and mosaic floor" },
-      { src: g("bathroom-remodel-7.jpg"), alt: "Double vanity with black framed mirrors and a granite top" },
     ],
     reviewAuthors: ["Jessica F.", "Sharon P.", "Noel W."],
     questions: [
@@ -87,11 +87,11 @@ export const landers: Record<string, Lander> = {
     workTitle: "Recent kitchens",
     featured: { src: "/img/lander/kitchen-full.jpg", alt: "Finished kitchen with navy cabinets, white quartz counters and an island" },
     work: [
+      { src: g("kitchen-quartz-island-white-cabinets.jpg"), alt: "Kitchen with white cabinets and a large quartz island with a sink" },
       { src: g("kitchen-navy-white-island.jpg"), alt: "Navy and white kitchen with a quartz island" },
       { src: g("kitchen-remodel-6.jpg"), alt: "Navy kitchen with a large island and pendant lights" },
       { src: g("kitchen-gray-woodgrain-cabinets.jpg"), alt: "Kitchen with gray woodgrain cabinets and stone backsplash" },
       { src: g("kitchen-remodel-10.jpg"), alt: "Open kitchen with a butcher-block island and wood-look floors" },
-      { src: g("kitchen-remodel-5.jpg"), alt: "Navy kitchen with stainless appliances and a center island" },
     ],
     reviewAuthors: ["Jake A.", "Elizabeth D.", "Mary G."],
     questions: [

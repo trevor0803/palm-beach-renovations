@@ -67,4 +67,10 @@ export const gallery: GalleryImage[] = [
   { src: "/img/gallery/renovation-project-6.jpg", category: "Renovation", alt: "Polished marble-look floor in a renovated room by Palm Beach Renovations" },
   { src: "/img/gallery/renovation-project-7.jpg", category: "Bathroom", alt: "Bathroom with a freestanding tub, white vanity and gold-framed mirror by Palm Beach Renovations" },
   { src: "/img/gallery/renovation-project-8.jpg", category: "Renovation", alt: "Living room with a gray sofa and built-in shelving by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-walk-in-shower-quartz-vanity.jpg", category: "Bathroom", alt: "Large walk-in glass shower with a linear drain and a quartz vanity by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-marble-shower-wood-vanity.jpg", category: "Bathroom", alt: "Marble-look walk-in shower with a glass door and a wood vanity by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-sliding-glass-shower-pebble-floor.jpg", category: "Bathroom", alt: "Sliding glass shower door with black hardware and a pebble shower floor by Palm Beach Renovations" },
+  { src: "/img/gallery/bathroom-glass-shower-gray-tile.jpg", category: "Bathroom", alt: "Frameless glass shower with a gray tile floor and a wood vanity by Palm Beach Renovations" },
+  { src: "/img/gallery/kitchen-quartz-island-white-cabinets.jpg", category: "Kitchen", alt: "Kitchen with white cabinets and a large quartz island with a sink by Palm Beach Renovations" },
+  { src: "/img/gallery/renovation-open-living-area.jpg", category: "Renovation", alt: "Open living area with wood-look floors and sliding glass doors to the pool by Palm Beach Renovations" },
 ];
