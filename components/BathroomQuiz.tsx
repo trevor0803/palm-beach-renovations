@@ -200,9 +200,9 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
       });
   };
 
-  function buildRows() {
+  function buildRows(withTier = false) {
     return sections.map((s, idx) => {
-      const parts = visibleOf(s).map((gr) => `${gr.label}: ${labelsFor(gr.id, gr.opts, true).join(", ") || "-"}`);
+      const parts = visibleOf(s).map((gr) => `${gr.label}: ${labelsFor(gr.id, gr.opts, withTier).join(", ") || "-"}`);
       const note = (notes[s.id] || "").trim().replace(/\s+/g, " ");
       return { idx, id: s.id, title: s.title, text: parts.length ? parts.join("; ") : "Not changing", note };
     });
@@ -217,7 +217,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
     lines.push("");
     const undecided: string[] = [];
     const keepSkip: string[] = [];
-    for (const r of buildRows()) {
+    for (const r of buildRows(true)) {
       lines.push(`${r.title.toUpperCase()}: ${r.text}`);
       if (r.note) lines.push(`  NOTE: ${r.note}`);
       for (const gr of sections[r.idx].groups) {
