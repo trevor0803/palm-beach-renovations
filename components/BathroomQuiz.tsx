@@ -506,26 +506,12 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
               <label><span>Phone</span><input name="phone" type="tel" autoComplete="tel" required /></label>
               <label><span>Email</span><input name="email" type="email" autoComplete="email" required /></label>
             </div>
-            <div className="bq-times" role="group" aria-label="Best time to reach you (optional)">
-              <span>Best time to reach you <em>(optional)</em></span>
-              <div>
-                {CONTACT_TIMES.map((t) => (
-                  <button key={t.id} type="button" className={`bq-time${bestTime === t.id ? " is-selected" : ""}`} aria-pressed={bestTime === t.id} onClick={() => setBestTime(bestTime === t.id ? "" : t.id)}>
-                    {t.label}
-                  </button>
-                ))}
-              </div>
-            </div>
             <input name="hp_check" type="text" tabIndex={-1} autoComplete="off" aria-hidden="true" style={{ position: "absolute", left: "-9999px" }} />
             <button className="btn qe-submit" type="submit" disabled={state === "sending" || !allDone}>
               {state === "sending" ? "Sending…" : "Submit to Palm Beach Renovations"}
             </button>
             {!allDone && <p className="bq-promise">A few questions above are still open. Use Edit to finish them.</p>}
             {err && <p className="qe-error" role="alert">{err}</p>}
-            <p className="bq-consent">
-              By submitting, you agree to receive calls and texts from {site.name} about your request. Message frequency varies. Reply STOP to opt out.
-            </p>
-            <p className="bq-or">Prefer to talk? <a href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a></p>
           </form>
         </>
       )}
