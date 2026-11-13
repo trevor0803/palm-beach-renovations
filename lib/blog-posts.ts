@@ -33,6 +33,63 @@ export type BlogPost = {
 
 export const BLOG_POSTS = [
   {
+    slug: "vetting-a-high-end-remodeling-contractor-palm-beach-county",
+    title: "Vetting a High-End Remodeling Contractor in PBC",
+    description:
+      "How to verify a Florida contractor's license and insurance, understand the Notice of Commencement, and spot red flags in a luxury remodel bid.",
+    category: "Permits",
+    publishedAt: "2026-11-13",
+    updatedAt: "2026-11-13",
+    intro:
+      "If you are putting together a high-end kitchen, bathroom, or whole-home renovation in Palm Beach County, the budget at stake makes due diligence worth the extra hour it takes. The marketing on a contractor's website will not tell you whether their license is active, whether they carry the insurance they claim, or whether their paperwork will hold up if something goes wrong. This guide walks through how to check those things yourself, and what the paperwork around a large remodel is supposed to look like.",
+    sections: [
+      {
+        heading: "What \"high-end\" actually means in a remodeling contractor",
+        paragraphs: [
+          "A lot of companies use the word luxury or high-end to describe a price point rather than a way of working. What should actually set a high-end contractor apart is how the project is run: tighter coordination between design and construction, more detailed drawings before demolition starts, finish-level materials that are specified and ordered correctly the first time, and a crew that can execute custom cabinetry, natural stone, or complex tile work without it becoming a learning exercise on your job.",
+          "None of that shows up in a sales pitch. It shows up in the proposal itself, how detailed the scope of work is, how the allowances are written, and how the contractor talks about sequencing a project in a place like Boca Raton where permitting, HOA review, and finish lead times all have to line up.",
+        ],
+      },
+      {
+        heading: "Verify the license and insurance before the conversation goes any further",
+        paragraphs: [
+          "Florida law requires construction work to be performed by licensed contractors. There is a narrow owner/builder exemption, but it still requires the homeowner to personally perform or supervise the work themselves, it is not a loophole that lets an unlicensed crew do the job under your name. Any contractor proposing a large remodel should hold an active Florida license appropriate to the scope of work, and you should confirm that directly rather than taking a license number at face value.",
+          "The same goes for insurance. Ask for a certificate of general liability coverage and workers compensation coverage, and ask that it name you or the project address, not just a generic form pulled from a file. A contractor who hesitates to provide this, or who says it will come later, is telling you something about how the rest of the project will go.",
+          "This step costs you almost nothing and takes a few minutes. It is also the single easiest way to filter out a contractor who is not equipped to carry a high-end budget through to completion.",
+        ],
+      },
+      {
+        heading: "Permits and the Notice of Commencement",
+        paragraphs: [
+          "A large kitchen, bathroom, or whole-home remodel in Palm Beach County is going to involve a building permit, and likely separate trade permits for electrical, plumbing, and mechanical work depending on scope. A high-end contractor should be able to explain which permits your specific project needs before the contract is signed, not figure it out after demolition has started.",
+          "One document homeowners often miss entirely is the Notice of Commencement. In Palm Beach County, a Notice of Commencement must be recorded with the Clerk of the Circuit Court before the first inspection takes place on any permit valued over 5,000 dollars, which covers essentially every meaningful kitchen or bathroom remodel and certainly any full renovation. This is not paperwork your contractor can quietly handle for you after the fact. It protects your position as the owner, and skipping it or filing it late can stall your very first inspection.",
+          "Ask early in the process who is responsible for recording the Notice of Commencement, when it will happen relative to permit issuance, and ask to see a copy once it is filed. A contractor used to working on larger projects will already have this built into their process and will not need to be reminded twice.",
+        ],
+      },
+      {
+        heading: "Questions to ask before you sign",
+        paragraphs: [
+          "Beyond license and insurance, ask what the estimate actually includes. A serious high-end estimate should spell out material allowances by category rather than a single lump sum, note what is excluded, and state who pulls which permits. Ask how change orders are priced and documented, since a finish-heavy remodel almost always involves some adjustments along the way, and you want that process in writing before it happens rather than negotiated in the moment.",
+          "Ask who will actually be on site day to day, whether that is the same person named in the proposal, and how often you should expect updates. Ask about the payment schedule and whether draws are tied to completed phases of work rather than a calendar. And ask to see the Notice of Commencement timeline and permit numbers once they are issued, so you have a paper trail tied to your address, not just a verbal assurance that everything is handled.",
+        ],
+      },
+      {
+        heading: "Red flags in a bid or proposal",
+        paragraphs: [
+          "A few patterns are worth taking seriously. A bid that is unusually vague about material allowances, especially on cabinetry, countertops, or tile, often means the real cost gets discovered later through change orders. A contractor who wants a large deposit well beyond what covers initial material ordering, or who pushes to start work before permits are pulled, is asking you to accept risk that should sit with them.",
+          "Be cautious of a proposal that does not mention who files the Notice of Commencement or which permits the project requires, since that usually means it has not been thought through yet rather than that it does not apply. And be skeptical of anyone who discourages you from calling the county to confirm their license or insurance. A contractor confident in their standing has no reason to discourage that call.",
+        ],
+      },
+      {
+        heading: "What a trustworthy project looks like from contract to walkthrough",
+        paragraphs: [
+          "A well-run high-end remodel has a contract with a detailed scope and allowances, a recorded Notice of Commencement on file before the first inspection, permits pulled under the contractor's license for the appropriate trades, and a payment schedule tied to completed milestones rather than the calendar. Inspections happen at the points the building department requires, and you get copies of the paperwork as it is generated rather than having to ask for it after the fact.",
+          "But a project run this way gives you a clear paper trail and a way to hold the work to what was agreed, which is what a high-end budget is actually paying for.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "full-home-renovation-palm-beach-gardens-guide",
     title: "Planning a Full Home Renovation in Palm Beach Gardens",
     description:
