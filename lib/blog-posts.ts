@@ -33,6 +33,63 @@ export type BlogPost = {
 
 export const BLOG_POSTS = [
   {
+    slug: "before-and-after-home-renovations-palm-beach-gardens",
+    title: "Before and After Renovations in Palm Beach Gardens",
+    description:
+      "A walkthrough of what real permitted kitchen, bathroom, and whole-home transformations in Palm Beach Gardens actually involve, start to finish.",
+    category: "Planning",
+    publishedAt: "2026-11-20",
+    updatedAt: "2026-11-20",
+    intro:
+      "Before-and-after photos are the easy part to look at, but they skip over everything that actually happened between the old kitchen and the new one. In Palm Beach Gardens, that gap includes design decisions, a trip through city permitting, and in many neighborhoods a separate approval from an architectural review board. Here is what the full process looks like, from the outdated space in the first photo to the one that gets shared at the end.",
+    sections: [
+      {
+        heading: "What counts as a before-and-after renovation here",
+        paragraphs: [
+          "A true before-and-after is not just new paint and a different light fixture. In Palm Beach Gardens, the projects that produce a dramatic transformation usually involve some combination of removing or relocating walls, reworking the kitchen layout around the appliances and island, re-tiling or replacing a bathroom from the studs out, or touching the structure and systems enough that the house genuinely functions differently afterward.",
+          "That distinction matters because it is also the line that determines whether a permit is required. A cosmetic refresh, like swapping countertops without moving plumbing, is a different animal from a gut renovation that reconfigures space. Most of the transformations homeowners are chasing when they search for before-and-after inspiration fall into the second category, which means the process below applies.",
+        ],
+      },
+      {
+        heading: "Kitchen, bathroom, and whole-home examples",
+        paragraphs: [
+          "A typical kitchen transformation in this area starts with a closed-off, dated layout, often with a peninsula or a wall separating the kitchen from a family room, and ends with an open layout centered on an island, updated cabinetry, and a different lighting plan. The visual change is dramatic, but it almost always starts with a wall coming down, which is structural work and triggers both design and permitting steps before any demolition happens.",
+          "A bathroom before-and-after commonly involves replacing an old tub-and-tile combination with a curbless or low-threshold shower, reworking the vanity footprint, and redoing waterproofing underneath the new tile. The photos show surfaces and fixtures, but the work that makes the after photo hold up over time happens behind the tile, where the waterproofing membrane and slope go.",
+          "A whole-home renovation ties these together, often room by room, and may include opening the floor plan, redoing flooring throughout, and updating the exterior enough to change curb appeal. These projects take the longest and involve the most coordination between the design phase, permitting, and construction, simply because more systems and more rooms are affected at once.",
+        ],
+      },
+      {
+        heading: "The process behind every transformation",
+        paragraphs: [
+          "Every one of these projects starts with design, even when the homeowner is eager to get to construction. That means finalizing the layout, selecting materials, and producing drawings detailed enough to submit for a permit. Skipping or rushing this step is the most common reason a project stalls later, because the permit reviewer or the contractor finds a gap that has to be resolved mid-project instead of on paper.",
+          "Once the design is set, the project moves into permitting, and only after the permit is issued does demolition and construction actually begin. Inspections happen at set points along the way, tied to the trades involved, framing, electrical, plumbing, and a final inspection before the project is considered closed out. The before-and-after photo only exists because every one of those steps happened in order.",
+        ],
+      },
+      {
+        heading: "Permits and ARB approval before work starts",
+        paragraphs: [
+          "The City of Palm Beach Gardens requires a building permit for most construction, remodeling, or repair work. That requirement exists so that a renovation meets current Florida Building Code standards, which in this part of the state means construction built to hold up under hurricane wind loads and flood exposure, not just a cosmetic inspection. A kitchen remodel that moves walls or relocates plumbing, or a bathroom remodel that touches the shower pan and waterproofing, falls squarely under this requirement.",
+          "Permits for renovation and addition projects in Palm Beach Gardens are reviewed and issued through the city's Building Division, located at 10500 North Military Trail. That is the office to contact or visit when you are ready to confirm what your specific project needs before signing a contract or starting demolition.",
+          "Many homes in Palm Beach Gardens sit within a gated community or planned development with its own architectural review board, and that approval is separate from the city permit. An ARB typically reviews exterior changes, and sometimes certain interior work depending on the community's governing documents, before the city permit process even begins. If your home falls under an ARB, build that approval timeline into your schedule rather than assuming the city permit is the only box to check.",
+        ],
+      },
+      {
+        heading: "What makes the biggest visual difference",
+        paragraphs: [
+          "Layout changes tend to produce the most dramatic before-and-after contrast, because removing a wall or reworking traffic flow changes how a room feels in a way surface finishes alone cannot match. Natural light is a close second: enlarging an opening, changing a window, or simply removing visual barriers between rooms lets existing light reach spaces that used to feel closed off.",
+          "Surfaces still matter, and countertops, flooring, and cabinetry finish are what most people notice first in a photo. But the projects that look transformed rather than just refreshed are almost always the ones where the layout or the light changed first, with the surfaces finishing the job.",
+        ],
+      },
+      {
+        heading: "Planning your own before-and-after project",
+        paragraphs: [
+          "If you are starting to plan a renovation in Palm Beach Gardens, begin with the design and a realistic look at what your layout needs to change, then confirm with the city Building Division what permits your scope will require and check whether your community has an ARB process to account for. Getting those two things settled early is what keeps a project moving instead of stalling once walls are already open.",
+          "The before-and-after photo is the reward at the end, but it is really a record of design decisions made correctly up front, a permit process followed in the right order, and construction that matched the drawings. Plan for those three things and the transformation takes care of itself.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "vetting-a-high-end-remodeling-contractor-palm-beach-county",
     title: "Vetting a High-End Remodeling Contractor in PBC",
     description:
