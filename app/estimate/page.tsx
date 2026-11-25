@@ -1,108 +1,61 @@
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
-import { reviews, site } from "@/lib/site";
+import type { CSSProperties } from "react";
+import { site } from "@/lib/site";
 import LanderVideo from "@/components/LanderVideo";
 import "./estimate.css";
 
+// A paid-traffic funnel, not a search landing page: noindex, not linked from the site.
 export const metadata: Metadata = {
-  title: `Free Remodeling Estimate | ${site.name}`,
-  description: `Request a free kitchen or bathroom remodeling estimate. One of the owners of ${site.name} will call you.`,
-  robots: { index: false, follow: false, googleBot: { index: false, follow: false } },
+  title: { absolute: "Free Remodeling Estimate | Palm Beach Renovations" },
+  description: "Watch a quick hello from Mike, then choose your kitchen or bathroom remodel and get a free estimate in Palm Beach and Martin County.",
+  alternates: { canonical: `${site.domain}/estimate` },
+  robots: { index: false, follow: false },
 };
 
 const choices = [
-  { href: "/estimate/kitchen", label: "Kitchen Remodeling", src: "/img/lander/kitchen-full.jpg", alt: "Finished kitchen remodel by Palm Beach Renovations" },
-  { href: "/estimate/bathroom", label: "Bathroom Remodeling", src: "/img/lander/hero-bathroom.jpg", alt: "Finished bathroom remodel by Palm Beach Renovations" },
+  { href: "/kitchen-estimate", label: "Kitchen Remodeling", src: "/img/lander/kitchen-full.jpg", alt: "Finished kitchen remodel by Palm Beach Renovations" },
+  { href: "/bathroom-estimate", label: "Bathroom Remodeling", src: "/img/lander/hero-bathroom.jpg", alt: "Finished bathroom remodel by Palm Beach Renovations" },
 ];
 
-const steps = [
-  { t: "An owner calls you", d: "Michael, Adam or Tom calls to learn about your project and answer your questions." },
-  { t: "We set a specific time", d: "We pick an exact time that works for you. No all-day arrival window." },
-  { t: "We see it in person", d: "We look at the space with you, take measurements and talk through your ideas." },
-  { t: "Your estimate follows", d: "We send your estimate shortly after the visit for you to review." },
-];
-
-const quotes = reviews.slice(0, 3);
+const accent = { "--accent": "#1e3a8a" } as CSSProperties;
 
 export default function EstimatePage() {
   return (
-    <main className="ld-root">
-      <header className="ld-top">
-        <Image src="/img/logo.webp" alt={site.name} width={120} height={69} priority />
-        <a href={`tel:${site.phone}`} aria-label={`Call ${site.name} at ${site.phoneDisplay}`}>{site.phoneDisplay}</a>
-      </header>
-
-      <section className="ld-hero">
-        <div className="ld-hero-in">
-          <div className="ld-stage">
+    <main className="bq-page">
+      <section className="bq-hero">
+        <Image src="/img/gallery/kitchen-navy-white-island.jpg" alt="" fill priority sizes="100vw" className="bq-hero-img" />
+        <div className="bq-hero-shade" aria-hidden="true" />
+        <div className="container bq-hero-inner">
+          <p className="bq-eyebrow">Palm Beach Renovations · Free Estimate</p>
+          <h1>Let&apos;s plan your <em>remodel</em></h1>
+          <p className="bq-hero-sub">Watch a quick hello from Mike, then pick your project. No prices, no pressure. We turn your picks into a free, accurate estimate.</p>
+          <ul className="bq-hero-points">
+            <li>Free estimate</li>
+            <li>Licensed &amp; insured</li>
+            <li>Owner-led team</li>
+          </ul>
+        </div>
+      </section>
+      <div className="container bq-wrap">
+        <section className="bq-panel est-panel" style={accent} aria-labelledby="est-h">
+          <div className="est-vsl">
             <LanderVideo src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" label="A hello from Mike, one of the owners" />
-            <div className="ld-stage-text">
-              <p className="ld-name"><strong>Mike Ullman</strong><span>Owner, Palm Beach Renovations</span></p>
-              <h1>Thinking about remodeling your kitchen or bathroom?</h1>
-            </div>
           </div>
-          <div className="ld-card" id="start">
-            <h2>What are you remodeling?</h2>
-            <p className="ld-pick-sub">Pick one to start your free estimate. It only takes a couple of minutes.</p>
-            <div className="ld-pick-grid">
-              {choices.map((c) => (
-                <Link key={c.href} href={c.href} className="ld-pick-card">
-                  <Image src={c.src} alt={c.alt} fill sizes="(max-width: 900px) 100vw, 480px" />
-                  <span>{c.label}<em>Start &rarr;</em></span>
-                </Link>
-              ))}
-            </div>
+          <p className="est-name"><strong>Mike Ullman</strong> · Owner, Palm Beach Renovations</p>
+          <h2 id="est-h" className="est-h"><small>Step 1</small>What are you remodeling?</h2>
+          <div className="ld-pick-grid">
+            {choices.map((c) => (
+              <Link key={c.href} href={c.href} className="ld-pick-card">
+                <Image src={c.src} alt={c.alt} fill sizes="(max-width: 720px) 100vw, 440px" />
+                <span>{c.label}<em>Start &rarr;</em></span>
+              </Link>
+            ))}
           </div>
-        </div>
-      </section>
-
-      <section className="ld-sec ld-next" aria-labelledby="ld-next-h">
-        <h2 id="ld-next-h">What happens after you send this</h2>
-        <ol>
-          {steps.map((s) => (
-            <li key={s.t}><strong>{s.t}</strong><span>{s.d}</span></li>
-          ))}
-        </ol>
-      </section>
-
-      <section className="ld-sec ld-owners" aria-labelledby="ld-own-h">
-        <h2 id="ld-own-h">Meet the owners</h2>
-        <div className="ld-owner-grid">
-          {site.owners.map((o) => (
-            <figure key={o.name}>
-              <Image src={o.photo} alt={`${o.name}, owner of ${site.name}`} width={600} height={900} sizes="(max-width: 700px) 40vw, 360px" />
-              <figcaption>
-                <strong>{o.name}</strong>
-                <p>{o.bio}</p>
-              </figcaption>
-            </figure>
-          ))}
-        </div>
-      </section>
-
-      <section className="ld-sec ld-reviews" aria-labelledby="ld-rev-h">
-        <h2 id="ld-rev-h">What homeowners say</h2>
-        <div className="ld-rev-grid">
-          {quotes.map((r) => (
-            <blockquote key={r.author}>
-              <p>&ldquo;{r.text}&rdquo;</p>
-              <footer>{r.author}, Google review</footer>
-            </blockquote>
-          ))}
-        </div>
-      </section>
-
-      <section className="ld-final">
-        <h2>Ready to get started?</h2>
-        <a className="ld-cta" href="#start">Choose my project</a>
-        <p>Or call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></p>
-      </section>
-
-      <footer className="ld-foot">
-        <p>&copy; {new Date().getFullYear()} {site.name}. Licensed and insured. Serving Palm Beach and Martin County, FL.</p>
-        <p><a href="/privacy">Privacy policy</a></p>
-      </footer>
+          <p className="est-call">Prefer to talk? <a href={`tel:${site.phone}`}>Call {site.phoneDisplay}</a></p>
+        </section>
+      </div>
     </main>
   );
 }
