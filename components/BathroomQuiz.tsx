@@ -200,10 +200,16 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
       });
   };
 
+  const secNote = (s: (typeof sections)[number]) =>
+    visibleOf(s)
+      .map((gr) => ((notes[gr.id] || "").trim() ? `${gr.label}: ${(notes[gr.id] || "").trim().replace(/\s+/g, " ")}` : ""))
+      .filter(Boolean)
+      .join(" | ");
+
   function buildRows(withTier = false) {
     return sections.map((s, idx) => {
       const parts = visibleOf(s).map((gr) => `${gr.label}: ${labelsFor(gr.id, gr.opts, withTier).join(", ") || "-"}`);
-      const note = (notes[s.id] || "").trim().replace(/\s+/g, " ");
+      const note = secNote(s);
       return { idx, id: s.id, title: s.title, text: parts.length ? parts.join("; ") : "Not changing", note };
     });
   }
@@ -282,7 +288,7 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
     const secs = sections.map((s) => ({
       title: s.title,
       items: visibleOf(s).map((gr) => ({ label: gr.label, value: labelsFor(gr.id, gr.opts).join(", ") || "-", picks: picksFor(gr.id, gr.opts) })),
-      note: (notes[s.id] || "").trim().replace(/\s+/g, " "),
+      note: secNote(s),
     }));
     const undecided: string[] = [];
     for (const s of sections) for (const gr of visibleOf(s)) if ((answers[gr.id] || []).includes("not-sure")) undecided.push(gr.label);
@@ -403,18 +409,16 @@ export default function BathroomQuiz({ kind = "bathroom" }: { kind?: Kind } = {}
                 </label>
               )}
             </div>
-            {page.last && (
-              <label className="bq-note">
-                <span>Anything to add about your {sec.title.toLowerCase()}? <em>(optional)</em></span>
-                <textarea
-                  rows={2}
-                  maxLength={300}
-                  value={notes[sec.id] || ""}
-                  onChange={(e) => setNotes((n) => ({ ...n, [sec.id]: e.target.value }))}
-                  placeholder="Anything else we should know"
-                />
-              </label>
-            )}
+            <label className="bq-note">
+              <span>Anything else to add? <em>(optional)</em></span>
+              <textarea
+                rows={2}
+                maxLength={300}
+                value={notes[gr.id] || ""}
+                onChange={(e) => setNotes((n) => ({ ...n, [gr.id]: e.target.value }))}
+                placeholder="Add any details or special requests"
+              />
+            </label>
           </section>
         );
       })()}
