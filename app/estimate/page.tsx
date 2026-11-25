@@ -34,7 +34,7 @@ export default function EstimatePage() {
       </header>
 
       <section className="ld-hero">
-        <div className="ld-hero-in ld-solo">
+        <div className="ld-hero-in">
           <div className="ld-stage">
             <LanderVideo src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" label="A hello from Mike, one of the owners" />
             <div className="ld-stage-text">
@@ -42,19 +42,18 @@ export default function EstimatePage() {
               <h1>Thinking about remodeling your kitchen or bathroom?</h1>
             </div>
           </div>
-        </div>
-      </section>
-
-      <section className="ld-pick" aria-labelledby="ld-pick-h">
-        <h2 id="ld-pick-h">What are you remodeling?</h2>
-        <p>Pick one to start your free estimate. It only takes a couple of minutes.</p>
-        <div className="ld-pick-grid">
-          {choices.map((c) => (
-            <Link key={c.href} href={c.href} className="ld-pick-card">
-              <Image src={c.src} alt={c.alt} fill sizes="(max-width: 720px) 100vw, 400px" />
-              <span>{c.label}<em>Start &rarr;</em></span>
-            </Link>
-          ))}
+          <div className="ld-card" id="start">
+            <h2>What are you remodeling?</h2>
+            <p className="ld-pick-sub">Pick one to start your free estimate. It only takes a couple of minutes.</p>
+            <div className="ld-pick-grid">
+              {choices.map((c) => (
+                <Link key={c.href} href={c.href} className="ld-pick-card">
+                  <Image src={c.src} alt={c.alt} fill sizes="(max-width: 900px) 100vw, 480px" />
+                  <span>{c.label}<em>Start &rarr;</em></span>
+                </Link>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
@@ -96,7 +95,7 @@ export default function EstimatePage() {
 
       <section className="ld-final">
         <h2>Ready to get started?</h2>
-        <a className="ld-cta" href="#ld-pick-h">Choose my project</a>
+        <a className="ld-cta" href="#start">Choose my project</a>
         <p>Or call <a href={`tel:${site.phone}`}>{site.phoneDisplay}</a></p>
       </section>
 

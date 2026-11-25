@@ -137,7 +137,10 @@ body:has(.ld-root) .skip-link { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .ld-step { animation: none; } .ld-progress span { transition: none; } }
 
-/* Generic estimate page: video, then pick kitchen or bathroom */
+/* Generic estimate page: picker lives in the same card slot as the survey */
+.ld-pick-sub { margin: -6px 0 14px; color: #4b5563; }
+.ld-card .ld-pick-grid { grid-template-columns: 1fr; gap: 12px; max-width: none; }
+.ld-card .ld-pick-card { aspect-ratio: 16 / 9; }
 .ld-hero-in.ld-solo { max-width: 540px; grid-template-columns: 1fr; padding-bottom: 28px; }
 .ld-solo .ld-stage { aspect-ratio: 4 / 5; min-height: 0; }
 .ld-pick { background: #fff; color: var(--ink); padding: 34px 16px 44px; text-align: center; }
