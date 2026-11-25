@@ -137,7 +137,17 @@ body:has(.ld-root) .skip-link { display: none; }
 }
 @media (prefers-reduced-motion: reduce) { .ld-step { animation: none; } .ld-progress span { transition: none; } }
 
-/* Generic estimate page: picker lives in the same card slot as the survey */
+/* Generic /estimate page, wish-list style */
+.est-panel { text-align: center; }
+.est-vsl { position: relative; width: 100%; max-width: 380px; aspect-ratio: 4 / 5; margin: 0 auto; border-radius: 18px; overflow: hidden; background: #1a3380; box-shadow: 0 14px 38px rgba(14,31,84,.25); isolation: isolate; }
+.est-name { position: relative; z-index: 1; margin: .8rem 0 1.4rem; font-size: .95rem; color: #4b5563; }
+.est-name strong { color: var(--ink, #0f1b3d); }
+.est-h { position: relative; z-index: 1; margin: 0 0 1rem; font-family: ui-serif, Georgia, serif; font-weight: 600; font-size: 1.6rem; line-height: 1.2; color: var(--ink, #0f1b3d); }
+.est-h small { display: block; margin-bottom: .2rem; font-family: system-ui, sans-serif; font-weight: 800; font-size: .72rem; letter-spacing: .16em; text-transform: uppercase; color: var(--accent); }
+.est-panel .ld-pick-grid { position: relative; z-index: 1; }
+.est-call { position: relative; z-index: 1; margin: 1.2rem 0 0; font-size: .95rem; color: #4b5563; }
+.est-call a { color: var(--accent); font-weight: 700; }
+/* (older picker-in-card rules below are unused by the live page) */
 .ld-pick-sub { margin: -6px 0 14px; color: #4b5563; }
 .ld-card .ld-pick-grid { grid-template-columns: 1fr; gap: 12px; max-width: none; }
 .ld-card .ld-pick-grid { width: 100%; display: grid; }
