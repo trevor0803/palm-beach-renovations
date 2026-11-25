@@ -140,7 +140,10 @@ body:has(.ld-root) .skip-link { display: none; }
 /* Generic estimate page: picker lives in the same card slot as the survey */
 .ld-pick-sub { margin: -6px 0 14px; color: #4b5563; }
 .ld-card .ld-pick-grid { grid-template-columns: 1fr; gap: 12px; max-width: none; }
-.ld-card .ld-pick-card { aspect-ratio: 16 / 9; }
+.ld-card .ld-pick-grid { width: 100%; display: grid; }
+.ld-card .ld-pick-card { display: block; width: 100%; height: 0; padding-bottom: 56%; aspect-ratio: auto; }
+.ld-card .ld-pick-card span { color: #fff; flex-wrap: nowrap; gap: 10px; font-size: 20px; }
+.ld-card .ld-pick-card em { color: #fff; white-space: nowrap; flex: none; }
 .ld-hero-in.ld-solo { max-width: 540px; grid-template-columns: 1fr; padding-bottom: 28px; }
 .ld-solo .ld-stage { aspect-ratio: 4 / 5; min-height: 0; }
 .ld-pick { background: #fff; color: var(--ink); padding: 34px 16px 44px; text-align: center; }
