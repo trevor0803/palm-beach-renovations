@@ -140,6 +140,12 @@ body:has(.ld-root) .skip-link { display: none; }
 /* Generic /estimate page, wish-list style */
 .est-panel { text-align: center; }
 .est-vsl { position: relative; width: 100%; max-width: 380px; aspect-ratio: 4 / 5; margin: 0 auto; border-radius: 18px; overflow: hidden; background: #1a3380; box-shadow: 0 14px 38px rgba(14,31,84,.25); isolation: isolate; }
+.est-video, .est-video video { position: absolute; inset: 0; width: 100%; height: 100%; }
+.est-video video { object-fit: cover; display: block; background: #0e1f54; }
+.est-play { position: absolute; z-index: 3; left: 50%; top: 50%; width: 84px; height: 84px; margin: -42px 0 0 -42px; display: grid; place-items: center; border: 3px solid #fff; border-radius: 50%; background: rgba(30,58,138,.88); cursor: pointer; box-shadow: 0 10px 30px rgba(0,0,0,.4); transition: transform .15s ease, background .15s ease; }
+.est-play:hover { transform: scale(1.07); background: #1e3a8a; }
+.est-play:focus-visible { outline: 3px solid #d4a73a; outline-offset: 3px; }
+.est-play-icon { width: 0; height: 0; margin-left: 6px; border-left: 24px solid #fff; border-top: 15px solid transparent; border-bottom: 15px solid transparent; }
 .est-name { position: relative; z-index: 1; margin: .8rem 0 1.4rem; font-size: .95rem; color: #4b5563; }
 .est-name strong { color: var(--ink, #0f1b3d); }
 .est-h { position: relative; z-index: 1; margin: 0 0 1rem; font-family: ui-serif, Georgia, serif; font-weight: 600; font-size: 1.6rem; line-height: 1.2; color: var(--ink, #0f1b3d); }
