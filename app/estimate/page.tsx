@@ -41,7 +41,7 @@ export default function EstimatePage() {
       <div className="container bq-wrap">
         <section className="bq-panel est-panel" style={accent} aria-labelledby="est-h">
           <div className="est-vsl">
-            <LanderVideo src="/video/mike-hello.mp4" poster="/video/mike-hello.jpg" label="A hello from Mike, one of the owners" />
+            <LanderVideo src="/video/vsl-pbr.mp4" poster="/video/vsl-pbr.jpg" label="A hello from Mike, one of the owners" />
           </div>
           <p className="est-name"><strong>Mike Ullman</strong> · Owner, Palm Beach Renovations</p>
           <h2 id="est-h" className="est-h"><small>Step 1</small>What are you remodeling?</h2>
