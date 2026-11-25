@@ -136,3 +136,19 @@ body:has(.ld-root) .skip-link { display: none; }
   .ld-next li::before { left: 0; top: -17px; }
 }
 @media (prefers-reduced-motion: reduce) { .ld-step { animation: none; } .ld-progress span { transition: none; } }
+
+/* Generic estimate page: video, then pick kitchen or bathroom */
+.ld-hero-in.ld-solo { max-width: 540px; grid-template-columns: 1fr; padding-bottom: 28px; }
+.ld-solo .ld-stage { aspect-ratio: 4 / 5; min-height: 0; }
+.ld-pick { background: #fff; color: var(--ink); padding: 34px 16px 44px; text-align: center; }
+.ld-pick h2 { font-size: clamp(26px, 6vw, 36px); margin: 0 0 6px; }
+.ld-pick > p { margin: 0 auto 22px; max-width: 460px; color: #4b5563; }
+.ld-pick-grid { display: grid; gap: 14px; max-width: 820px; margin: 0 auto; grid-template-columns: 1fr; }
+.ld-pick-card { position: relative; display: block; border-radius: 18px; overflow: hidden; aspect-ratio: 16 / 11; text-decoration: none; color: #fff; box-shadow: 0 14px 38px rgba(14,31,84,.22); isolation: isolate; }
+.ld-pick-card img { object-fit: cover; transition: transform .35s ease; }
+.ld-pick-card::after { content: ""; position: absolute; inset: 40% 0 0 0; z-index: 1; background: linear-gradient(180deg, rgba(14,31,84,0), rgba(14,31,84,.9)); }
+.ld-pick-card span { position: absolute; z-index: 2; left: 18px; right: 18px; bottom: 16px; display: flex; justify-content: space-between; align-items: center; font-weight: 700; font-size: 22px; }
+.ld-pick-card em { font-style: normal; font-size: 15px; font-weight: 700; background: var(--brass); color: #fff; padding: 9px 14px; border-radius: 999px; }
+.ld-pick-card:hover img, .ld-pick-card:focus-visible img { transform: scale(1.04); }
+.ld-pick-card:focus-visible { outline: 3px solid var(--brass); outline-offset: 3px; }
+@media (min-width: 720px) { .ld-pick-grid { grid-template-columns: 1fr 1fr; gap: 20px; } .ld-pick-card { aspect-ratio: 4 / 3; } }
