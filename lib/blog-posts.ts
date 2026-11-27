@@ -33,6 +33,62 @@ export type BlogPost = {
 
 export const BLOG_POSTS = [
   {
+    slug: "home-renovation-royal-palm-beach",
+    title: "What Makes a Royal Palm Beach Renovation Different",
+    description:
+      "How Royal Palm Beach's own Village Building Division, permit documents, and e-permitting portal shape a real kitchen or bathroom renovation timeline.",
+    category: "Permits",
+    publishedAt: "2026-11-27",
+    updatedAt: "2026-11-27",
+    intro:
+      "Homeowners searching for help with a home renovation in Royal Palm Beach often land on pages that read the same as every other city's remodeling page, services listed with no mention of who actually reviews the plans or what paperwork Village Hall wants before a hammer swings. Royal Palm Beach runs its own permitting process, separate from the county and from neighboring Wellington, and that affects how a kitchen or bathroom project gets scheduled from the first sketch to the final inspection. Here is what that actually looks like.",
+    sections: [
+      {
+        heading: "Royal Palm Beach is its own Village, and that matters for your renovation",
+        paragraphs: [
+          "Royal Palm Beach was incorporated in 1959 and is now the 10th largest city in Palm Beach County, with roughly 40,000 residents. That incorporated status means the Village runs its own municipal government and its own services, including its own Building Division, rather than relying on the county's building department the way an unincorporated neighborhood might.",
+          "Practically, that means a renovation permit here is reviewed by Village staff under the Village's own rules and forms, not by the Palm Beach County building department and not by Wellington's. If a contractor's experience is mostly with county permits or a different city's process, they will still need to learn Royal Palm Beach's specific requirements before a permit gets issued, which is worth asking about up front.",
+        ],
+      },
+      {
+        heading: "Permits and the documents Village Hall requires",
+        paragraphs: [
+          "Most kitchen and bathroom renovations that involve moving walls, adding square footage, or otherwise changing the structure fall under the Village's Remodel/Addition permit. That application calls for the permit application itself, two sets of plans, a current survey, product approvals for the materials being installed, setbacks shown on the survey, energy calculations, truss plans where applicable, and zoning approval.",
+          "A straightforward interior remodel that does not touch the footprint has its own, lighter paperwork trail. The Village's Resident Permit Form Finder lists a Floor Plan or Perimeter drawing, a Design Plan, and Product Approvals, often called NOAs, as the forms needed for that permit type.",
+          "The common thread across both permit types is that the paperwork has to be complete at submission. The Village's rules state that required documentation must be submitted at the time of application for the permit to be accepted for processing, so a partial submission does not hold a place in line while missing items get tracked down.",
+        ],
+      },
+      {
+        heading: "What a licensed contractor handles versus what falls on the homeowner",
+        paragraphs: [
+          "A licensed contractor pulling the permit is typically the one assembling the plan sets, survey, product approvals, and energy calculations, and coordinating with the designer or engineer if the project needs one. That is part of why working with a contractor who already has a relationship with the Village's Building Division can keep a project moving instead of stalling at the submission counter.",
+          "Homeowners who plan to do some or all of the work themselves have an additional requirement. Any Owner/Builder permit in Royal Palm Beach must be accompanied by a notarized Owner/Builder Affidavit, and that affidavit has to be part of the application package from the start, not added later. It is worth knowing this before deciding to self-perform work, since it changes both the paperwork and the liability that sits with the homeowner rather than a licensed contractor.",
+        ],
+      },
+      {
+        heading: "Kitchen and bathroom renovation considerations in Royal Palm Beach",
+        paragraphs: [
+          "Kitchen and bathroom projects here almost always need product approvals, or NOAs, documenting that windows, doors, and other exterior-rated products meet Florida Building Code wind and impact standards for this part of the coast. If a kitchen remodel includes a new window over the sink or a bathroom addition adds an exterior door, those product approvals have to be part of the permit package, not an afterthought.",
+          "Bathroom remodels that rework the shower or tub area also involve waterproofing and plumbing changes that typically require their own inspections during construction, separate from the final sign-off. Kitchen remodels that relocate the sink, range, or load-bearing walls bring in plumbing, electrical, and sometimes structural review on top of the base Remodel/Addition permit, which is part of why the survey and setback documentation matter even for work that looks purely cosmetic from inside the house.",
+        ],
+      },
+      {
+        heading: "A realistic timeline from design to final inspection",
+        paragraphs: [
+          "Before any permit application goes in, the design phase has to produce the plans, survey, and energy calculations the Village requires, which means finalizing the layout and material selections earlier in the process than many homeowners expect. Rushing this stage is one of the more common reasons a permit application comes back with corrections instead of an approval.",
+          "Once the application is submitted complete, it goes through Village review before a permit is issued, and only after that does demolition and construction begin. Inspections are scheduled at set points as the work progresses, electrical, plumbing, framing where applicable, and a final inspection that closes out the permit. How long all of that takes depends on the scope of the project and how quickly corrections, if any, get resolved, so it is worth asking a contractor for a timeline based on your specific project rather than a general estimate.",
+        ],
+      },
+      {
+        heading: "Choosing a remodeler who already works with the Village's system",
+        paragraphs: [
+          "Royal Palm Beach, like many Florida municipalities, has moved toward handling permit applications and inspections through an online system rather than paper-only submissions at the counter. A contractor who regularly files through that system and knows what the Village's reviewers expect to see on a survey or a set of plans tends to avoid the back-and-forth that slows down less experienced applicants.",
+          "When vetting a remodeler for a Royal Palm Beach project, it is reasonable to ask directly how many permits they have pulled through the Village's Building Division, not just Palm Beach County generally, and whether they are familiar with the specific document list for a Remodel/Addition permit versus an interior remodel. A contractor who can answer that clearly is signaling that they understand the Village is its own jurisdiction, not just another line on a service area list.",
+        ],
+      },
+    ],
+  },
+  {
     slug: "before-and-after-home-renovations-palm-beach-gardens",
     title: "Before and After Renovations in Palm Beach Gardens",
     description:
